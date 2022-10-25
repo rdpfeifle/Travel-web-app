@@ -20,13 +20,11 @@ class User(db.Model):
     trips = db.relationship("Trip", back_populates="user")
     images = db.relationship("Image", back_populates="user")
 
-    # if I wanted to use backref, but I wouldn't need to create a db.relationship in the others
     # trips = db.relationship("Trip", backref="user") 
     # images = db.relationship("Image", backref="user") 
-    #foreign key i use the table name
 
     def __repr__(self):
-        return f"<User user_id={self.user_id} email={self.email}>"
+        return f"<User user_id={self.user_id} fname={self.fname} email={self.email}>"
 
 
 class Trip(db.Model):
@@ -35,15 +33,17 @@ class Trip(db.Model):
     __tablename__ = "trips"
 
     trip_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False) 
+    traveler = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False) 
     destination = db.Column(db.String, nullable=False)
+    # city_name = db.Column(db.String)
+    country_name = db.Column(db.String)
     trip_title = db.Column(db.String, default=destination)
     start_date = db.Column(db.Date, nullable=False) 
     end_date = db.Column(db.Date, nullable=False) 
     img = db.Column(db.String)
-    city_name = db.Column(db.String)
-    country_name = db.Column(db.String)
-
+    # city_name = db.Column(db.String)
+ 
+    user = db.relationship("User", back_populates="trips")
     activities = db.relationship("Activity", back_populates="trip")
     reservations = db.relationship("Reservation", back_populates="trip")
 
@@ -51,7 +51,7 @@ class Trip(db.Model):
     # reservations = db.relationship("Reservation", backref="trip")
 
     def __repr__(self):
-        return f"<Trip trip_id={self.trip_id} destination={self.destination} trip_title={self.trip_title}>"
+        return f"<Trip trip_id={self.trip_id} destination={self.destination}>"
 
 
 class Activity(db.Model):
@@ -116,7 +116,9 @@ class Image(db.Model):
         return f"<Image img_id={self.img_id} city_name{self.city_name} place_name={self.place_name}>"
 
 
+
 def connect_to_db(flask_app, db_uri="postgresql:///trips", echo=True):
+    """Connect to dabatase."""
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
     flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -126,6 +128,18 @@ def connect_to_db(flask_app, db_uri="postgresql:///trips", echo=True):
 
     print("Connected to the db!")
 
+def some_data():
+
+    amanda = User(fname="Amanda", lname="Katz", email="amanda@gmail.com", password="1234") #fname, lname, email, password
+
+    db.session.add(amanda)
+
+    san_francisco = Trip(traveler=amanda.user_id, destination="San Francisco, California", trip_title="My Honeymoon", start_date=datetime.strptime("2022-11-10", "%Y-%m-%d"), end_date=datetime.strptime("2022-11-16", "%Y-%m-%d"), img="Bridge", country_name="US") 
+    db.session.add(san_francisco)
+    amanda.trips.append(san_francisco)
+
+    db.session.commit()
+
 
 if __name__ == "__main__":
     from server import app
@@ -134,5 +148,6 @@ if __name__ == "__main__":
     # too annoying; this will tell SQLAlchemy not to print out every
     # query it executes.
 
-    # app = Flask(__name__)
     connect_to_db(app)
+    db.create_all()
+    some_data()
