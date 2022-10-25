@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}
+
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <a class="navbar-brand" href="#">Tripaholics</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+               <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+               </li>
+               <li class="nav-item">
+                <a href="" class="nav-link" href="#">Explore</a>
+               </li>
+            </ul>
+            <!-- Right Side of Navbar starts here -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Sign Up</a>
+                </li>
+            </ul>
+            <button class="btn btn-outline-success" type="submit">Plan a Road Trip</button>
+        
+        <!-- Navbar ends here -->
+        </div>
+    </div>
+</nav>
+
+{% endblock %}
+
+{% block body %}
+
+<h1>Welcome, I am the homepage</h1>
+
+{% block footer %}{% endblock %}
+
+{% endblock %}
