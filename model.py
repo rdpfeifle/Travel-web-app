@@ -12,8 +12,8 @@ class User(db.Model):
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    fname = db.Column(db.String, nullable=False)
-    lname = db.Column(db.String, nullable=False)
+    fname = db.Column(db.String) #previously nullable=False, changed 10/25 in the evening
+    lname = db.Column(db.String) # previously nullable=False
     email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
 
@@ -41,7 +41,6 @@ class Trip(db.Model):
     start_date = db.Column(db.Date, nullable=False) 
     end_date = db.Column(db.Date, nullable=False) 
     img = db.Column(db.String)
-    # city_name = db.Column(db.String)
  
     user = db.relationship("User", back_populates="trips")
     activities = db.relationship("Activity", back_populates="trip")
@@ -128,13 +127,19 @@ def connect_to_db(flask_app, db_uri="postgresql:///trips", echo=True):
 
     print("Connected to the db!")
 
-def some_data():
 
-    amanda = User(fname="Amanda", lname="Katz", email="amanda@gmail.com", password="1234") #fname, lname, email, password
+
+def fake_data():
+    """Create some sample data."""
+
+    ########### Users ###########
+    amanda = User(fname="Amanda", lname="Katz", email="amanda@gmail.com", password="1234") 
 
     db.session.add(amanda)
 
+    ########### Trips ###########
     san_francisco = Trip(traveler=amanda.user_id, destination="San Francisco, California", trip_title="My Honeymoon", start_date=datetime.strptime("2022-11-10", "%Y-%m-%d"), end_date=datetime.strptime("2022-11-16", "%Y-%m-%d"), img="Bridge", country_name="US") 
+
     db.session.add(san_francisco)
     amanda.trips.append(san_francisco)
 
@@ -150,4 +155,4 @@ if __name__ == "__main__":
 
     connect_to_db(app)
     db.create_all()
-    some_data()
+    fake_data()
