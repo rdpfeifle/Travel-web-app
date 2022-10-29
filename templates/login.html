@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign In | Tripaholics{% endblock %}
+
+{% block navbar %} {% endblock %}
+
+{% block body %}
+
+<!-- I would like to add a nav where there's one arrow pointing to the left
+to go back to the "homepage" -->
+<div class="go-back"><a href="/">Go back to homepage</a></div>
+
+<!-- "Login" form -->
+
+<!-- Soon, I would like to either add a background image or 
+an image by the left side of the form while the form will
+lay on the right side. Additionally, the logo on top of the h2 -->
+<div class="container-fluid">
+    <!-- Row starts here -->
+    <div class="row">
+        <div class="d-none d-lg-block col-4">
+            <img src="https://img.washingtonpost.com/rf/image_1484w/2010-2019/WashingtonPost/2017/06/07/Production/Sunday/Travel/Graphics/road%20trip0611.jpg?uuid=kRjsDksdEee8G_3b2DWd7g" class="img-fluid" alt="">
+        <!-- <img src="/static/img/" alt=""> -->
+        </div>
+
+
+        <!-- <div class="container"> -->
+        <div class="col-lg-6 col-md-8 col-sm-auto mx-auto">
+            <form action="/login" method="POST" class="p-4 p-md-5 border rounded-3 bg-light">
+
+                <!-- <img class="mb-4" src="/logohere" alt="" width="72" height="57"> -->
+
+                <h2>Welcome back!</h2>
+                <p>Log in to your account</p>
+
+                <!-- Email address goes here -->
+                <div class="form-floating mb-3">
+                    <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <!-- First name goes here -->
+                <div class="form-floating mb-3">
+                    <input type="hidden" name="fname" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                    <label for="floatingInput">Name</label>
+                </div>
+                <!-- Last name goes here -->
+                <div class="form-floating mb-3">
+                    <label for="" hidden>Last Name</label>
+                    <input type="hidden" name="lname">
+                </div>
+                <!-- Password goes here -->
+                <div class="form-floating mb-3">
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                    <label for="floatingPassword">Password</label>
+                </div>
+
+                <!-- I want to change for "would you like to see the password or something similar" 
+                However, I am not sure if I should add an eye icon or just a checkbox -->
+                <!-- I will need a JS function to show password -->
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="show-password" onclick="passwordVisibility()"> Show password
+                    </label>
+                </div>
+
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                <div class="toggle-login text-center">Don't have an account? <span><a id="signInRedirect" href="/signup">Sign Up</a></span></div>
+                <hr class="my-4">
+                <small class="text-muted">By signing in, you agree to the terms of use.</small> 
+            </form>
+        </div>
+    <!-- Row ends here -->
+    </div>
+
+<!-- Form container ends here -->
+</div> 
+
+<script src="/static/js/logInAndOut.js"></script>
+{% endblock %}

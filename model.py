@@ -12,7 +12,8 @@ class User(db.Model):
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    fname = db.Column(db.String) #previously nullable=False, changed 10/25 in the evening
+    # username = db.Column(db.String, nullable=False, unique=True)
+    fname = db.Column(db.String, nullable=False)
     lname = db.Column(db.String) # previously nullable=False
     email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)

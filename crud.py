@@ -1,14 +1,17 @@
 """CRUD operations."""
 
-from model import db, User, Trip, Activity, Reservation, connect_to_db
+from model import db, User, Trip, Activity, Reservation, Image, connect_to_db
 
 
 ########### User Functions ###########
 
-def create_user(email, password):
+def create_user(fname, lname, email, password):
     """Create and return a new user."""
 
-    user = User(email=email, password=password)
+    user = User(fname=fname,
+                lname=lname,
+                email=email, 
+                password=password)
 
     return user
 
@@ -19,6 +22,12 @@ def get_users():
     return User.query.all()
 
 
+def get_user_by_name(fname):
+    """Return a user by their first name."""
+
+    return User.query.filter_by(fname).first()
+
+    
 def get_user_by_id(user_id):
     """Return a user by primary key."""
 
@@ -29,6 +38,12 @@ def get_user_by_email(email):
     """Return a user by email."""
 
     return User.query.filter(User.email == email).first()
+
+
+def get_user_by_email_and_pass(email, password):
+    """Return a user by email and password."""
+
+    return User.query.filter(User.email == email, User.password == password).first()
 
 
 ########### Trip Functions ###########
@@ -58,16 +73,37 @@ def get_trip_by_id(trip_id):
 def create_trip_date():
     """Create trip """
 
-    return None
+    pass
 
 ########### Activity Functions ###########
+
 def create_new_activity():
     """Create a new activity."""
-    return None
+
+    pass
+
 
 ########### Reservation Functions ###########
 
+
 ########### Image Functions ###########
+
+def image_displays():
+    """Display images from places to visit on homepage."""
+
+    pass
+
+############# Places for the homepage
+
+# def get_images_of_places():
+#     """Return all images."""
+
+#     return Image.query.all()
+
+# def get_image_by_id(img_id):
+#     """Return an image by primary key."""
+
+#     return Image.query.get(img_id)
 
 if __name__ == '__main__':
     from server import app
