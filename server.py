@@ -47,7 +47,7 @@ def process_login():
 
     # otherwise, redirect to user's account
     else:
-        flash("Logged in.")
+        flash("You were logged in.")
         session["user_id"] = user.user_id
         return redirect("/user_account")
 
@@ -109,7 +109,7 @@ def logout():
 
 ################### USER'S PERSONAL ACCOUNT ###################
 
-@app.route("/user_account")
+@app.route("/user_account/")
 def user_account():
     """Show user's personal account."""
 
@@ -127,7 +127,7 @@ def plan_trip():
     """Display 'plan a new trip' page."""
 
     logged_in = session.get("user_id") # it was giving an error without this here
-    
+
     return render_template("plan-trip.html", logged_in=logged_in)
 
 
