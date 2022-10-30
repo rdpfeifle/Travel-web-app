@@ -120,6 +120,17 @@ def user_account():
     return render_template("user_account.html", user_id=user_id, fname=user.fname, logged_in=logged_in)
 
 
+################### PLAN A NEW TRIP ###################
+
+@app.route("/plan-trip")
+def plan_trip():
+    """Display 'plan a new trip' page."""
+
+    logged_in = session.get("user_id") # it was giving an error without this here
+    
+    return render_template("plan-trip.html", logged_in=logged_in)
+
+
 
 if __name__ == "__main__":
     connect_to_db(app)
