@@ -26,6 +26,16 @@ def homepage():
     return render_template("homepage.html", logged_in=logged_in)
 
 
+################### 404 ERROR HANDLER - PAGE NOT FOUND ###################
+
+@app.errorhandler(404)
+def page_not_found(e):
+
+    logged_in = session.get("user_id") # it was giving me an error without this
+
+    return render_template("404.html", logged_in=logged_in)
+
+
 ################### USER'S LOGIN PAGE ###################
 
 @app.route("/login")
@@ -44,7 +54,7 @@ def process_login():
 
     user = crud.get_user_by_email_and_pass(email, password)
 
-    # if not user, flash a message and redirect to login page
+    # if not user, flash an error message and redirect to login page
     if not user or user.password != password:
         flash("The email or password you entered was incorrect. Please try again.", "error")
         return redirect("/login")
@@ -105,7 +115,7 @@ def logout():
     """Log out from account."""
 
     if "user_id" in session:
-        flash("You have been logged out!", "warning")
+        flash("You have been logged out!", "success")
     session.pop("user_id", None)
 
     return redirect("/")
