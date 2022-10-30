@@ -16,8 +16,13 @@ app.app_context().push()
 @app.route("/")
 def homepage():
     """View homepage."""
-    return render_template("homepage.html")
 
+    logged_in = session.get("user_id")
+
+    return render_template("homepage.html", logged_in=logged_in)
+
+
+################### USER'S LOGIN PAGE ###################
 
 @app.route("/login")
 def show_login():
@@ -47,9 +52,11 @@ def process_login():
         return redirect("/user_account")
 
 
+################### USER'S SIGN UP PAGE ###################
+
 @app.route("/signup")
 def show_signup():
-    """Show sign up page."""
+    """Shows sign up page."""
 
     return render_template("signup.html")
 
@@ -73,34 +80,46 @@ def register_user():
             fname=fname,
             lname=lname,
             email=email, 
-            password=password)
+            password=password
+            )
         
         db.session.add(user)
         db.session.commit()
 
-        # adding user id to the session
+        # adding user_id to the log in session
         session["user_id"] = user.user_id
+
         flash(f"Account created successfully, {fname}.")
+        
         return redirect("/user_account")
 
 
+################### USER'S LOGOUT ###################
+
 @app.route("/logout")
 def logout():
+    """Log out from account."""
+
     if "user_id" in session:
         flash("You have been logged out!")
     session.pop("user_id", None)
-    return redirect("/login")
+
+    return redirect("/")
+
+
+################### USER'S PERSONAL ACCOUNT ###################
 
 @app.route("/user_account")
 def user_account():
-    
-    user_id = session.get("user_id")
+    """Show user's personal account."""
+
+    logged_in = session.get("user_id") # checking if the user is logged in
+    user_id = session.get("user_id") # checking if the user is already in session
     user = crud.get_user_by_id(user_id)
 
-    return render_template("user_account.html", user_id=user_id, fname=user.fname)
+    return render_template("user_account.html", user_id=user_id, fname=user.fname, logged_in=logged_in)
 
-        
-############# Places for the homepage
+
 
 if __name__ == "__main__":
     connect_to_db(app)
