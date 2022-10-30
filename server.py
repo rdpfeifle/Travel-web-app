@@ -1,13 +1,17 @@
 """Server for travel web app."""
 
-from flask import Flask, render_template, request, flash, session, redirect, url_for
+from flask import Flask, render_template, request, flash, session, redirect
 from model import connect_to_db, db
 import crud
 import os
 from jinja2 import StrictUndefined
+from datetime import timedelta
 
 app = Flask(__name__)
-app.secret_key = "dev"
+app.config["SESSION_PERMANENT"] = True
+app.permanent_session_lifetime = timedelta(minutes=5)
+
+app.secret_key = "hellohello"
 # api_key = os.environ['GM_API_KEY']
 
 app.jinja_env.undefined = StrictUndefined
@@ -42,12 +46,12 @@ def process_login():
 
     # if not user, flash a message and redirect to login page
     if not user or user.password != password:
-        flash("The email or password you entered was incorrect. Please try again.")
+        flash("The email or password you entered was incorrect. Please try again.", "error")
         return redirect("/login")
 
     # otherwise, redirect to user's account
     else:
-        flash("You were logged in.")
+        flash("You were logged in.", "success")
         session["user_id"] = user.user_id
         return redirect("/user_account")
 
@@ -73,7 +77,7 @@ def register_user():
     existing_user = crud.get_user_by_email_and_pass(email, password)
     
     if existing_user:
-        flash("Account already exists. Please log in.")
+        flash("Account already exists. Please log in.", "error")
         return redirect("/signup")
     else:
         user = crud.create_user(
@@ -89,7 +93,7 @@ def register_user():
         # adding user_id to the log in session
         session["user_id"] = user.user_id
 
-        flash(f"Account created successfully, {fname}.")
+        flash(f"Account created successfully, {fname}.", "success")
         
         return redirect("/user_account")
 
@@ -101,7 +105,7 @@ def logout():
     """Log out from account."""
 
     if "user_id" in session:
-        flash("You have been logged out!")
+        flash("You have been logged out!", "warning")
     session.pop("user_id", None)
 
     return redirect("/")

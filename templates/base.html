@@ -83,13 +83,41 @@
     </nav> 
      {% endblock %}
 
-     {% with messages = get_flashed_messages() %}
+     <!-- {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for msg in messages %}
-                <p class="flash-msg alert alert-warning"">{{ msg }}</p>
+                <p class="alert alert-warning alert-dismissible fade show" role="alert">{{ msg }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </p>
             {% endfor %}
         {% endif %}
-    {% endwith %}
+    {% endwith %} -->
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+    {% for category, msg in messages %}
+        {% if category == "success" %}
+        <p class="alert alert-success alert-dismissible fade show" role="alert">{{ msg }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </p>
+        {% endif %}
+
+        {% if category == "error" %}
+        <p class="alert alert-danger alert-dismissible fade show" role="alert">{{ msg }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </p>
+        {% endif %}
+
+        {% if category == "warning" %}
+        <p class="alert alert-warning alert-dismissible fade show" role="alert">{{ msg }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </p>
+        {% endif %}
+    {% endfor %}   
+{% endif %}
+
+{% endwith %}
 
     <!-- Body goes here -->
     {% block body %}
