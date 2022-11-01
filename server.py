@@ -161,20 +161,22 @@ def add_trip():
     start_date = request.form.get("start_date")
     end_date = request.form.get("end_date")
 
+    trip = crud.create_trip(traveler, destination, start_date, end_date)
 
-################### ACCESS GOOGLE MAPS ###################
+    db.session.add(trip)
+    db.session.commit()
 
-# @app.route("/plan-trip/<id>")
-# def show_map(id):
-#     """View maps on plan trip page."""
+    # getting the trip from the session
+    session['trip_id'] = trip.trip_id
 
-#     url = f""
-#     payload = {"apikey: API_KEY"}
+    # the trip_id is the same as from the trip that was created
+    trip_id = trip.trip_id
 
-#     response = requests.get(url, params=payload)
-#     event = response.json()
+    return redirect(f"/plan-trip/{trip_id}")
 
-#     return render_template("plan-trip.html", event=event)
+
+################### ADD ACTIVITIES TO THE TRIP'S PLAN ###################
+
 
 
 if __name__ == "__main__":

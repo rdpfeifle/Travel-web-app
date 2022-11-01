@@ -2,6 +2,7 @@
 
 from model import db, User, Trip, Activity, Reservation, Image, connect_to_db
 from passlib.hash import argon2
+from datetime import timedelta
 
 
 ########### User Functions ###########
@@ -77,10 +78,19 @@ def get_trip_by_id(trip_id):
     return Trip.query.get(trip_id)
 
 
-def create_trip_date():
-    """Create trip """
+def create_trip_date(start_date, end_date):
+    """Create trip days by subtracting end date with start date."""
 
-    pass
+    trip_dates = []
+
+    duration = end_date - start_date
+
+    for day in range(duration.days + 1):
+        date = start_date + timedelta(days=day)
+        trip_dates.append(date)
+
+    return trip_dates
+
 
 ########### Activity Functions ###########
 

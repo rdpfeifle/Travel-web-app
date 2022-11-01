@@ -40,8 +40,8 @@ class Trip(db.Model):
     # city_name = db.Column(db.String)
     country_name = db.Column(db.String)
     trip_title = db.Column(db.String, default=destination)
-    longitude = db.Column(db.Float) 
-    latitude = db.Column(db.Float)
+    longitude = db.Column(db.Float) # test
+    latitude = db.Column(db.Float) # test
     start_date = db.Column(db.Date, nullable=False) 
     end_date = db.Column(db.Date, nullable=False) 
     img = db.Column(db.String)
