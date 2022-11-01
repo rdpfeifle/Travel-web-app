@@ -18,9 +18,9 @@
 </div>
 
 <!-- Show map around here  -->
-    <div class="map">
+    <!-- <div class="map"> -->
         <div id="map">Maps</div>
-    </div>
+    <!-- </div> -->
 
 <!-- "Your trips" div goes here with a button "+ Plan new trip"
 If user's didn't create any trip yet, show the following message:
@@ -59,8 +59,7 @@ Use cards/carousel with destinations from database -->
 
 <script src="/static/js/maps.js"></script>
 <script
-    async
-    src="https://maps.googleapis.com/maps/api/js?key={{YOUR_API_KEY}}&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key={{YOUR_API_KEY}}&callback=initMap" defer>
 </script>
 
 {% endblock %}
