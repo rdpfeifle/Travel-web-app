@@ -1,6 +1,7 @@
 """CRUD operations."""
 
 from model import db, User, Trip, Activity, Reservation, Image, connect_to_db
+from passlib.hash import argon2
 
 
 ########### User Functions ###########
@@ -44,6 +45,12 @@ def get_user_by_email_and_pass(email, password):
     """Return a user by email and password."""
 
     return User.query.filter(User.email == email, User.password == password).first()
+
+
+def hashed_password(password):
+    """Converts the users' passwords to hash."""
+
+    return argon2.hash(password)
 
 
 ########### Trip Functions ###########

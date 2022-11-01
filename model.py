@@ -2,6 +2,7 @@
 
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from passlib.hash import argon2
 
 db = SQLAlchemy()
 
@@ -39,6 +40,8 @@ class Trip(db.Model):
     # city_name = db.Column(db.String)
     country_name = db.Column(db.String)
     trip_title = db.Column(db.String, default=destination)
+    longitude = db.Column(db.Float) 
+    latitude = db.Column(db.Float)
     start_date = db.Column(db.Date, nullable=False) 
     end_date = db.Column(db.Date, nullable=False) 
     img = db.Column(db.String)
@@ -134,7 +137,7 @@ def fake_data():
     """Create some sample data."""
 
     ########### Users ###########
-    amanda = User(fname="Amanda", lname="Katz", email="amanda@gmail.com", password="1234") 
+    amanda = User(fname="Amanda", lname="Katz", email="amanda@gmail.com", password=argon2.hash("1234")) 
 
     db.session.add(amanda)
 

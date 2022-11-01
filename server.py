@@ -2,20 +2,22 @@
 
 from flask import Flask, render_template, request, flash, session, redirect
 from model import connect_to_db, db
-import crud
 import os
+from passlib.hash import argon2
+import crud
+import requests
 from jinja2 import StrictUndefined
 from datetime import timedelta
 
 app = Flask(__name__)
-app.config["SESSION_PERMANENT"] = True
-app.permanent_session_lifetime = timedelta(minutes=5)
 
 app.secret_key = "hellohello"
-# api_key = os.environ['GM_API_KEY']
+
+api_key = os.environ['YOUR_API_KEY']
 
 app.jinja_env.undefined = StrictUndefined
 app.app_context().push()
+
 
 @app.route("/")
 def homepage():
@@ -85,16 +87,21 @@ def register_user():
     password = request.form.get("password")
 
     existing_user = crud.get_user_by_email_and_pass(email, password)
+
+    # adding hash password here
+    hashed_password = argon2.hash(password)
+    del password
     
     if existing_user:
         flash("Account already exists. Please log in.", "error")
         return redirect("/signup")
+      
     else:
         user = crud.create_user(
             fname=fname,
             lname=lname,
             email=email, 
-            password=password
+            password=hashed_password
             )
         
         db.session.add(user)
@@ -131,7 +138,7 @@ def user_account():
     user_id = session.get("user_id") # checking if the user is already in session
     user = crud.get_user_by_id(user_id)
 
-    return render_template("user_account.html", user_id=user_id, fname=user.fname, logged_in=logged_in)
+    return render_template("user_account.html", user_id=user_id, fname=user.fname, logged_in=logged_in, YOUR_API_KEY=api_key)
 
 
 ################### PLAN A NEW TRIP ###################
@@ -144,6 +151,30 @@ def plan_trip():
 
     return render_template("plan-trip.html", logged_in=logged_in)
 
+
+@app.route("/plan-trip", methods=["POST"])
+def add_trip():
+    """Create and add a trip to the user's account."""
+
+    traveler = request.form.get("traveler")
+    destination = request.form.get("destination")
+    start_date = request.form.get("start_date")
+    end_date = request.form.get("end_date")
+
+
+################### ACCESS GOOGLE MAPS ###################
+
+# @app.route("/plan-trip/<id>")
+# def show_map(id):
+#     """View maps on plan trip page."""
+
+#     url = f""
+#     payload = {"apikey: API_KEY"}
+
+#     response = requests.get(url, params=payload)
+#     event = response.json()
+
+#     return render_template("plan-trip.html", event=event)
 
 
 if __name__ == "__main__":
