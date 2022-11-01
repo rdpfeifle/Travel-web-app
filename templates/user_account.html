@@ -2,30 +2,65 @@
 
 {% block title %} {{ fname }}'s Account | Tripaholics{% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="/static/css/maps.css">
+{% endblock %}
+
+
 {% block body %}
-<h1>Welcome {{ fname }}!</h1>
 
-<!-- Upcoming Trips as H2 -->
-<h2>Here are your upcoming trips:</h2>
+<div class="row p-3">
 
+    <h1>Hello {{ fname }}!</h1>
+
+    <h2>Here are your upcoming trips:</h2>
+
+</div>
 
 <!-- Show map around here  -->
-
-
+    <div class="map">
+        <div id="map">Maps</div>
+    </div>
 
 <!-- "Your trips" div goes here with a button "+ Plan new trip"
-
 If user's didn't create any trip yet, show the following message:
 "You haven't created anything yet. Plan a new trip." > Plan a new trip as a "a href"
 and it will go to the "/plan-trip" to create a trip
-Otherwise, show trips below
+Otherwise, show trips below -->
 
+<h3>Your trips</h3>
 
-
+<!-- Cards go down here, use jinja template to loop through trips -->
+<div class="card-deck">
+    <div class="card">
+        <img src="" alt="" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title">Trip name</h5>
+            <p class="card-text">Trip dates</p>
+            <p class="card-text">Description</p>
+        </div>
+    </div>
+    <div class="card">
+        <img src="" alt="" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title">Trip name</h5>
+            <p class="card-text">Trip dates</p>
+            <p class="card-text">Description</p>
+        </div>
+    </div>
+</div>
 
 <!-- Explore goes here
 Popular Destinations
 
-Use cards/carousel with destinations from database -->
+Use cards/carousel with destinations from database --> 
+
+
+
+<script src="/static/js/maps.js"></script>
+<script
+    async
+    src="https://maps.googleapis.com/maps/api/js?key={{YOUR_API_KEY}}&callback=initMap">
+</script>
 
 {% endblock %}
