@@ -56,17 +56,15 @@ def hashed_password(password):
 
 ########### Trip Functions ###########
 
-def create_trip(traveler, destination, country_name, trip_title, start_date, end_date, img):
+def create_trip(traveler, destination, start_date, end_date):
     """Create and return new trip."""
 
     trip = Trip(
         traveler=traveler,
         destination=destination,
-        country_name=country_name,
-        trip_title=trip_title,
+        trip_title=destination,
         start_date=start_date,
         end_date=end_date,
-        img=img
     )
 
     return trip

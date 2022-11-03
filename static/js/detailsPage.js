@@ -3,10 +3,10 @@
 // countdown for the trip
 const timeLeft = document.getElementById("time-left");
 
-// using Date Constructor
+// using JS Date Constructor
 
 // dayOfTrip selects the trip start_date given by the user
-let dayOfTrip = new Date(2022, 11, 04);
+let dayOfTrip = new Date("2022-11-04T03:24:00");
 
 const second = 1000;
 const minute = second * 60;
@@ -16,9 +16,9 @@ let timerId;
 
 const countDown = () => {
   const today = new Date(); // subtract dayOfTrip by today's date
-  console.log(today);
+
   const timeSpan = dayOfTrip - today;
-  console.log(timeSpan);
+  //   console.log(timeSpan);
   // checks if it has been a day since chosen start date
   if (timeSpan <= -day) {
     timeLeft.innerHTML = "I hope you arrived well in your destination!";

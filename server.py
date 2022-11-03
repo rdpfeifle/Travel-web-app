@@ -7,7 +7,7 @@ from passlib.hash import argon2
 import crud
 import requests
 from jinja2 import StrictUndefined
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 app = Flask(__name__)
 
@@ -157,12 +157,21 @@ def add_trip():
     """Create and add a trip to the user's account."""
 
     # geolocation api 
-    traveler = request.form.get("traveler")
+    # traveler = request.form.get("traveler")
     destination = request.form.get("destination")
-    start_date = request.form.get("start_date")
-    end_date = request.form.get("end_date")
+    # start_date = request.form.get("start_date")
+    # end_date = request.form.get("end_date")
+    dates = request.form.get("dates").split()
+    start_date = datetime.strptime(dates[0], "%Y-%m-%d")
+    end_date = datetime.strptime(dates[2], "%Y-%m-%d")
 
-    trip = crud.create_trip(traveler, destination, start_date, end_date)
+    logged_in = session.get("user_id")
+
+    print(dates)
+    print(start_date)
+    print(end_date)
+
+    trip = crud.create_trip(logged_in, destination, start_date, end_date)
 
     db.session.add(trip)
     db.session.commit()
@@ -179,7 +188,7 @@ def add_trip():
 ################### ADD ACTIVITIES TO THE TRIP'S PLAN ###################
 
 # I would like the URL to be showing up as /plan-trip/details
-@app.route("/details")
+@app.route("/details", methods=["GET"])
 def display_trip_details():
     """Display trip details."""
 
@@ -187,6 +196,7 @@ def display_trip_details():
     logged_in = session.get("user_id")
 
     if "user_id" not in session:
+        flash("Please, log into your existent account or create one.", "error")
         return redirect("/")
 
     return render_template("details.html", logged_in=logged_in)
