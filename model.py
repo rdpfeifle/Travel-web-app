@@ -137,7 +137,7 @@ def fake_data():
     """Create some sample data."""
 
     ########### Users ###########
-    amanda = User(fname="Amanda", lname="Katz", email="amanda@gmail.com", password=argon2.hash("1234")) 
+    amanda = User(fname="Amanda", lname="Katz", email="amanda@gmail.com", password="1234") 
 
     db.session.add(amanda)
 

@@ -4,10 +4,8 @@ import os
 import json
 from random import choice, randint
 from datetime import datetime
-
+from passlib.hash import argon2
 import crud
-
-# DO I NEED TO IMPORT USER, TRIP, AND IMAGE HERE?
 
 from model import User, Trip, db, connect_to_db
 import server
@@ -21,7 +19,7 @@ db.create_all()
 def fake_users():
     """Create fake users into database."""
 
-    nick = crud.create_user(fname="Nick", lname="Whitlock", email="nick@gmail.com", password="123456")
+    nick = crud.create_user(fname="Nick", lname="Whitlock", email="nick@gmail.com", password=argon.hash("123456"))
 
     db.session.add(nick)
     db.session.commit()

@@ -156,6 +156,7 @@ def plan_trip():
 def add_trip():
     """Create and add a trip to the user's account."""
 
+    # geolocation api 
     traveler = request.form.get("traveler")
     destination = request.form.get("destination")
     start_date = request.form.get("start_date")
@@ -172,11 +173,21 @@ def add_trip():
     # the trip_id is the same as from the trip that was created
     trip_id = trip.trip_id
 
-    return redirect(f"/plan-trip/{trip_id}")
+    return redirect(f"/plan-trip/{trip_id}/details")
 
 
 ################### ADD ACTIVITIES TO THE TRIP'S PLAN ###################
 
+@app.route("/plan-trip/details")
+def display_trip_details():
+    """Display trip details."""
+
+    trip = crud.get_trip_by_id()
+
+    if "user_id" not in session:
+        return redirect("/")
+
+    return render_template("details.html", trip=trip, YOUR_API_KEY=api_key, details=None)
 
 
 if __name__ == "__main__":

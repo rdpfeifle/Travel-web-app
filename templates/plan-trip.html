@@ -1,32 +1,62 @@
 {% extends 'base.html' %}
 
 {% block title %} Plan Trip | Tripaholics {% endblock %}
+
+{% block head %} 
+
+<!-- flatpickr - JS datetime picker -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+{% endblock %}
+
 {% block body %}
+
 <div class="container-fluid">
-<div class="row">
     <div class="text-center">
         <h2>Plan a new trip</h2>
     </div>
-    <div class="pt-4">
-        <form action="" method="post">
+    <div class="row">
+        <div class="pt-4">
+            <form action="/details" method="post" class="form-row">
             <!-- Where to? eg. Italy, Thailand, Paris (as a placeholder) > autocomplete
             If no option selected, show a message in red saying "Choose a destination to start planning"-->
+                <div class="form-row">
+                    <label for="searchInput">Where to?</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control is-invalid" id="autocompleteSearchInput" placeholder="eg. Italy, Thailand, Paris" required>
+                        <div class="invalid-feedback">Choose a destination to start planning.</div>
+                    </div>
+                </div>
 
+                <div class="form-row">
+                    <label for="validationTripDates">Dates</label>
+
+                </div>
             <!-- Dates (Start date, End date as placeholders with a dropdown calendar) -->
-
+                <input type="datetime-local" class="form-control" placeholder="Start date">
             <!-- + Invite tripmates -->
-
+                <br>
             <!-- "Start planning" button goes here and when they do click, 
                 it pop out asking to create an account or login-->
-
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Start planning</button>
             <!-- The popup would be:
             "Sign up to save your trip" heading
 
             Email, password
             Or "Sign up with email" -->
-        </form>
+
+
+            </form>
+        </div>
     </div>
 </div>
 </div>
 
+<!-- flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="/static/js/app.js"></script>
+<script src="/static/js/maps.js"></script>
+<!-- <script async
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete">
+</script> -->
 {% endblock %}

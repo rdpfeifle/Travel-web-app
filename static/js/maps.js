@@ -76,3 +76,30 @@ window.initMap = initMap;
 
 //   nyInfo.open(basicMap, nyMarker);
 // }
+
+// // autocomplete search bar
+
+// let autocomplete;
+// function initAutocomplete() {
+//   autocomplete = new google.maps.places.Autocomplete(
+//     document.getElementById("autocompleteSearchInput"),
+//     {
+//       types: ["establishment"],
+//       componentRestrictions: { country: ["USA"] },
+//       fields: ["place_id", "geometry", "name"],
+//     }
+//   );
+//   autocomplete.addEventListener("place_changed", onPlaceChanged);
+// }
+// function onPlaceChanged() {
+//   let place = autocomplete.getPlace();
+
+//   if (!place.geometry) {
+//     // user didn't select a prediction
+//     document.getElementById("autocompleteSearchInput").placeholder =
+//       "Enter a place";
+//   } else {
+//     // Display details about the valid place
+//     document.getElementById("details").innerHTML = place.name;
+//   }
+// }
