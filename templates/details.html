@@ -4,5 +4,12 @@
 
 {% block body %}
 
-<h1>Welcome back!</h1>
-{% endblock %%}
+{% if logged_in %}
+<h1>Trip Details</h1>
+
+<h2 id="time-left"></h2>
+
+{% endif %}
+
+<script src="/static/js/app.js"></script>
+{% endblock %}

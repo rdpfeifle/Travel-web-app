@@ -173,21 +173,23 @@ def add_trip():
     # the trip_id is the same as from the trip that was created
     trip_id = trip.trip_id
 
-    return redirect(f"/plan-trip/{trip_id}/details")
+    return redirect("/details")
 
 
 ################### ADD ACTIVITIES TO THE TRIP'S PLAN ###################
 
-@app.route("/plan-trip/details")
+# I would like the URL to be showing up as /plan-trip/details
+@app.route("/details")
 def display_trip_details():
     """Display trip details."""
 
-    trip = crud.get_trip_by_id()
+    # trip = crud.get_trip_by_id(trip_id)
+    logged_in = session.get("user_id")
 
     if "user_id" not in session:
         return redirect("/")
 
-    return render_template("details.html", trip=trip, YOUR_API_KEY=api_key, details=None)
+    return render_template("details.html", logged_in=logged_in)
 
 
 if __name__ == "__main__":
