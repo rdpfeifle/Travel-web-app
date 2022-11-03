@@ -11,7 +11,7 @@
 
 {% block body %}
 
-<div class="container-fluid">
+<div class="container">
     <div class="text-center">
         <h2>Plan a new trip</h2>
     </div>
@@ -24,16 +24,20 @@
                     <label for="searchInput">Where to?</label>
                     <div class="input-group">
                         <input type="text" class="form-control is-invalid" id="autocompleteSearchInput" placeholder="eg. Italy, Thailand, Paris" required>
+                        
                         <div class="invalid-feedback">Choose a destination to start planning.</div>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <label for="validationTripDates">Dates</label>
-
-                </div>
             <!-- Dates (Start date, End date as placeholders with a dropdown calendar) -->
-                <input type="datetime-local" class="form-control" placeholder="Start date">
+                    <div class="input-group">
+                        <input type="datetime-local" class="form-control" placeholder="Select preferred dates">
+                        <i class="icon bi bi-calendar"></i>
+                    </div>
+                </div>
+
             <!-- + Invite tripmates -->
                 <br>
             <!-- "Start planning" button goes here and when they do click, 

@@ -1,6 +1,6 @@
 // flatpickr
 flatpickr("input[type=datetime-local]", {
-  mode: "multiple",
+  mode: "range",
   //   dateFormat: "m-d-Y",
   dateFormat: "Y-m-d",
   altInput: true,
