@@ -7,6 +7,19 @@
 {% if logged_in %}
 <h1>Trip Details</h1>
 
+<div class="container">
+
+    <div class="row">
+        <h2>{{ trip.destination }}</h2>
+    </div>
+    <div class="row">
+        <div class="gap-2" id="trip-options">
+            <a href="" class="btn btn-primary" id="">Checklist</a>
+            <a href="" class="btn btn-primary" id="">Invite tripmates</a>
+        </div>
+    </div>
+</div>
+
 <h2 id="time-left"></h2>
 
 {% endif %}

@@ -1,7 +1,7 @@
 //---- Details Page ----//
 
 // countdown for the trip
-const timeLeft = document.getElementById("time-left");
+const timeLeft = document.getElementById("time-left"); // details.html
 
 // using JS Date Constructor
 
@@ -17,6 +17,7 @@ let timerId;
 const countDown = () => {
   const today = new Date(); // subtract dayOfTrip by today's date
 
+  // was dayOfTrip before
   const timeSpan = dayOfTrip - today;
   //   console.log(timeSpan);
   // checks if it has been a day since chosen start date

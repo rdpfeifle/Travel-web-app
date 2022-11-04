@@ -137,8 +137,9 @@ def user_account():
     logged_in = session.get("user_id") # checking if the user is logged in
     user_id = session.get("user_id") # checking if the user is already in session
     user = crud.get_user_by_id(user_id)
+    trips = user.trips
 
-    return render_template("user_account.html", user_id=user_id, fname=user.fname, logged_in=logged_in, YOUR_API_KEY=api_key)
+    return render_template("user_account.html", user_id=user_id, trips=trips, fname=user.fname, logged_in=logged_in, YOUR_API_KEY=api_key)
 
 
 ################### PLAN A NEW TRIP ###################
@@ -192,14 +193,17 @@ def add_trip():
 def display_trip_details():
     """Display trip details."""
 
-    # trip = crud.get_trip_by_id(trip_id)
     logged_in = session.get("user_id")
+    user_id = session.get("user_id") # checking if the user is already in session
+    trip_id = session.get("trip_id")
+    trip = crud.get_trip_by_id(trip_id)
+    user = crud.get_user_by_id(user_id)
 
     if "user_id" not in session:
         flash("Please, log into your existent account or create one.", "error")
         return redirect("/")
 
-    return render_template("details.html", logged_in=logged_in)
+    return render_template("details.html", logged_in=logged_in, user_id=user_id, trip=trip)
 
 
 if __name__ == "__main__":
