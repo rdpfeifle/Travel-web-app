@@ -159,7 +159,6 @@ def plan_trip():
 def add_trip():
     """Create and add a trip to the user's account."""
 
-    # geolocation api 
     # traveler = request.form.get("traveler")
     destination = request.form.get("destination")
     # start_date = request.form.get("start_date")
@@ -167,7 +166,7 @@ def add_trip():
     dates = request.form.get("dates").split()
     start_date = datetime.strptime(dates[0], "%Y-%m-%d")
     end_date = datetime.strptime(dates[2], "%Y-%m-%d")
-    # %Y-%m-%d
+
     logged_in = session.get("user_id")
 
     trip = crud.create_trip(logged_in, destination, start_date, end_date)

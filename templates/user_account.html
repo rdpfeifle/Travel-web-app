@@ -28,22 +28,24 @@ If user's didn't create any trip yet, show the following message:
 and it will go to the "/plan-trip" to create a trip
 Otherwise, show trips below -->
 
-<h3>Your trips</h3>
-
 <!-- Cards go down here, use jinja template to loop through trips -->
-<div class="card-deck">
-    {% for trip in trips %}
-    <div class="card" style="width: 18rem">
-        <!-- <img src="" alt="" class="card-img-top"> -->
-        <a href="/details" class="card-img-top btn btn-primary">See trip detail</a>
-        <div class="card-body">
-            <h5 class="card-title">{{ trip.destination }}</h5>
-            <p class="card-text">{{ trip.start_date.strftime("%m-%d-%Y") }} to {{ trip.end_date.strftime("%m-%d-%Y") }}</p>
-            <p class="card-text">Description</p>
+<div class="container">
+    <h3>Your trips</h3>
+    <div class="row g-3">
+        {% for trip in trips %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card">
+                <!-- <img src="" alt="" class="card-img-top"> -->
+                <a href="/details" class="card-img-top btn btn-primary">See trip detail</a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ trip.destination }}</h5>
+                    <p class="card-text">{{ trip.start_date.strftime("%m-%d-%Y") }} to {{ trip.end_date.strftime("%m-%d-%Y") }}</p>
+                    <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque quod quos aspernatur esse architecto doloremque iusto excepturi! A, eligendi quo? Fugit architecto nihil rem nam repudiandae molestiae sed vel quod.</p>
+                </div>
+            </div>
         </div>
+        {% endfor %}
     </div>
- 
-    {% endfor %}
 </div>
 
 <!-- Explore goes here
