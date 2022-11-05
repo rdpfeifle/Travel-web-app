@@ -14,6 +14,8 @@ app = Flask(__name__)
 app.secret_key = "hellohello"
 
 api_key = os.environ['YOUR_API_KEY']
+UNSPLASH_SECRET_KEY = os.environ['UNSPLASH_KEY']
+YELP_SECRET_KEY = os.environ['YELP_KEY']
 
 app.jinja_env.undefined = StrictUndefined
 app.app_context().push()
