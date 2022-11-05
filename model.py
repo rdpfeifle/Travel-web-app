@@ -138,8 +138,9 @@ def fake_data():
 
     ########### Users ###########
     amanda = User(fname="Amanda", lname="Katz", email="amanda@gmail.com", password="1234") 
+    raquel = User(fname="Raquel", lname="Pfeifle", email="raquel@gmail.com", password="1234")
 
-    db.session.add(amanda)
+    db.session.add_all([amanda, raquel])
 
     ########### Trips ###########
     san_francisco = Trip(traveler=amanda.user_id, destination="San Francisco, California", trip_title="My Honeymoon", start_date=datetime.strptime("2022-11-10", "%Y-%m-%d"), end_date=datetime.strptime("2022-11-16", "%Y-%m-%d"), img="Bridge", country_name="US") 

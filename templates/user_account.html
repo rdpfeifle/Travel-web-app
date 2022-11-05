@@ -33,14 +33,16 @@ Otherwise, show trips below -->
 <!-- Cards go down here, use jinja template to loop through trips -->
 <div class="card-deck">
     {% for trip in trips %}
-    <div class="card">
-        <img src="" alt="" class="card-img-top">
+    <div class="card" style="width: 18rem">
+        <!-- <img src="" alt="" class="card-img-top"> -->
+        <a href="/details" class="card-img-top btn btn-primary">See trip detail</a>
         <div class="card-body">
             <h5 class="card-title">{{ trip.destination }}</h5>
-            <p class="card-text">{{ trip.start_date }} to {{ trip.end_date }}</p>
+            <p class="card-text">{{ trip.start_date.strftime("%m-%d-%Y") }} to {{ trip.end_date.strftime("%m-%d-%Y") }}</p>
             <p class="card-text">Description</p>
         </div>
     </div>
+ 
     {% endfor %}
 </div>
 

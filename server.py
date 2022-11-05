@@ -165,12 +165,8 @@ def add_trip():
     dates = request.form.get("dates").split()
     start_date = datetime.strptime(dates[0], "%Y-%m-%d")
     end_date = datetime.strptime(dates[2], "%Y-%m-%d")
-
+    # %Y-%m-%d
     logged_in = session.get("user_id")
-
-    print(dates)
-    print(start_date)
-    print(end_date)
 
     trip = crud.create_trip(logged_in, destination, start_date, end_date)
 
@@ -179,9 +175,10 @@ def add_trip():
 
     # getting the trip from the session
     session['trip_id'] = trip.trip_id
+    trip_id = session.get("trip_id")
 
     # the trip_id is the same as from the trip that was created
-    trip_id = trip.trip_id
+    # trip_id = trip.trip_id
 
     return redirect("/details")
 
@@ -197,7 +194,6 @@ def display_trip_details():
     user_id = session.get("user_id") # checking if the user is already in session
     trip_id = session.get("trip_id")
     trip = crud.get_trip_by_id(trip_id)
-    user = crud.get_user_by_id(user_id)
 
     if "user_id" not in session:
         flash("Please, log into your existent account or create one.", "error")
