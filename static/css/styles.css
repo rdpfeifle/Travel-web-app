@@ -9,3 +9,23 @@ html {
 body {
   font-family: Poppins;
 }
+
+/* HOMEPAGE STYLE  */
+
+.accordion-item {
+  border: 1px solid rgba(35, 65, 100, 0.15);
+}
+
+.accordion-button:not(.collapsed) {
+  color: inherit;
+  background: rgb(94, 94, 218);
+  color: white;
+}
+
+.accordion-button:not(.collapsed)::after {
+  filter: brightness(0%) invert(80%);
+}
+
+.accordion-button:focus {
+  box-shadow: inherit;
+}
