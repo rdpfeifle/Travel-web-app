@@ -18,7 +18,7 @@ body {
 
 .accordion-button:not(.collapsed) {
   color: inherit;
-  background: rgb(94, 94, 218);
+  background: #0b5ed7;
   color: white;
 }
 
@@ -29,3 +29,5 @@ body {
 .accordion-button:focus {
   box-shadow: inherit;
 }
+
+/* TRIP DETAILS PAGE */

@@ -2,6 +2,7 @@
 
 {% block title %}Trip Details | Tripaholics{% endblock %}
 
+
 {% block body %}
 
 {% if logged_in %}
@@ -12,12 +13,27 @@
     <div class="row">
         <h3>{{ trip.start_date.strftime("%m-%d-%Y") }} to {{ trip.end_date.strftime("%m-%d-%Y") }}</h3>
     </div>
+
+    <div class="dropdown show">
+        <a href="#" class="btn btn-primary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+ Add item</a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a href="#" class="dropdown-item">Explore things to do</a>
+            <a href="#" class="dropdown-item">Add checklist</a>
+            <a href="#" class="dropdown-item">Add reservation</a>
+            <a href="#" class="dropdown-item">Invite tripmates</a>
+        </div>
+
+    </div>
+
+
     <div class="row">
         <div class="gap-2" id="trip-options">
             <a href="" class="btn btn-primary" id="">Checklist</a>
             <a href="" class="btn btn-primary" id="">Invite tripmates</a>
         </div>
     </div>
+
 </div>
 
 <!-- <h2 id="time-left"></h2> -->
