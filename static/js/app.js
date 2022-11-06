@@ -18,3 +18,5 @@ flatpickr("input[type=datetime-local]", {
   altInput: true,
   altFormat: "F j, Y",
 });
+
+//---- details page ----//

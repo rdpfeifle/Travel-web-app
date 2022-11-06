@@ -6,36 +6,132 @@
 {% block body %}
 
 {% if logged_in %}
-<h1>Trip Details - {{ trip.destination }}</h1>
 
 <div class="container">
 
     <div class="row">
-        <h3>{{ trip.start_date.strftime("%m-%d-%Y") }} to {{ trip.end_date.strftime("%m-%d-%Y") }}</h3>
-    </div>
-
-    <div class="dropdown show">
-        <a href="#" class="btn btn-primary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+ Add item</a>
-
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a href="#" class="dropdown-item">Explore things to do</a>
-            <a href="#" class="dropdown-item">Add checklist</a>
-            <a href="#" class="dropdown-item">Add reservation</a>
-            <a href="#" class="dropdown-item">Invite tripmates</a>
-        </div>
-
-    </div>
-
-
-    <div class="row">
-        <div class="gap-2" id="trip-options">
-            <a href="" class="btn btn-primary" id="">Checklist</a>
-            <a href="" class="btn btn-primary" id="">Invite tripmates</a>
-        </div>
+        <h1>Trip Details - {{ trip.destination }}</h1>
+        <h3>{{ trip.start_date.strftime("%b %d, %Y") }} - {{ trip.end_date.strftime("%b %d, %Y") }}</h3>
     </div>
 
 </div>
 
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+
+            <!-------------------- Plan - Button trigger modal -------------------->
+            <button type="button" class="btn btn-outline-primary">Full Plan</button>
+
+
+            <a href="#link" class="btn btn-primary" role="button">Checklist</a>
+
+            <!-------------------- Add Trip Mate - Button trigger modal -------------------->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inviteFriends">
+                Invite tripmates
+            </button>
+  
+            <!-- Modal -->
+            <div class="modal fade" id="inviteFriends" tabindex="-1" role="dialog" aria-labelledby="inviteFriendsTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header">
+                    <h5 class="modal-title w-100" id="inviteFriendsMainTitle">Add tripmate</h5>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                    </div>
+
+                    <div class="modal-body">
+                    Your friends will be able to see and edit the trip.
+                    
+                        <div class="form-floating mb-3">
+                            <input type="email" name="friends-email" class="form-control" id="floatingInput" placeholder="email" required>
+                            <label for="floatingInput">Enter your friend's email</label>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-primary w-100">Send invitation</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-------------------- Add Reservation - Button trigger modal -------------------->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reservations">
+                Reservations
+            </button>
+            
+            <!-- Modal - Reservations -->
+            <div class="modal fade" id="reservations" tabindex="-1" role="dialog" aria-labelledby="reservationsTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content text-center">
+                        <div class="modal-header">
+                        <h5 class="modal-title w-100" id="reservationsMainTitle">Enter reservation details</h5>
+                        <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <p>Reservation types include rental cars, hotels, etc.</p>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="booking-confirmation" class="form-control" id="floatingInput" placeholder="bookingN" required>
+                                        <label for="floatingInput">Booking Confirmation #</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="reservation-type" class="form-control" id="floatingInput" placeholder="reservation" required>
+                                        <label for="floatingInput">Reservation type</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="phone-number" class="form-control" id="floatingInput" placeholder="phone">
+                                        <label for="floatingInput">Phone number</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="check-in-date" class="form-control" id="floatingInput" placeholder="checkin">
+                                        <label for="floatingInput">Check in date</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="check-out-date" class="form-control" id="floatingInput" placeholder="checkout">
+                                        <label for="floatingInput">Check out date</label>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                        </div>
+
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-primary w-100">Save</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+  
 <!-- <h2 id="time-left"></h2> -->
 
 {% endif %}
