@@ -209,10 +209,11 @@ def delete(trip_id):
     try:
         db.session.delete(trip_to_delete)
         db.session.commit()
-        return redirect("/user_account")
+        flash("Trip deleted successfully.", "warning")
+        return render_template("/user_account.html")
 
     except:
-        return "We could not delete the selected trip."
+        return redirect("/user_account")
 
 ################### EDIT TRIPS ###################
 
