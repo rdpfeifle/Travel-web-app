@@ -175,7 +175,7 @@ def add_trip():
         db.session.commit()
 
     else:
-        flash("Please, log into to plan your trip.", "warning")
+        flash("Please, log into to start planning your trip.", "warning")
         return redirect("/")
 
     return redirect("/details")

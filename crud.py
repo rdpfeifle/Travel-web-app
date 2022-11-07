@@ -76,6 +76,12 @@ def get_trip_by_id(trip_id):
     return Trip.query.get(trip_id)
 
 
+# def get_trip_by_destination(destination):
+#     """Return trip by destination."""
+
+#     return User.query.filter(Trip.destination == destination).first()
+
+
 ########### Edit trips ###########
 
 def delete_trip(trip_id):

@@ -43,6 +43,7 @@ Otherwise, show trips below -->
                     <h5 class="card-title">{{ trip.destination }}</h5>
                     <p class="card-text">{{ trip.start_date.strftime("%b %d, %Y") }} to {{ trip.end_date.strftime("%b %d, %Y") }}</p>
                     <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque quod quos aspernatur esse architecto doloremque iusto excepturi! A, eligendi quo? Fugit architecto nihil rem nam repudiandae molestiae sed vel quod.</p>
+                    <a href="/edit/{{ trip.trip_id }}" class="btn btn-outline-primary">Edit</a>
                     <a href="/delete/{{ trip.trip_id }}" class="btn btn-outline-danger">Delete</a>
                 </div>
             </div>
@@ -59,7 +60,7 @@ Otherwise, show trips below -->
 <!-- Explore goes here
 Popular Destinations
 
-Use cards/carousel with destinations from database --> 
+Use cards/carousel with destinations from folder --> 
 
 
 
