@@ -178,7 +178,7 @@ def add_trip():
         flash("Please, log into to start planning your trip.", "warning")
         return redirect("/")
 
-    return redirect("/details")
+    return redirect(f"/details/{trip.trip_id}")
 
 
 ################### ADD ACTIVITIES TO THE TRIP'S PLAN ###################
@@ -188,7 +188,6 @@ def display_trip_details(trip_id):
     """Display trip details."""
 
     logged_in = session.get("user_id")
-    trip_id = session.get("trip_id")
     trip = crud.get_trip_by_id(trip_id)
 
     if "user_id" not in session:
@@ -217,8 +216,8 @@ def delete(trip_id):
 
 ################### EDIT TRIPS ###################
 
-@app.route("/edit_trip", methods=["POST"])
-def edit_trip():
+@app.route("/edit-trip/<int:trip_id>", methods=["POST"])
+def edit_trip(trip_id):
     """Edit trip info."""
 
     # crud.update_trip()

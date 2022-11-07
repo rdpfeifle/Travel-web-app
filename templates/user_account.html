@@ -44,9 +44,9 @@ Otherwise, show trips below -->
                     <p class="card-text">{{ trip.start_date.strftime("%b %d, %Y") }} to {{ trip.end_date.strftime("%b %d, %Y") }}</p>
                     <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque quod quos aspernatur esse architecto doloremque iusto excepturi! A, eligendi quo? Fugit architecto nihil rem nam repudiandae molestiae sed vel quod.</p>
 
-                    <a href="/edit/{{ trip.trip_id }}" value="Edit a trip" class="btn btn-outline-primary">Edit</a>
+                    <a href="/edit-trip/{{ trip.trip_id }}" value="Edit a trip" class="btn btn-outline-primary">Edit</a>
                     <a href="/delete/{{ trip.trip_id }}" value="Delete a trip" class="btn btn-outline-danger">Delete</a>
-                    
+
                 </div>
             </div>
         </div>
