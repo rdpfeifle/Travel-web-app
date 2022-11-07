@@ -33,18 +33,26 @@ Otherwise, show trips below -->
     <h3>Your trips</h3>
     <div class="row g-3">
         {% for trip in trips %}
+        
         <div class="col-12 col-md-6 col-lg-4">
+
             <div class="card">
                 <!-- <img src="" alt="" class="card-img-top"> -->
-                <a href="/details" class="card-img-top btn btn-primary">See trip detail</a>
+                <a href="/details/{{ trip.trip_id }}" class="card-img-top btn btn-primary">See trip detail</a>
                 <div class="card-body">
                     <h5 class="card-title">{{ trip.destination }}</h5>
-                    <p class="card-text">{{ trip.start_date.strftime("%m-%d-%Y") }} to {{ trip.end_date.strftime("%m-%d-%Y") }}</p>
+                    <p class="card-text">{{ trip.start_date.strftime("%b %d, %Y") }} to {{ trip.end_date.strftime("%b %d, %Y") }}</p>
                     <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque quod quos aspernatur esse architecto doloremque iusto excepturi! A, eligendi quo? Fugit architecto nihil rem nam repudiandae molestiae sed vel quod.</p>
+                    <a href="/delete/{{ trip.trip_id }}" class="btn btn-outline-danger">Delete</a>
                 </div>
             </div>
         </div>
+
+        {% else %}
+        <p>You still didn't create any trip.</p>
+
         {% endfor %}
+
     </div>
 </div>
 

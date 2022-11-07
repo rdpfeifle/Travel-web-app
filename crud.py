@@ -76,6 +76,24 @@ def get_trip_by_id(trip_id):
     return Trip.query.get(trip_id)
 
 
+########### Edit trips ###########
+
+def delete_trip(trip_id):
+    """Delete trip from database."""
+
+    return Trip.query.delete(trip_id)
+
+
+########### Edit trips ###########
+
+def update_trip(trip_id, new_destination, new_start_date, new_end_date):
+    """Update trip info given trip_id and the new info."""
+
+    trip = Trip.query.get(trip_id)
+    trip.destination = new_destination
+    trip.start_date = new_start_date
+    trip.end_date = new_end_date
+
 ########### Activity Functions ###########
 
 def create_new_activity():

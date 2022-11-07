@@ -169,30 +169,25 @@ def add_trip():
 
     logged_in = session.get("user_id")
 
-    trip = crud.create_trip(logged_in, destination, start_date, end_date)
+    if logged_in:
+        trip = crud.create_trip(logged_in, destination, start_date, end_date)
+        db.session.add(trip)
+        db.session.commit()
 
-    db.session.add(trip)
-    db.session.commit()
-
-    # getting the trip from the session
-    session['trip_id'] = trip.trip_id
-    trip_id = session.get("trip_id")
-
-    # the trip_id is the same as from the trip that was created
-    # trip_id = trip.trip_id
+    else:
+        flash("Please, log into to plan your trip.", "warning")
+        return redirect("/")
 
     return redirect("/details")
 
 
 ################### ADD ACTIVITIES TO THE TRIP'S PLAN ###################
 
-# I would like the URL to be showing up as /plan-trip/details
-@app.route("/details", methods=["GET"])
-def display_trip_details():
+@app.route("/details/<int:trip_id>", methods=["GET"])
+def display_trip_details(trip_id):
     """Display trip details."""
 
     logged_in = session.get("user_id")
-    user_id = session.get("user_id") # checking if the user is already in session
     trip_id = session.get("trip_id")
     trip = crud.get_trip_by_id(trip_id)
 
@@ -200,7 +195,34 @@ def display_trip_details():
         flash("Please, log into your existent account or create one.", "error")
         return redirect("/")
 
-    return render_template("details.html", logged_in=logged_in, user_id=user_id, trip=trip)
+    return render_template("details.html", logged_in=logged_in, trip=trip)
+
+
+################### DELETE TRIPS ###################
+
+@app.route("/delete/<int:trip_id>")
+def delete(trip_id):
+    """Delete a trip."""
+
+    trip_to_delete = crud.get_trip_by_id(trip_id)
+
+    try:
+        db.session.delete(trip_to_delete)
+        db.session.commit()
+        return redirect("/user_account")
+
+    except:
+        return "We could not delete the selected trip."
+
+################### EDIT TRIPS ###################
+
+@app.route("/edit_trip", methods=["POST"])
+def edit_trip():
+    """Edit trip info."""
+
+    # crud.update_trip()
+    # db.session.commit()
+    pass
 
 
 if __name__ == "__main__":
