@@ -189,13 +189,16 @@ def display_trip_details(trip_id):
 
     logged_in = session.get("user_id")
     trip = crud.get_trip_by_id(trip_id)
+    reservations = trip.reservations
 
     if "user_id" not in session:
         flash("Please, log into your existent account or create one.", "error")
         return redirect("/")
 
-    return render_template("details.html", logged_in=logged_in, trip=trip)
+    return render_template("details.html", logged_in=logged_in, trip=trip, reservations=reservations)
 
+
+################### ADD A RESERVATION ###################
 
 @app.route("/add-reservation", methods=["POST"])
 def save_reservation():
@@ -207,14 +210,27 @@ def save_reservation():
     start_date = request.form.get("start_date")
     end_date = request.form.get("end_date")
 
+    start_date = datetime.strptime(start_date, "%Y-%m-%d").date()
+    end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
+    # datetime.strptime(dates[0], "%Y-%m-%d")
+
+    print(type(start_date))
+    print(type(start_date))
+    trip = crud.get_trip_by_id(trip_id)
+
+    if start_date < trip.start_date or end_date > trip.end_date:
+        flash("Invalid reservation dates. Please try again.", "error")
+        return redirect(f"/details/{trip_id}")
+
     reservation = crud.create_reservation(trip_id,reservation_type, confirmation_num, destination, start_date, end_date)
 
     db.session.add(reservation)
     db.session.commit()
-    
+
     flash("Your reservation was created successfully.", "success")
 
     return redirect(f"/details/{trip_id}")
+
 
 ################### DELETE TRIPS ###################
 

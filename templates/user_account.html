@@ -32,10 +32,13 @@ Otherwise, show trips below -->
 <div class="container">
     <h3>Your trips</h3>
     <div class="row g-3">
+
+        {% if trips %}
+
         {% for trip in trips %}
         
         <div class="col-12 col-md-6 col-lg-4">
-
+            
             <div class="card">
                 <!-- <img src="" alt="" class="card-img-top"> -->
                 <a href="/details/{{ trip.trip_id }}" class="card-img-top btn btn-primary">See trip details</a>
@@ -50,7 +53,8 @@ Otherwise, show trips below -->
                 </div>
             </div>
         </div>
-
+        {% endfor %}
+        
         {% else %}
 
         <div class="card">
@@ -60,8 +64,8 @@ Otherwise, show trips below -->
             </div>
         </div>
 
-        {% endfor %}
 
+        {% endif %}
     </div>
 </div>
 

@@ -110,13 +110,13 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="start_date" class="form-control" id="checkin-date" placeholder="checkin">
+                                        <input type="date" name="start_date" class="form-control" id="checkin-date" placeholder="checkin">
                                         <label for="checkin-date">Check in date</label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="end_date" class="form-control" id="checkout-date" placeholder="checkout">
+                                        <input type="date" name="end_date" class="form-control" id="checkout-date" placeholder="checkout">
                                         <label for="checkout-date">Check out date</label>
                                     </div>
                                 </div>
@@ -142,10 +142,16 @@
     </div>
 </div>
 
-  
+{% for reservation in reservations %}
+    <ul>
+        <li>{{reservation.reservation_type}}</li>
+    </ul>
+{% endfor %}
+
 <!-- <h2 id="time-left"></h2> -->
 
 {% endif %}
+
 
 <script src="/static/js/detailsPage.js"></script>
 {% endblock %}

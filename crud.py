@@ -76,23 +76,6 @@ def get_trip_by_id(trip_id):
     return Trip.query.get(trip_id)
 
 
-# def get_trip_by_destination(destination):
-#     """Return trip by destination."""
-
-#     return User.query.filter(Trip.destination == destination).first()
-
-
-########### Edit trips ###########
-
-def delete_trip(trip_id):
-    """Delete trip from database."""
-
-    return Trip.query.delete(trip_id)
-
-
-
-
-
 ########### Edit trips ###########
 
 def update_trip(trip_id, new_destination, new_start_date, new_end_date):
@@ -125,6 +108,12 @@ def create_reservation(trip_id, reservation_type, confirmation_num, destination,
     )
 
     return reservation
+
+
+def get_reservation_by_id(reservation_id):
+    """Return trip information by getting the trip id."""
+
+    return Reservation.query.get(reservation_id)
 
 ########### Image Functions ###########
 
