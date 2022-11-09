@@ -75,13 +75,19 @@
                         </div>
 
                         <div class="modal-body">
+
                             <p>Reservation types include rental cars, hotels, etc.</p>
+
+                            <form action="/add-reservation" method="post">
+
+                            <input type="hidden" name="trip_id" value="{{trip.trip_id}}">
+                            <input type="hidden" name="destination" value="{{trip.destination}}">
 
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="booking-confirmation" class="form-control" id="floatingInput" placeholder="bookingN" required>
-                                        <label for="floatingInput">Booking Confirmation #</label>
+                                        <input type="number" class="form-control" id="booking_confirm" placeholder="bookingN" name="confirmation_num" required>
+                                        <label for="booking_confirm">Booking Confirmation #</label>
                                     </div>
                                 </div>
                             </div>
@@ -89,38 +95,43 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="reservation-type" class="form-control" id="floatingInput" placeholder="reservation" required>
-                                        <label for="floatingInput">Reservation type</label>
+                                        <input type="text" class="form-control" id="reservation-type" placeholder="reservation" name="reservation_type" required>
+                                        <label for="reservation-type">Reservation type</label>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <!-- <div class="col">
                                     <div class="form-floating mb-3">
                                         <input type="text" name="phone-number" class="form-control" id="floatingInput" placeholder="phone">
                                         <label for="floatingInput">Phone number</label>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="check-in-date" class="form-control" id="floatingInput" placeholder="checkin">
-                                        <label for="floatingInput">Check in date</label>
+                                        <input type="text" name="start_date" class="form-control" id="checkin-date" placeholder="checkin">
+                                        <label for="checkin-date">Check in date</label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="check-out-date" class="form-control" id="floatingInput" placeholder="checkout">
-                                        <label for="floatingInput">Check out date</label>
+                                        <input type="text" name="end_date" class="form-control" id="checkout-date" placeholder="checkout">
+                                        <label for="checkout-date">Check out date</label>
                                     </div>
                                 </div>
                             </div>
                                 
-                        </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary w-100">Save</button>
+                                </div>
+                        </form>
 
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-primary w-100">Save</button>
                         </div>
+<!-- 
+                        <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary w-100">Save</button>
+                        </div> -->
 
                     </div>
                 </div>

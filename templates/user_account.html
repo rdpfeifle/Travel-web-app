@@ -38,7 +38,7 @@ Otherwise, show trips below -->
 
             <div class="card">
                 <!-- <img src="" alt="" class="card-img-top"> -->
-                <a href="/details/{{ trip.trip_id }}" class="card-img-top btn btn-primary">See trip detail</a>
+                <a href="/details/{{ trip.trip_id }}" class="card-img-top btn btn-primary">See trip details</a>
                 <div class="card-body">
                     <h5 class="card-title">{{ trip.destination }}</h5>
                     <p class="card-text">{{ trip.start_date.strftime("%b %d, %Y") }} to {{ trip.end_date.strftime("%b %d, %Y") }}</p>
@@ -52,7 +52,13 @@ Otherwise, show trips below -->
         </div>
 
         {% else %}
-        <p>You still didn't create any trip.</p>
+
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">You don't have any existent trip. Please create one.</p>
+                <a href="/plan-trip" value="Plan a trip" class="btn btn-primary">Plan a trip</a>
+            </div>
+        </div>
 
         {% endfor %}
 

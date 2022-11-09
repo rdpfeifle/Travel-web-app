@@ -132,7 +132,7 @@ def logout():
 
 ################### USER'S PERSONAL ACCOUNT ###################
 
-@app.route("/user_account/")
+@app.route("/user_account")
 def user_account():
     """Show user's personal account."""
 
@@ -150,7 +150,7 @@ def user_account():
 def plan_trip():
     """Display 'plan a new trip' page."""
 
-    logged_in = session.get("user_id") # it was giving an error without this here
+    logged_in = session.get("user_id")
 
     return render_template("plan-trip.html", logged_in=logged_in)
 
@@ -197,6 +197,25 @@ def display_trip_details(trip_id):
     return render_template("details.html", logged_in=logged_in, trip=trip)
 
 
+@app.route("/add-reservation", methods=["POST"])
+def save_reservation():
+
+    trip_id = request.form.get("trip_id")
+    confirmation_num = request.form.get("confirmation_num")
+    reservation_type = request.form.get("reservation_type")
+    destination = request.form.get("destination")
+    start_date = request.form.get("start_date")
+    end_date = request.form.get("end_date")
+
+    reservation = crud.create_reservation(trip_id,reservation_type, confirmation_num, destination, start_date, end_date)
+
+    db.session.add(reservation)
+    db.session.commit()
+    
+    flash("Your reservation was created successfully.", "success")
+
+    return redirect(f"/details/{trip_id}")
+
 ################### DELETE TRIPS ###################
 
 @app.route("/delete/<int:trip_id>")
@@ -214,15 +233,22 @@ def delete(trip_id):
     except:
         return redirect("/user_account")
 
+
 ################### EDIT TRIPS ###################
 
-@app.route("/edit-trip/<int:trip_id>", methods=["POST"])
+@app.route("/user_account/<int:trip_id>/edit-trip", methods=["GET", "POST"])
 def edit_trip(trip_id):
     """Edit trip info."""
 
-    # crud.update_trip()
-    # db.session.commit()
-    pass
+    trip_to_edit = crud.get_trip_by_id(trip_id)
+
+    if "user" in session:
+        db.session.update(trip_to_edit)
+        db.session.commit()
+
+        return render_template(f"/user_account/{trip_to_edit.trip_id}/edit-trip.html")
+
+    return redirect("/user_account")
 
 
 if __name__ == "__main__":

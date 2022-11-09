@@ -90,9 +90,8 @@ class Reservation(db.Model):
     confirmation_num = db.Column(db.Integer) 
     location = db.Column(db.String, nullable=False)
     start_date = db.Column(db.DateTime) 
-    start_time = db.Column(db.DateTime)
     end_date = db.Column(db.DateTime)
-    end_time = db.Column(db.DateTime)
+
 
     trip = db.relationship("Trip", back_populates="reservations")
 

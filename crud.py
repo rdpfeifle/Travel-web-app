@@ -90,6 +90,9 @@ def delete_trip(trip_id):
     return Trip.query.delete(trip_id)
 
 
+
+
+
 ########### Edit trips ###########
 
 def update_trip(trip_id, new_destination, new_start_date, new_end_date):
@@ -109,7 +112,19 @@ def create_new_activity():
 
 
 ########### Reservation Functions ###########
+def create_reservation(trip_id, reservation_type, confirmation_num, destination, start_date, end_date):
+    """Create and return new reservation."""
 
+    reservation = Reservation(
+        trip_id=trip_id,
+        reservation_type=reservation_type,
+        confirmation_num=confirmation_num,
+        location=destination,
+        start_date=start_date,
+        end_date=end_date,
+    )
+
+    return reservation
 
 ########### Image Functions ###########
 
