@@ -209,6 +209,7 @@ def save_reservation():
     destination = request.form.get("destination")
     start_date = request.form.get("start_date")
     end_date = request.form.get("end_date")
+    notes = request.form.get("notes")
 
     start_date = datetime.strptime(start_date, "%Y-%m-%d").date()
     end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
@@ -216,10 +217,10 @@ def save_reservation():
     trip = crud.get_trip_by_id(trip_id)
 
     if start_date < trip.start_date or end_date > trip.end_date:
-        flash("Invalid reservation dates. Please try again.", "error")
+        flash("Please enter reservation dates within your trip dates.", "error")
         return redirect(f"/details/{trip_id}")
 
-    reservation = crud.create_reservation(trip_id,reservation_type, confirmation_info, destination, start_date, end_date)
+    reservation = crud.create_reservation(trip_id,reservation_type, confirmation_info, destination, start_date, end_date, notes)
 
     db.session.add(reservation)
     db.session.commit()

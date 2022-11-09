@@ -95,7 +95,7 @@ def create_new_activity():
 
 
 ########### Reservation Functions ###########
-def create_reservation(trip_id, reservation_type, confirmation_info, destination, start_date, end_date):
+def create_reservation(trip_id, reservation_type, confirmation_info, destination, start_date, end_date, notes):
     """Create and return new reservation."""
 
     reservation = Reservation(
@@ -105,6 +105,7 @@ def create_reservation(trip_id, reservation_type, confirmation_info, destination
         location=destination,
         start_date=start_date,
         end_date=end_date,
+        notes=notes,
     )
 
     return reservation

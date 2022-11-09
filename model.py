@@ -90,6 +90,7 @@ class Reservation(db.Model):
     location = db.Column(db.String, nullable=False)
     start_date = db.Column(db.Date) 
     end_date = db.Column(db.Date)
+    notes = db.Column(db.String)
 
     trip = db.relationship("Trip", back_populates="reservations")
 
