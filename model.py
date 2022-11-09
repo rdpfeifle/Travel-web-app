@@ -37,7 +37,6 @@ class Trip(db.Model):
     trip_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     traveler = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False) 
     destination = db.Column(db.String, nullable=False)
-    # city_name = db.Column(db.String)
     country_name = db.Column(db.String)
     trip_title = db.Column(db.String, default=destination)
     longitude = db.Column(db.Float) # test
@@ -87,7 +86,7 @@ class Reservation(db.Model):
     reservation_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     trip_id = db.Column(db.Integer, db.ForeignKey("trips.trip_id"), nullable=False)
     reservation_type = db.Column(db.String, nullable=False)
-    confirmation_num = db.Column(db.Integer) 
+    confirmation_info = db.Column(db.String, nullable=False) 
     location = db.Column(db.String, nullable=False)
     start_date = db.Column(db.Date) 
     end_date = db.Column(db.Date)

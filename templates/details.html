@@ -86,26 +86,45 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-floating mb-3">
-                                        <input type="number" class="form-control" id="booking_confirm" placeholder="bookingN" name="confirmation_num" required>
+                                        <input type="text" class="form-control" id="booking_confirm" placeholder="bookingN" name="confirmation_info" required>
                                         <label for="booking_confirm">Booking Confirmation #</label>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
                                         <input type="text" class="form-control" id="reservation-type" placeholder="reservation" name="reservation_type" required>
                                         <label for="reservation-type">Reservation type</label>
                                     </div>
+                                </div> -->
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <select class="form-select" name="reservation_type" required>
+                                                <option value="select-reservation" selected disabled>Reservation Type</option>
+                                                <option value="Rental Car">Rental Car</option>
+                                                <option value="Flight">Flight</option>
+                                                <option value="train">Train</option>
+                                                <option value="Bus">Bus</option>
+                                                <option value="Hotel">Hotel</option>
+                                                <option value="Airbnb">Airbnb</option>
+                                                <option value="Other">Other</option>
+                                         </select>
+                                        </div>
+                                    </div>
                                 </div>
+
+
                                 <!-- <div class="col">
                                     <div class="form-floating mb-3">
                                         <input type="text" name="phone-number" class="form-control" id="floatingInput" placeholder="phone">
                                         <label for="floatingInput">Phone number</label>
                                     </div>
                                 </div> -->
-                            </div>
+                 
 
                             <div class="row">
                                 <div class="col">
@@ -114,6 +133,7 @@
                                         <label for="checkin-date">Check in date</label>
                                     </div>
                                 </div>
+
                                 <div class="col">
                                     <div class="form-floating mb-3">
                                         <input type="date" name="end_date" class="form-control" id="checkout-date" placeholder="checkout">
