@@ -4,8 +4,11 @@
 
 {% block body %} 
 
+<br>
+
 <form action="/user-account/edit-trip/{{ trip_id }}" method="POST">
     <input type="text" name="trip_title">
+    <textarea name="description" class="form-control"></textarea>
     <button type="submit">Submit</button>
 
     

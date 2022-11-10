@@ -37,12 +37,12 @@ class Trip(db.Model):
     trip_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     traveler = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False) 
     destination = db.Column(db.String, nullable=False)
-    country_name = db.Column(db.String)
     trip_title = db.Column(db.String, default=destination)
     longitude = db.Column(db.Float) # test
     latitude = db.Column(db.Float) # test
     start_date = db.Column(db.Date, nullable=False) 
     end_date = db.Column(db.Date, nullable=False) 
+    description = db.Column(db.String)
     img = db.Column(db.String)
  
     user = db.relationship("User", back_populates="trips")
@@ -141,7 +141,7 @@ def fake_data():
     db.session.add_all([amanda, raquel])
 
     ########### Trips ###########
-    san_francisco = Trip(traveler=amanda.user_id, destination="San Francisco, California", trip_title="My Honeymoon", start_date=datetime.strptime("2022-11-10", "%Y-%m-%d"), end_date=datetime.strptime("2022-11-16", "%Y-%m-%d"), img="Bridge", country_name="US") 
+    san_francisco = Trip(traveler=amanda.user_id, destination="San Francisco, California", trip_title="My Honeymoon", start_date=datetime.strptime("2022-11-10", "%Y-%m-%d"), end_date=datetime.strptime("2022-11-16", "%Y-%m-%d"), img="Bridge") 
 
     db.session.add(san_francisco)
     amanda.trips.append(san_francisco)

@@ -136,12 +136,14 @@ def logout():
 def user_account():
     """Show user's personal account."""
 
-    logged_in = session.get("user_id") # checking if the user is logged in
+    # logged_in = session.get("user_id") # checking if the user is logged in
     user_id = session.get("user_id") # checking if the user is already in session
     user = crud.get_user_by_id(user_id)
     trips = user.trips
 
-    return render_template("user-account.html", user_id=user_id, trips=trips, fname=user.fname, logged_in=logged_in, YOUR_API_KEY=api_key)
+    # description = request.form.get("description")
+
+    return render_template("user-account.html", user_id=user_id, trips=trips, fname=user.fname, YOUR_API_KEY=api_key)
 
 
 ################### PLAN A NEW TRIP ###################
@@ -241,7 +243,7 @@ def delete(trip_id):
     try:
         db.session.delete(trip_to_delete)
         db.session.commit()
-        flash("Trip deleted successfully.", "warning")
+        flash(f"Trip to {trip_to_delete.destination} was deleted successfully.", "success")
         return render_template("/user-account.html")
 
     except:
@@ -253,6 +255,7 @@ def delete(trip_id):
 @app.route("/user-account/edit-trip/<int:trip_id>", methods=["GET"])
 def display_edit_trip_page(trip_id):
     """Display edit trips' page """
+
     return render_template("edit-trip.html", trip_id=trip_id)
 
 
@@ -261,9 +264,12 @@ def edit_trip(trip_id):
     """Edit trip info."""
 
     trip_to_edit = crud.get_trip_by_id(trip_id)
+    description = trip_to_edit.description
+    print(description)
 
     if "user_id" in session:
         trip_to_edit.trip_title = request.form.get("trip_title")
+        trip_to_edit.description = request.form.get("description")
         db.session.commit()
 
         return redirect("/user-account")
