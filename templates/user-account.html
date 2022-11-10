@@ -43,11 +43,12 @@ Otherwise, show trips below -->
                 <!-- <img src="" alt="" class="card-img-top"> -->
                 <a href="/details/{{ trip.trip_id }}" class="card-img-top btn btn-primary">See trip details</a>
                 <div class="card-body">
-                    <h5 class="card-title">{{ trip.destination }}</h5>
+                    <h4 class="card-title">{{ trip.destination }}</h4>
+                    <h5 class="card-title">{{ trip.trip_title }}</h5>
                     <p class="card-text">{{ trip.start_date.strftime("%b %d, %Y") }} to {{ trip.end_date.strftime("%b %d, %Y") }}</p>
                     <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque quod quos aspernatur esse architecto doloremque iusto excepturi! A, eligendi quo? Fugit architecto nihil rem nam repudiandae molestiae sed vel quod.</p>
 
-                    <a href="/edit-trip/{{ trip.trip_id }}" value="Edit a trip" class="btn btn-outline-primary">Edit</a>
+                    <a href="/user-account/edit-trip/{{ trip.trip_id }}" value="Edit a trip" class="btn btn-outline-primary">Edit</a>
                     <a href="/delete/{{ trip.trip_id }}" value="Delete a trip" class="btn btn-outline-danger">Delete</a>
 
                 </div>

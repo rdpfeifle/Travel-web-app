@@ -4,14 +4,12 @@
 
 {% block body %} 
 
-{% if logged_in %}
-
-<form action="/edit-trip/{{ trip.trip_id }}" method="POST">
-    <input type="text" name="destination">
+<form action="/user_account/edit-trip/{{ trip_id }}" method="POST">
+    <input type="text" name="trip_title">
+    <button type="submit">Submit</button>
 
     
 </form>
 
-{% endif %}
 
 {% endblock %}

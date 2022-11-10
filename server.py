@@ -67,7 +67,7 @@ def process_login():
     else:
         flash("You were logged in.", "success")
         session["user_id"] = user.user_id
-        return redirect("/user_account")
+        return redirect("/user-account")
 
 
 ################### USER'S SIGN UP PAGE ###################
@@ -114,7 +114,7 @@ def register_user():
 
         flash(f"Account created successfully, {fname}.", "success")
         
-        return redirect("/user_account")
+        return redirect("/user-account")
 
 
 ################### USER'S LOGOUT ###################
@@ -132,7 +132,7 @@ def logout():
 
 ################### USER'S PERSONAL ACCOUNT ###################
 
-@app.route("/user_account")
+@app.route("/user-account")
 def user_account():
     """Show user's personal account."""
 
@@ -141,7 +141,7 @@ def user_account():
     user = crud.get_user_by_id(user_id)
     trips = user.trips
 
-    return render_template("user_account.html", user_id=user_id, trips=trips, fname=user.fname, logged_in=logged_in, YOUR_API_KEY=api_key)
+    return render_template("user-account.html", user_id=user_id, trips=trips, fname=user.fname, logged_in=logged_in, YOUR_API_KEY=api_key)
 
 
 ################### PLAN A NEW TRIP ###################
@@ -187,7 +187,7 @@ def add_trip():
 def display_trip_details(trip_id):
     """Display trip details."""
 
-    logged_in = session.get("user_id")
+    # logged_in = session.get("user_id")
     trip = crud.get_trip_by_id(trip_id)
     reservations = trip.reservations
 
@@ -195,7 +195,7 @@ def display_trip_details(trip_id):
         flash("Please, log into your existent account or create one.", "error")
         return redirect("/")
 
-    return render_template("details.html", logged_in=logged_in, trip=trip, reservations=reservations)
+    return render_template("details.html", trip=trip, reservations=reservations)
 
 
 ################### ADD A RESERVATION ###################
@@ -242,27 +242,33 @@ def delete(trip_id):
         db.session.delete(trip_to_delete)
         db.session.commit()
         flash("Trip deleted successfully.", "warning")
-        return render_template("/user_account.html")
+        return render_template("/user-account.html")
 
     except:
-        return redirect("/user_account")
+        return redirect("/user-account")
 
 
 ################### EDIT TRIPS ###################
 
-@app.route("/user_account/<int:trip_id>/edit-trip", methods=["GET", "POST"])
+@app.route("/user-account/edit-trip/<int:trip_id>", methods=["GET"])
+def display_edit_trip_page(trip_id):
+    """Display edit trips' page """
+    return render_template("edit-trip.html", trip_id=trip_id)
+
+
+@app.route("/user-account/edit-trip/<int:trip_id>", methods=["POST"])
 def edit_trip(trip_id):
     """Edit trip info."""
 
     trip_to_edit = crud.get_trip_by_id(trip_id)
 
-    if "user" in session:
-        db.session.update(trip_to_edit)
+    if "user_id" in session:
+        trip_to_edit.trip_title = request.form.get("trip_title")
         db.session.commit()
 
-        return render_template(f"/user_account/{trip_to_edit.trip_id}/edit-trip.html")
+        return redirect("/user-account")
 
-    return redirect("/user_account")
+    return redirect("/")
 
 
 if __name__ == "__main__":

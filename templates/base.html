@@ -60,7 +60,7 @@
                 <!-- Right Side of Navbar starts here -->
                 <ul class="navbar-nav">
 
-                    {% if logged_in %}
+                    {% if "user_id" in session %}
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/user_account">My Account</a>
                     </li>
