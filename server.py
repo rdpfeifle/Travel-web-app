@@ -30,7 +30,7 @@ def homepage():
     return render_template("homepage.html", logged_in=logged_in)
 
 
-################### 404 ERROR HANDLER - PAGE NOT FOUND ###################
+##--------------------- 404 ERROR HANDLER - PAGE NOT FOUND ---------------------##
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -40,7 +40,7 @@ def page_not_found(e):
     return render_template("404.html", logged_in=logged_in)
 
 
-################### USER'S LOGIN PAGE ###################
+##--------------------- USER'S LOGIN PAGE ---------------------##
 
 @app.route("/login")
 def show_login():
@@ -70,7 +70,7 @@ def process_login():
         return redirect("/user-account")
 
 
-################### USER'S SIGN UP PAGE ###################
+##--------------------- USER'S SIGN UP PAGE ---------------------##
 
 @app.route("/signup")
 def show_signup():
@@ -117,7 +117,7 @@ def register_user():
         return redirect("/user-account")
 
 
-################### USER'S LOGOUT ###################
+##--------------------- USER'S LOGOUT ---------------------##
 
 @app.route("/logout")
 def logout():
@@ -130,7 +130,7 @@ def logout():
     return redirect("/")
 
 
-################### USER'S PERSONAL ACCOUNT ###################
+##--------------------- USER'S PERSONAL ACCOUNT ---------------------##
 
 @app.route("/user-account")
 def user_account():
@@ -264,9 +264,20 @@ def edit_trip(trip_id):
 
     trip_to_edit = crud.get_trip_by_id(trip_id)
 
+    trip_title = request.form.get("trip_title")
+    description = request.form.get("description")
+
     if "user_id" in session:
-        trip_to_edit.trip_title = request.form.get("trip_title")
-        trip_to_edit.description = request.form.get("description")
+
+        # if the trip title from the form is NOT empty
+        # assign value given in the form to the trip_title in the database
+        if trip_title != "":
+            trip_to_edit.trip_title = trip_title
+        
+        if description != "":
+            trip_to_edit.description = description
+
+        # then commit to the db
         db.session.commit()
 
         return redirect("/user-account")
