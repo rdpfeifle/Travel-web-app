@@ -18,11 +18,19 @@
     <div class="row">
         <div class="pt-4">
             <form action="/plan-trip" method="post" class="form-row">
+
+                <div class="form-row">
+                    <label for="searchInput">Why are you traveling? <em>(Optional)</em></label>
+                    <div class="input-group autocomplete">
+                        <input type="text" name="trip_title" class="form-control" id="autocompleteSearchInput" placeholder="eg. My Honeymoon, Work Travel, Vacation">
+                    </div>
+                </div>
+
             <!-- Where to? eg. Italy, Thailand, Paris (as a placeholder) > autocomplete
             If no option selected, show a message in red saying "Choose a destination to start planning"-->
                 <div class="form-row">
                     <label for="searchInput">Where to?</label>
-                    <div class="input-group autocomplete">
+                    <div class="input-group has-validation autocomplete">
                         <input type="text" name="destination" class="form-control is-invalid" id="autocompleteSearchInput" placeholder="eg. Italy, Thailand, Paris" required>
                         
                         <div class="invalid-feedback">Choose a destination to start planning.</div>

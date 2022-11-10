@@ -43,8 +43,8 @@ Otherwise, show trips below -->
                 <!-- <img src="" alt="" class="card-img-top"> -->
                 <a href="/details/{{ trip.trip_id }}" class="card-img-top btn btn-primary">See trip details</a>
                 <div class="card-body">
-                    <h4 class="card-title">{{ trip.destination }}</h4>
-                    <h5 class="card-title">{{ trip.trip_title }}</h5>
+                    <h3 class="card-title">{{ trip.trip_title }}</h3>
+                    <h5 class="card-title">{{ trip.destination }}</h5>
                     <p class="card-text">{{ trip.start_date.strftime("%b %d, %Y") }} to {{ trip.end_date.strftime("%b %d, %Y") }}</p>
 
                     <!-- <form action="/user-account">

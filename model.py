@@ -37,7 +37,7 @@ class Trip(db.Model):
     trip_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     traveler = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False) 
     destination = db.Column(db.String, nullable=False)
-    trip_title = db.Column(db.String, default=destination)
+    trip_title = db.Column(db.String) # default=destination
     longitude = db.Column(db.Float) # test
     latitude = db.Column(db.Float) # test
     start_date = db.Column(db.Date, nullable=False) 

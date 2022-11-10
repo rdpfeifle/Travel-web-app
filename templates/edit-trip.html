@@ -6,13 +6,26 @@
 
 <br>
 
-<form action="/user-account/edit-trip/{{ trip_id }}" method="POST">
-    <input type="text" name="trip_title">
-    <textarea name="description" class="form-control"></textarea>
-    <button type="submit">Submit</button>
+<h1>You are editing your trip:</h1>
 
+<div class="container">
+
+<form action="/user-account/edit-trip/{{ trip_id }}" method="POST">
     
+    <div class="row">
+        <input type="text" name="trip_title" placeholder="Type the reason of your trip" required>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <textarea name="description" class="form-control" placeholder="Trip description here" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
 </form>
+</div>
 
 
 {% endblock %}

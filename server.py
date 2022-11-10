@@ -141,8 +141,6 @@ def user_account():
     user = crud.get_user_by_id(user_id)
     trips = user.trips
 
-    # description = request.form.get("description")
-
     return render_template("user-account.html", user_id=user_id, trips=trips, fname=user.fname, YOUR_API_KEY=api_key)
 
 
@@ -162,6 +160,7 @@ def add_trip():
     """Create and add a trip to the user's account."""
 
     # traveler = request.form.get("traveler")
+    trip_title = request.form.get("trip_title")
     destination = request.form.get("destination")
     # start_date = request.form.get("start_date")
     # end_date = request.form.get("end_date")
@@ -172,7 +171,7 @@ def add_trip():
     logged_in = session.get("user_id")
 
     if logged_in:
-        trip = crud.create_trip(logged_in, destination, start_date, end_date)
+        trip = crud.create_trip(logged_in, trip_title, destination, start_date, end_date)
         db.session.add(trip)
         db.session.commit()
 
@@ -264,8 +263,6 @@ def edit_trip(trip_id):
     """Edit trip info."""
 
     trip_to_edit = crud.get_trip_by_id(trip_id)
-    description = trip_to_edit.description
-    print(description)
 
     if "user_id" in session:
         trip_to_edit.trip_title = request.form.get("trip_title")
