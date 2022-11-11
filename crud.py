@@ -1,6 +1,6 @@
 """CRUD operations."""
 
-from model import db, User, Trip, Activity, Reservation, Image, connect_to_db
+from model import db, User, Trip, Activity, Reservation, Checklist, Image, connect_to_db
 from passlib.hash import argon2
 from datetime import timedelta
 
@@ -115,6 +115,29 @@ def get_reservation_by_id(reservation_id):
     """Return trip information by getting the trip id."""
 
     return Reservation.query.get(reservation_id)
+
+
+########### Checklist Functions ###########
+def get_all_tasks():
+    """Return all tasks."""
+
+    return Checklist.query.all()
+
+
+def get_task_by_id(checklist_id):
+    """Return a task by id."""
+    return Checklist.query.get(checklist_id)
+
+
+def create_task(task_title, completed):
+    """Create a task."""
+
+    task = Checklist(
+        task_title=task_title,
+        completed=completed,
+    )
+
+    return task
 
 ########### Image Functions ###########
 

@@ -48,6 +48,7 @@ class Trip(db.Model):
     user = db.relationship("User", back_populates="trips")
     activities = db.relationship("Activity", back_populates="trip")
     reservations = db.relationship("Reservation", back_populates="trip")
+    tasks = db.relationship("Checklist", back_populates="trip")
 
     # activities = db.relationship("Activity", backref="trip") 
     # reservations = db.relationship("Reservation", backref="trip")
@@ -96,6 +97,22 @@ class Reservation(db.Model):
 
     def __repr__(self):
         return f"<Reservation reservation_id={self.reservation_id} reservation_type={self.reservation_type} location={self.location}>"
+
+
+class Checklist(db.Model):
+    """A checklist."""
+
+    __tablename__ = "tasks"
+    
+    checklist_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    trip_id = db.Column(db.Integer, db.ForeignKey("trips.trip_id"), nullable=False)
+    task_title = db.Column(db.String, nullable=False) # or description
+    completed = db.Column(db.Boolean) 
+
+    trip = db.relationship("Trip", back_populates="tasks")
+
+    def __repr__(self):
+        return f"<Checklist checklist_id={self.checklist_id} task_title={self.task_title}>"
 
 
 class Image(db.Model):
