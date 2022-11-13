@@ -12,7 +12,7 @@
 
     <div class="row">
         <h1>Trip Details - {{ trip.destination }}</h1>
-        <h3>{{ trip.start_date.strftime("%b %d, %Y") }} - {{ trip.end_date.strftime("%b %d, %Y") }}</h3>
+        <h2>{{ trip.start_date.strftime("%b %d, %Y") }} - {{ trip.end_date.strftime("%b %d, %Y") }}</h2>
     </div>
 </div>
 
@@ -76,99 +76,117 @@
 
                         <div class="modal-body">
 
-                            <p>Reservation types include rental cars, hotels, etc.</p>
+                                <p>Reservation types include rental cars, hotels, etc.</p>
 
-                            <form action="/add-reservation" method="post">
+                                <form action="/add-reservation" method="post">
 
-                            <input type="hidden" name="trip_id" value="{{trip.trip_id}}">
-                            <input type="hidden" name="destination" value="{{trip.destination}}">
+                                    <input type="hidden" name="trip_id" value="{{trip.trip_id}}">
+                                    <input type="hidden" name="destination" value="{{trip.destination}}">
 
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="booking_confirm" placeholder="bookingN" name="confirmation_info" required>
-                                        <label for="booking_confirm">Booking Confirmation #</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- <div class="row">
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="reservation-type" placeholder="reservation" name="reservation_type" required>
-                                        <label for="reservation-type">Reservation type</label>
-                                    </div>
-                                </div> -->
-
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mb-3">
-                                            <select class="form-select" name="reservation_type" required>
-                                                <option value="select-reservation" selected disabled>Reservation Type</option>
-                                                <option value="Rental Car">Rental Car</option>
-                                                <option value="Flight">Flight</option>
-                                                <option value="train">Train</option>
-                                                <option value="Bus">Bus</option>
-                                                <option value="Hotel">Hotel</option>
-                                                <option value="Airbnb">Airbnb</option>
-                                                <option value="Other">Other</option>
-                                         </select>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" id="booking_confirm" placeholder="bookingN" name="confirmation_info" required>
+                                                <label for="booking_confirm">Booking Confirmation #</label>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-
-                                <!-- <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="phone-number" class="form-control" id="floatingInput" placeholder="phone">
-                                        <label for="floatingInput">Phone number</label>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <select class="form-select" name="reservation_type" required>
+                                                    <option value="select-reservation" selected disabled>Reservation Type</option>
+                                                    <option value="Rental Car">Rental Car</option>
+                                                    <option value="Flight">Flight</option>
+                                                    <option value="train">Train</option>
+                                                    <option value="Bus">Bus</option>
+                                                    <option value="Hotel">Hotel</option>
+                                                    <option value="Airbnb">Airbnb</option>
+                                                    <option value="Other">Other</option>
+                                            </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div> -->
-                 
 
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="date" name="start_date" class="form-control" id="checkin-date" placeholder="checkin">
-                                        <label for="checkin-date">Check in date</label>
-                                    </div>
-                                </div>
 
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="date" name="end_date" class="form-control" id="checkout-date" placeholder="checkout">
-                                        <label for="checkout-date">Check out date</label>
-                                    </div>
-                                </div>
-                            </div>
+                                    <!-- <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="phone-number" class="form-control" id="floatingInput" placeholder="phone">
+                                            <label for="floatingInput">Phone number</label>
+                                        </div>
+                                    </div> -->
+                    
 
-                            <div class="row">
-                                <div class="col">
-                                    <div class="mb-3 form-group">
-                                        <textarea name="notes" class="form-control" placeholder="Type your notes here"></textarea>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-floating mb-3">
+                                                <input type="date" name="start_date" class="form-control" id="checkin-date" placeholder="checkin">
+                                                <label for="checkin-date">Check in date</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col">
+                                            <div class="form-floating mb-3">
+                                                <input type="date" name="end_date" class="form-control" id="checkout-date" placeholder="checkout">
+                                                <label for="checkout-date">Check out date</label>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                                
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary w-100">Save</button>
-                                </div>
-                        </form>
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3 form-group">
+                                                <textarea name="notes" class="form-control" placeholder="Type your notes about this reservation (optional)"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary w-100">Save</button>
+                                        </div>
+                            
+                                </form>
 
                         </div>
-<!-- 
-                        <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary w-100">Save</button>
-                        </div> -->
-
                     </div>
                 </div>
-            </div>
-
-
+            <!-- Reservation ends here -->
+            </div> 
         </div>
     </div>
 </div>
+
+<!------------------------------- Checklist goes here ------------------------------->
+
+<div class="container">
+    <div class="row">
+        <h3>Trip Checklist:</h3>
+
+        <form action="/add-task" id="add-task">
+            <input type="hidden" name="trip_id" value="{{trip.trip_id}}">
+            <input type="text" name="task_title" id="add-new-task-input" placeholder="What do you have on your trip's checklist?" />
+
+            <!-- value needs to be whatever is going to be passed to the db -->
+            <button id="add-task-submit" type="submit">
+                <i class="bi bi-plus-circle-fill"></i>
+            </button>
+
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="task-container">
+            {% for task in task_list %}
+            <div class="task-list">{{ task.task_title }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    
+
+</div>
+
+<!-------------------------------- Reservation starts here ------------------------------->
 
 {% for reservation in reservations %}
     <ul>
@@ -181,5 +199,5 @@
 {% endif %}
 
 
-<script src="/static/js/detailsPage.js"></script>
+<script src="/static/js/app.js"></script>
 {% endblock %}

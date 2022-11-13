@@ -118,14 +118,21 @@ def get_reservation_by_id(reservation_id):
 
 
 ########### Checklist Functions ###########
+
+# get all tasks by trip id instead of this
+
 def get_all_tasks():
     """Return all tasks."""
 
     return Checklist.query.all()
 
+    # tasks = db.session.query(Trip,
+    #                     Checklist).join(Trip).all()
+
 
 def get_task_by_id(checklist_id):
     """Return a task by id."""
+
     return Checklist.query.get(checklist_id)
 
 

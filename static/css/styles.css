@@ -1,5 +1,10 @@
+/* :root {
+  colors variables go here as --variable:
+} */
+
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
 html {

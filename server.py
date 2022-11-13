@@ -191,12 +191,60 @@ def display_trip_details(trip_id):
     # logged_in = session.get("user_id")
     trip = crud.get_trip_by_id(trip_id)
     reservations = trip.reservations
+    
+    # add tasks here
+    task_list = trip.tasks
 
     if "user_id" not in session:
         flash("Please, log into your existent account or create one.", "error")
         return redirect("/")
 
-    return render_template("details.html", trip=trip, reservations=reservations)
+    return render_template("details.html", trip=trip, reservations=reservations, task_list=task_list)
+
+
+################### CHECKLIST ROUTES ###################
+
+@app.route("/add-task", methods=["POST"])
+def add_task():
+    """Add new task."""
+
+    trip_id = request.form.get("trip_id")
+    task_title = request.form.get("task_title")
+
+    new_task = crud.create_task(task_title=task_title)
+
+    db.session.add(new_task)
+    db.session.commit()
+
+    return redirect(f"/details/{trip_id}")
+
+
+@app.route("/edit-task/<int:checklist_id>")
+def edit_task(checklist_id):
+    """Edit a task."""
+
+    # select the task by its ID
+    task = crud.get_task_by_id(checklist_id)
+
+    # switch task from True => False and False => True (completed or not)
+    task.completed = not task.completed
+
+    db.session.commit()
+
+    return redirect("/details")
+
+
+@app.route("/delete-task/<int:checklist_id>")
+def delete_task(checklist_id):
+    """Delete a task."""
+
+    # select the task by its ID
+    task = crud.get_task_by_id(checklist_id)
+
+    db.session.delete(task)
+    db.session.commit()
+
+    return redirect("/details")
 
 
 ################### ADD A RESERVATION ###################

@@ -107,7 +107,7 @@ class Checklist(db.Model):
     checklist_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     trip_id = db.Column(db.Integer, db.ForeignKey("trips.trip_id"), nullable=False)
     task_title = db.Column(db.String, nullable=False) # or description
-    completed = db.Column(db.Boolean) 
+    completed = db.Column(db.Boolean, default=False) 
 
     trip = db.relationship("Trip", back_populates="tasks")
 
