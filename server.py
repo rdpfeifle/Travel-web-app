@@ -170,10 +170,43 @@ def add_trip():
     start_date = datetime.strptime(dates[0], "%Y-%m-%d")
     end_date = datetime.strptime(dates[2], "%Y-%m-%d")
 
+    # unsplash API call here
+    url = "https://api.unsplash.com/search/photos"
+
+    # query is out chosen destination
+    # client_id is my API key
+    # orientation could be portrait or landscape, but I like landscape :)
+    payload = {
+        "query": destination,
+        "client_id": UNSPLASH_SECRET_KEY,
+        "orientation": "landscape",
+    }
+
+    # save response from my API request
+    response = requests.get(url, params=payload)
+
+    # turns JSON into a Python dict
+    data = response.json()
+    # print(data) # testing
+
+    # get data from data dict and key called "results"
+    get_key_results = data.get("results")
+    # print(get_key_results) # testing
+
+    # results is a list that contains dictionaries within
+    # urls is a key with a value of dictionary containing key-value pairs with imgs sizes
+
+    # get img url
+    img_url = get_key_results[0].get("urls")
+    # print(img_url)
+
+    destination_img = img_url.get("full")
+    # print(destination_img) # testing
+
     logged_in = session.get("user_id")
 
     if logged_in:
-        trip = crud.create_trip(logged_in, trip_title, destination, start_date, end_date)
+        trip = crud.create_trip(logged_in, trip_title, destination, start_date, end_date, img=destination_img)
         db.session.add(trip)
         db.session.commit()
 
