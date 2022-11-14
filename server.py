@@ -10,7 +10,6 @@ from jinja2 import StrictUndefined
 from datetime import timedelta, datetime
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
-import certifi
 
 app = Flask(__name__)
 
@@ -19,7 +18,6 @@ app.secret_key = "hellohello"
 api_key = os.environ['YOUR_API_KEY']
 UNSPLASH_SECRET_KEY = os.environ['UNSPLASH_KEY']
 YELP_SECRET_KEY = os.environ['YELP_KEY']
-SENDGRID_SECRET_KEY = os.environ['SENDGRID_API_KEY']
 
 app.jinja_env.undefined = StrictUndefined
 app.app_context().push()
@@ -277,25 +275,22 @@ def invite_friend_by_email():
 
     trip_start_date = str(trip.start_date)
     start_date = datetime.strptime(trip_start_date, "%Y-%m-%d")
-    start_date = start_date.strftime('%m/%d/%y')
+    start_date = start_date.strftime("%b %d, %Y")
 
     # check if friend is already a user
     is_friend_a_user = crud.get_user_by_email(friends_email)
 
     if not is_friend_a_user:
         flash("Your friend doesn't have an account.", "error")
-    else:
-        flash("Your friend was invited successfully.")
 
     message = Mail(
     from_email='raquelpfeifle@gmail.com',
     to_emails=friends_email,
     subject=f'Your friend invited you to travel with them.',
-    html_content=f'Hey there! Your friend is inviting you to travel together. They traveling to {trip.destination} on {start_date}. Please, create an account to see more.')
+    html_content=f'Hey there! Your friend is inviting you to travel together. They are traveling to {trip.destination} on {start_date}. Please, sign up or login into your existent account to start planning.')
 
     # subject=f'{user.fname} invited you to travel with them.',
     # html_content=f'Hey there! Your friend {user.fname} is inviting you to travel together. {user.fname} traveling to {trip.destination} on {trip.start_date.date()}. Please, create an account to see more.' => this was giving me an attribute error
-
 
     sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
     response = sg.send(message)
@@ -305,7 +300,7 @@ def invite_friend_by_email():
 
     flash("Your invitation has been sent!")
 
-    return redirect("/details")
+    return redirect(f"/details/{friend_trip_id}")
 
 
 ################### ADD A RESERVATION ###################
