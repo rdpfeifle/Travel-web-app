@@ -112,7 +112,7 @@ class Checklist(db.Model):
     trip = db.relationship("Trip", back_populates="tasks")
 
     def __repr__(self):
-        return f"<Checklist checklist_id={self.checklist_id} task_title={self.task_title}>"
+        return f"<Checklist checklist_id={self.checklist_id} trip_id={self.trip_id} task_title={self.task_title}>"
 
 
 class Image(db.Model):

@@ -8,6 +8,9 @@ import crud
 import requests
 from jinja2 import StrictUndefined
 from datetime import timedelta, datetime
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+import certifi
 
 app = Flask(__name__)
 
@@ -16,6 +19,7 @@ app.secret_key = "hellohello"
 api_key = os.environ['YOUR_API_KEY']
 UNSPLASH_SECRET_KEY = os.environ['UNSPLASH_KEY']
 YELP_SECRET_KEY = os.environ['YELP_KEY']
+SENDGRID_SECRET_KEY = os.environ['SENDGRID_API_KEY']
 
 app.jinja_env.undefined = StrictUndefined
 app.app_context().push()
@@ -208,10 +212,18 @@ def display_trip_details(trip_id):
 def add_task():
     """Add new task."""
 
+    # checklist id is not autoincrementing, same for reservation id
     trip_id = request.form.get("trip_id")
     task_title = request.form.get("task_title")
+    completed = request.form.get("completed")
 
-    new_task = crud.create_task(task_title=task_title)
+    new_task = crud.create_task(
+    trip_id,
+    task_title,
+    completed=completed,
+    )
+
+    print(new_task)
 
     db.session.add(new_task)
     db.session.commit()
@@ -246,6 +258,55 @@ def delete_task(checklist_id):
 
     return redirect("/details")
 
+################### INVITE A FRIEND ###################
+
+@app.route("/invite-friend", methods=["POST"])
+def invite_friend_by_email():
+    """Send invitation to friend by email."""
+
+    # get info from form
+    friend_trip_id = request.form.get("friend-trip-id")
+    friends_email = request.form.get("friends-email")
+
+    user_id = session.get("user")
+    # get user who invited their friend
+    user = crud.get_user_by_id(user_id)
+
+    # access trip from db
+    trip = crud.get_trip_by_id(friend_trip_id)
+
+    trip_start_date = str(trip.start_date)
+    start_date = datetime.strptime(trip_start_date, "%Y-%m-%d")
+    start_date = start_date.strftime('%m/%d/%y')
+
+    # check if friend is already a user
+    is_friend_a_user = crud.get_user_by_email(friends_email)
+
+    if not is_friend_a_user:
+        flash("Your friend doesn't have an account.", "error")
+    else:
+        flash("Your friend was invited successfully.")
+
+    message = Mail(
+    from_email='raquelpfeifle@gmail.com',
+    to_emails=friends_email,
+    subject=f'Your friend invited you to travel with them.',
+    html_content=f'Hey there! Your friend is inviting you to travel together. They traveling to {trip.destination} on {start_date}. Please, create an account to see more.')
+
+    # subject=f'{user.fname} invited you to travel with them.',
+    # html_content=f'Hey there! Your friend {user.fname} is inviting you to travel together. {user.fname} traveling to {trip.destination} on {trip.start_date.date()}. Please, create an account to see more.' => this was giving me an attribute error
+
+
+    sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    response = sg.send(message)
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
+
+    flash("Your invitation has been sent!")
+
+    return redirect("/details")
+
 
 ################### ADD A RESERVATION ###################
 
@@ -270,6 +331,8 @@ def save_reservation():
         return redirect(f"/details/{trip_id}")
 
     reservation = crud.create_reservation(trip_id,reservation_type, confirmation_info, destination, start_date, end_date, notes)
+
+    print(reservation)
 
     db.session.add(reservation)
     db.session.commit()
