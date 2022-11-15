@@ -173,7 +173,7 @@ def add_trip():
     # unsplash API call here
     url = "https://api.unsplash.com/search/photos"
 
-    # query is out chosen destination
+    # query is our chosen destination
     # client_id is my API key
     # orientation could be portrait or landscape, but I like landscape :)
     payload = {
@@ -189,9 +189,11 @@ def add_trip():
     data = response.json()
     # print(data) # testing
 
-    # get data from data dict and key called "results"
+    # get data from data dict and get key called "results"
     get_key_results = data.get("results")
     # print(get_key_results) # testing
+
+    # I should try to get the alt description for my HTML template: alt_description => get_key_results = data.get("alt_description")
 
     # results is a list that contains dictionaries within
     # urls is a key with a value of dictionary containing key-value pairs with imgs sizes
@@ -200,6 +202,7 @@ def add_trip():
     img_url = get_key_results[0].get("urls")
     # print(img_url)
 
+    # get the img url with full size
     destination_img = img_url.get("full")
     # print(destination_img) # testing
 
@@ -274,7 +277,7 @@ def edit_task(checklist_id):
 
     db.session.commit()
 
-    return redirect("/details")
+    return redirect(f"/details/{task.trip_id}")
 
 
 @app.route("/delete-task/<int:checklist_id>")
@@ -287,7 +290,7 @@ def delete_task(checklist_id):
     db.session.delete(task)
     db.session.commit()
 
-    return redirect("/details")
+    return redirect(f"/details/{task.trip_id}")
 
 ################### INVITE A FRIEND ###################
 
@@ -299,7 +302,7 @@ def invite_friend_by_email():
     friend_trip_id = request.form.get("friend-trip-id")
     friends_email = request.form.get("friends-email")
 
-    user_id = session.get("user")
+    user_id = session.get("user_id")
     # get user who invited their friend
     user = crud.get_user_by_id(user_id)
 
@@ -319,7 +322,7 @@ def invite_friend_by_email():
     message = Mail(
     from_email='raquelpfeifle@gmail.com',
     to_emails=friends_email,
-    subject=f'Your friend invited you to travel with them.',
+    subject=f'Your friend {user.fname} invited you to travel with them.',
     html_content=f'Hey there! Your friend is inviting you to travel together. They are traveling to {trip.destination} on {start_date}. Please, sign up or login into your existent account to start planning.')
 
     # subject=f'{user.fname} invited you to travel with them.',
@@ -330,8 +333,6 @@ def invite_friend_by_email():
     print(response.status_code)
     print(response.body)
     print(response.headers)
-
-    flash("Your invitation has been sent!")
 
     return redirect(f"/details/{friend_trip_id}")
 
