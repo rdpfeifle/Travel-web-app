@@ -72,7 +72,7 @@ def process_login():
     else:
         flash("You were logged in.", "success")
         session["user_id"] = user.user_id
-        return redirect("/user-account")
+        return redirect("/my-trips")
 
 
 ##--------------------- USER'S SIGN UP PAGE ---------------------##
@@ -119,7 +119,7 @@ def register_user():
 
         flash(f"Account created successfully, {fname}.", "success")
         
-        return redirect("/user-account")
+        return redirect("/my-trips")
 
 
 ##--------------------- USER'S LOGOUT ---------------------##
@@ -137,7 +137,7 @@ def logout():
 
 ##--------------------- USER'S PERSONAL ACCOUNT ---------------------##
 
-@app.route("/user-account")
+@app.route("/my-trips")
 def user_account():
     """Show user's personal account."""
 
@@ -146,7 +146,7 @@ def user_account():
     user = crud.get_user_by_id(user_id)
     trips = user.trips
 
-    return render_template("user-account.html", user_id=user_id, trips=trips, fname=user.fname, YOUR_API_KEY=api_key)
+    return render_template("my-trips.html", user_id=user_id, trips=trips, fname=user.fname, YOUR_API_KEY=api_key)
 
 
 ################### PLAN A NEW TRIP ###################
@@ -386,22 +386,22 @@ def delete(trip_id):
         db.session.delete(trip_to_delete)
         db.session.commit()
         flash(f"Trip to {trip_to_delete.destination} was deleted successfully.", "success")
-        return render_template("/user-account.html")
+        return render_template("/my-trips.html")
 
     except:
-        return redirect("/user-account")
+        return redirect("/my-trips")
 
 
 ################### EDIT TRIPS ###################
 
-@app.route("/user-account/edit-trip/<int:trip_id>", methods=["GET"])
+@app.route("/my-trips/edit-trip/<int:trip_id>", methods=["GET"])
 def display_edit_trip_page(trip_id):
     """Display edit trips' page """
 
     return render_template("edit-trip.html", trip_id=trip_id)
 
 
-@app.route("/user-account/edit-trip/<int:trip_id>", methods=["POST"])
+@app.route("/my-trips/edit-trip/<int:trip_id>", methods=["POST"])
 def edit_trip(trip_id):
     """Edit trip info."""
 
@@ -423,7 +423,7 @@ def edit_trip(trip_id):
         # then commit to the db
         db.session.commit()
 
-        return redirect("/user-account")
+        return redirect("/my-trips")
 
     return redirect("/")
 
