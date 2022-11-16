@@ -105,7 +105,7 @@ def register_user():
     email = request.form.get("email")
     password = request.form.get("password")
 
-    existing_user = crud.get_user_by_email_and_pass(email, password)
+    existing_user = crud.get_user_by_email(email)
 
     # adding hash password here
     # hashed_password = argon2.hash(password)
@@ -155,6 +155,33 @@ def user_account():
 
     return render_template("account.html")
 
+
+@app.route("/edit-account", methods=["POST"])
+def edit_user_account():
+    """Edit user info."""
+
+    # user_id = request.form.get("user_id")
+    first_name = request.form.get("fname")
+
+    user_id = session.get("user_id")
+    
+    user = crud.get_user_by_id(user_id)
+
+    # user.fname = first_name
+    # db.session.commit()
+    # return redirect(f"/account")
+
+    if "user_id" in session:
+
+        if first_name != "":
+            user.fname = first_name
+        
+        # then commit to the db
+        db.session.commit()
+
+        return redirect(f"/my-trips")
+
+    return redirect("/")
 
 ##--------------------- USER'S TRIPS ---------------------##
 @app.route("/my-trips")

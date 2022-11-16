@@ -1,12 +1,37 @@
 {% extends 'base.html' %}
 
-{% block title %} Settings | Tripaholics{% endblock %}
+{% block title %} Account | Tripaholics{% endblock %}
 
 {% block head %}
 {% endblock %}
 
 {% block body %} 
+
+<br>
+
 <p>Change name</p>
 <p>Add delete account</p>
+
+{% if "user_id" in session %}
+<div class="container">
+
+    <h1>Edit your Account</h1>
+
+    <form action="/edit-account" method="POST">
+        
+        <input type="hidden" name="user_id">
+
+        <div class="row">
+            <input type="text" name="fname" placeholder="Change your name">
+        </div>
+
+        <br>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+
+</div>
+{% endif %}
 
 {% endblock %}
