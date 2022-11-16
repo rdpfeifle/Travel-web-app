@@ -3,6 +3,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from passlib.hash import argon2
+from argon2 import PasswordHasher
+ph = PasswordHasher()
 
 db = SQLAlchemy()
 
@@ -152,8 +154,8 @@ def fake_data():
     """Create some sample data."""
 
     ########### Users ###########
-    amanda = User(fname="Amanda", lname="Katz", email="amanda@gmail.com", password="1234") 
-    raquel = User(fname="Raquel", lname="Pfeifle", email="raquel@gmail.com", password="1234")
+    amanda = User(fname="Amanda", lname="Katz", email="amanda@gmail.com", password=ph.hash("1234")) 
+    raquel = User(fname="Raquel", lname="Pfeifle", email="raquel@gmail.com", password=ph.hash("1234"))
 
     db.session.add_all([amanda, raquel])
 
