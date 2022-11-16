@@ -136,10 +136,17 @@ def logout():
 
 
 ##--------------------- USER'S PERSONAL ACCOUNT ---------------------##
-
-@app.route("/my-trips")
+@app.route("/account")
 def user_account():
     """Show user's personal account."""
+
+    return render_template("account.html")
+
+
+##--------------------- USER'S TRIPS ---------------------##
+@app.route("/my-trips")
+def user_trips():
+    """Show user's trips."""
 
     # logged_in = session.get("user_id") # checking if the user is logged in
     user_id = session.get("user_id") # checking if the user is already in session
