@@ -4,6 +4,8 @@ from flask import Flask, render_template, request, flash, session, redirect
 from model import connect_to_db, db
 import os
 from passlib.hash import argon2
+from argon2 import PasswordHasher
+ph = PasswordHasher()
 import crud
 import requests
 from jinja2 import StrictUndefined
@@ -61,18 +63,28 @@ def process_login():
     email = request.form.get("email")
     password = request.form.get("password")
 
-    user = crud.get_user_by_email_and_pass(email, password)
+    # hashed_password = ph.hash(password)
+    
+    user = crud.get_user_by_email(email)
+
+    try:
+
+        # check by hashed password
+        if ph.verify(user.password, password):
+
+            session["user_id"] = user.user_id
+            session["email"] = email
+
+            flash("You were logged in.", "success")
+
+            return redirect("/my-trips")
 
     # if not user, flash an error message and redirect to login page
-    if not user or user.password != password:
-        flash("The email or password you entered was incorrect. Please try again.", "error")
-        return redirect("/login")
+    except:
 
-    # otherwise, redirect to user's account
-    else:
-        flash("You were logged in.", "success")
-        session["user_id"] = user.user_id
-        return redirect("/my-trips")
+        flash("The email or password you entered was incorrect. Please try again.", "error")
+
+        return redirect("/login")
 
 
 ##--------------------- USER'S SIGN UP PAGE ---------------------##
@@ -96,8 +108,9 @@ def register_user():
     existing_user = crud.get_user_by_email_and_pass(email, password)
 
     # adding hash password here
-    hashed_password = argon2.hash(password)
-    del password
+    # hashed_password = argon2.hash(password)
+    hashed_password = ph.hash(password)
+    # del password
     
     if existing_user:
         flash("Account already exists. Please log in.", "error")
