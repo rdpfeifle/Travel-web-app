@@ -1,6 +1,7 @@
-/* :root {
-  colors variables go here as --variable:
-} */
+:root {
+  /* colors variables go here as --variable: */
+  --swiper-image-ratio: 33.3%; /* ratio 16:9 = 56.25%
+}
 
 * {
   box-sizing: border-box;
@@ -36,3 +37,10 @@ body {
 }
 
 /* TRIP DETAILS PAGE */
+
+/* SWIPER ON HOMEPAGE */
+
+.swiper {
+  width: 600px;
+  height: 400px;
+}

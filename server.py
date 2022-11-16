@@ -28,6 +28,9 @@ def homepage():
     """View homepage."""
 
     logged_in = session.get("user_id")
+    # add a list images and give some img source urls
+    # whatever i name the list, I should pass through the render template 
+    # for loop to show my slides on the html template
 
     return render_template("homepage.html", logged_in=logged_in)
 
