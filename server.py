@@ -164,7 +164,7 @@ def edit_user_account():
     first_name = request.form.get("fname")
 
     user_id = session.get("user_id")
-    
+
     user = crud.get_user_by_id(user_id)
 
     # user.fname = first_name
@@ -188,13 +188,15 @@ def edit_user_account():
 def user_trips():
     """Show user's trips."""
 
-    # logged_in = session.get("user_id") # checking if the user is logged in
-    user_id = session.get("user_id") # checking if the user is already in session
-    user = crud.get_user_by_id(user_id)
-    trips = user.trips
+    try:
+        user_id = session.get("user_id") # checking if the user is already in session
+        user = crud.get_user_by_id(user_id)
+        trips = user.trips
 
-    return render_template("my-trips.html", user_id=user_id, trips=trips, fname=user.fname, YOUR_API_KEY=api_key)
+        return render_template("my-trips.html", user_id=user_id, trips=trips, fname=user.fname, YOUR_API_KEY=api_key)
 
+    except:
+        return redirect("/login")
 
 ################### PLAN A NEW TRIP ###################
 
