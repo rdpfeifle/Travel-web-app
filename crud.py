@@ -159,22 +159,30 @@ def create_activity(trip_id, activity_type, place_name, datetime, address, phone
 
 ########### Image Functions ###########
 
-def image_displays():
-    """Display images from places to visit on homepage."""
+def create_image(place_name, city_name, description, url):
+    """Create images from places to visit on homepage."""
 
-    pass
+    image = Image(
+        place_name=place_name,
+        city_name=city_name,
+        description=description,
+        url=url,
+    )
 
-############# Places for the homepage
+    return image
 
-# def get_images_of_places():
-#     """Return all images."""
 
-#     return Image.query.all()
+def get_images_of_places():
+    """Return all images."""
 
-# def get_image_by_id(img_id):
-#     """Return an image by primary key."""
+    return Image.query.all()
 
-#     return Image.query.get(img_id)
+
+def get_image_by_id(img_id):
+    """Return an image by primary key."""
+
+    return Image.query.get(img_id)
+
 
 if __name__ == '__main__':
     from server import app

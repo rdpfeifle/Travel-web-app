@@ -22,7 +22,7 @@ class User(db.Model):
     password = db.Column(db.String, nullable=False)
 
     trips = db.relationship("Trip", back_populates="user")
-    images = db.relationship("Image", back_populates="user")
+    # images = db.relationship("Image", back_populates="user")
 
     # trips = db.relationship("Trip", backref="user") 
     # images = db.relationship("Image", backref="user") 
@@ -122,14 +122,14 @@ class Image(db.Model):
     __tablename__ = "images"
 
     img_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
-    url = db.Column(db.String)
-    city_name = db.Column(db.String, nullable=False)
-    place_name = db.Column(db.String, nullable=False)
+    # user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
+    place_name = db.Column(db.String)
+    city_name = db.Column(db.String)
     description = db.Column(db.String)
+    url = db.Column(db.String)
     
     # added relationship
-    user = db.relationship("User", back_populates="images")
+    # user = db.relationship("User", back_populates="images")
 
     def __repr__(self):
         return f"<Image img_id={self.img_id} city_name{self.city_name} place_name={self.place_name}>"
@@ -159,7 +159,13 @@ def fake_data():
     db.session.add_all([amanda, raquel])
 
     ########### Trips ###########
-    san_francisco = Trip(traveler=amanda.user_id, destination="San Francisco, California", trip_title="My Honeymoon", start_date=datetime.strptime("2022-11-10", "%Y-%m-%d"), end_date=datetime.strptime("2022-11-16", "%Y-%m-%d"), img="Bridge") 
+    san_francisco = Trip(
+        traveler=amanda.user_id, 
+        destination="San Francisco, California", 
+        trip_title="My Honeymoon", 
+        start_date=datetime.strptime("2022-11-10", "%Y-%m-%d"), 
+        end_date=datetime.strptime("2022-11-16", "%Y-%m-%d"), 
+        img="Bridge")
 
     db.session.add(san_francisco)
     amanda.trips.append(san_francisco)
