@@ -67,11 +67,10 @@ class Activity(db.Model):
     activity_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     trip_id = db.Column(db.Integer, db.ForeignKey("trips.trip_id"), nullable=False) 
     activity_type = db.Column(db.String) 
-    activity_name = db.Column(db.String)
-    datetime = db.Column(db.DateTime, nullable=False) 
-    longitude = db.Column(db.Float) 
-    latitude = db.Column(db.Float)
-    # explore = db.Column(db.String)
+    place_name = db.Column(db.String)
+    datetime = db.Column(db.DateTime, nullable=False)
+    address = db.Column(db.String)
+    phone_number = db.Column(db.String(20))
     comments = db.Column(db.String)
 
     # added relationship

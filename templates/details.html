@@ -2,7 +2,6 @@
 
 {% block title %}Trip Details | Tripaholics{% endblock %}
 
-
 {% block body %}
 
 
@@ -16,9 +15,11 @@
       </svg>
 </a> 
 
+
 <div class="container pt-4">
 
     <div class="row">
+        <p id="main-destination" hidden>{{trip.destination}}</p>
         <h1>Trip Details - {{ trip.destination }}</h1>
         <h2>{{ trip.start_date.strftime("%b %d, %Y") }} - {{ trip.end_date.strftime("%b %d, %Y") }}</h2>
     </div>
@@ -170,6 +171,106 @@
                 </div>
             <!-- Reservation ends here -->
             </div> 
+
+
+            <!-------------------- Add Activity - Button trigger modal -------------------->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-activity">
+                Activities
+            </button>
+            
+            <!-- Modal - Activities -->
+            <div class="modal fade" id="add-activity" tabindex="-1" role="dialog" aria-labelledby="activitiesTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content text-center">
+                        <div class="modal-header">
+                        <h5 class="modal-title w-100" id="activitiesMainTitle">Enter reservation details</h5>
+                        <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        </button>
+                        </div>
+
+                        <div class="modal-body">
+
+                                <p>Activities types include restaurants.</p>
+
+                                <form action="/add-activity" method="post">
+
+                                    <input type="hidden" id="trip_id" name="trip_id" value="{{trip.trip_id}}">
+                                    <!-- <input type="hidden" name="destination" value="{{trip.destination}}"> -->
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" id="activity-name" placeholder="act-name" name="place_name" required>
+                                                <label for="place-name">Place name</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <select class="form-select" name="activity_type" id="activity-type" required>
+                                                    <option value="select-reservation" selected disabled>Activity Type</option>
+                                                    <option value="Rental Car">Rental Car</option>
+                                                    <option value="Flight">Flight</option>
+                                                    <option value="train">Train</option>
+                                                    <option value="Bus">Bus</option>
+                                                    <option value="Hotel">Hotel</option>
+                                                    <option value="Airbnb">Airbnb</option>
+                                                    <option value="Other">Other</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="address" class="form-control" id="activity-address" id="floatingInput" placeholder="address" required>
+                                            <label for="floatingInput">Address</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- I need to double check if it needs to be a string -->
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="number" name="phone_number" class="form-control" id="phone-number" placeholder="phone">
+                                            <label for="phone-number">Phone number</label>
+                                        </div>
+                                    </div>
+                    
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-floating mb-3">
+                                                <input type="datetime-local" name="datetime" class="form-control" min="{{trip.start_date}}" max="{{trip.end_date}}"  id="date-time-activity" placeholder="date-time-activity" required>
+                                                <label for="date-time-activity">Date and Time</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3 form-group">
+                                                <textarea name="comments" class="form-control" id="activity-comments" placeholder="Type your notes about this activity (optional)"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary" id="save-activity">Save</button>
+                                        </div>
+                            
+                                </form>
+
+                        </div>
+                    </div>
+                </div>
+            <!-- Reservation ends here -->
+            </div> 
+
+
         </div>
     </div>
 </div>
@@ -226,6 +327,13 @@
 
 {% endif %}
 
+<!-- <section class="map">
+    <div id="destination-map"></div>
+  </section>
 
-<script src="/static/js/app.js"></script>
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key={{YOUR_API_KEY}}&region=US&callback=initMap">
+</script> -->
+
+<script src="/static/js/tripDetails.js"></script>
 {% endblock %}

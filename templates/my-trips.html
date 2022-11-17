@@ -51,7 +51,7 @@ Otherwise, show trips below -->
                 <!-- <a href="/details/{{ trip.trip_id }}" class="card-img-top btn btn-primary">See trip details</a> -->
                 <div class="card-body">
                     <h3 class="card-title">{{ trip.trip_title }}</h3>
-                    <h5 class="card-title">{{ trip.destination }}</h5>
+                    <h5 class="card-title" id="destination">{{ trip.destination }}</h5>
                     <p class="card-text">{{ trip.start_date.strftime("%b %d, %Y") }} to {{ trip.end_date.strftime("%b %d, %Y") }}</p>
 
                     <!-- <form action="/user-account">
@@ -101,8 +101,6 @@ Use cards/carousel with destinations from folder -->
 <script async
     src="https://maps.googleapis.com/maps/api/js?key={{YOUR_API_KEY}}&region=US&callback=initMap">
 </script>
-
-<script src="/static/js/app.js"></script>
 
 
 {% endblock %}

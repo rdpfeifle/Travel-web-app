@@ -1,6 +1,6 @@
 """Server for travel web app."""
 
-from flask import Flask, render_template, request, flash, session, redirect
+from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from model import connect_to_db, db
 import os
 from passlib.hash import argon2
@@ -160,16 +160,12 @@ def user_account():
 def edit_user_account():
     """Edit user info."""
 
-    # user_id = request.form.get("user_id")
     first_name = request.form.get("fname")
 
+    # grab user from session
     user_id = session.get("user_id")
 
     user = crud.get_user_by_id(user_id)
-
-    # user.fname = first_name
-    # db.session.commit()
-    # return redirect(f"/account")
 
     if "user_id" in session:
 
@@ -179,7 +175,7 @@ def edit_user_account():
         # then commit to the db
         db.session.commit()
 
-        return redirect(f"/my-trips")
+        return redirect("/my-trips")
 
     return redirect("/")
 
@@ -289,7 +285,7 @@ def display_trip_details(trip_id):
         flash("Please, log into your existent account or create one.", "error")
         return redirect("/")
 
-    return render_template("details.html", trip=trip, reservations=reservations, task_list=task_list)
+    return render_template("details.html", trip=trip, reservations=reservations, task_list=task_list, YOUR_API_KEY=api_key)
 
 
 ################### CHECKLIST ROUTES ###################
@@ -476,6 +472,38 @@ def edit_trip(trip_id):
 
     return redirect("/")
 
+## ------ ADD ACTIVITIES -------#
+
+@app.route("/add-activity", methods=["POST"])
+def add_activity():
+    """Add a activity."""
+
+    trip_id = request.json.get("trip_id")
+    activity_type = request.json.get("activity_type")
+    place_name = request.json.get("activity_name")
+    datetime = request.json.get("dateTime")
+    address = request.json.get("address")
+    phone_number = request.json.get("phone_number")
+    comments = request.json.get("comments")
+
+    print(activity_type)
+    print(place_name)
+    print(phone_number)
+
+    activity = crud.create_activity(
+        trip_id=trip_id,
+        activity_type=activity_type,
+        place_name=place_name,
+        datetime=datetime,
+        address=address,
+        phone_number=phone_number,
+        comments=comments
+    )
+
+    db.session.add(activity)
+    db.session.commit()
+
+    return redirect("/details")
 
 if __name__ == "__main__":
     connect_to_db(app)

@@ -47,11 +47,13 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
       ? "Error: The Geolocation service failed."
       : "Error: Your browser doesn't support geolocation."
   );
+
   infoWindow.open(map);
 }
 
 window.initMap = initMap;
 
+///////////////////////////////////// separate
 // this was here before
 // function initMap() {
 //   const newYorkCoords = {

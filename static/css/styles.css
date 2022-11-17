@@ -36,11 +36,19 @@ body {
   box-shadow: inherit;
 }
 
-/* TRIP DETAILS PAGE */
-
 /* SWIPER ON HOMEPAGE */
 
 .swiper {
   width: 600px;
   height: 400px;
+}
+
+/* TRIP DETAILS PAGE */
+
+.map, #destination-map {
+  width: 90%;
+  height: 70%;
+  position: relative;
+  border-radius: 20px;
+  margin: 0 auto 0 auto;
 }
