@@ -151,7 +151,10 @@ def logout():
 def user_account():
     """Show user's personal account."""
 
-    return render_template("account.html")
+    user_id = session.get("user_id")
+    user = crud.get_user_by_id(user_id)
+
+    return render_template("account.html", fname=user.fname, email=user.email)
 
 
 @app.route("/edit-account", methods=["POST"])
@@ -159,9 +162,13 @@ def edit_user_account():
     """Edit user info."""
 
     first_name = request.form.get("fname")
+    email = request.form.get("email")
 
     # grab user from session
     user_id = session.get("user_id")
+
+    # users
+    existent_user = crud.get_user_by_email(email)
 
     user = crud.get_user_by_id(user_id)
 
@@ -169,11 +176,26 @@ def edit_user_account():
 
         if first_name != "":
             user.fname = first_name
-        
+
         # then commit to the db
-        db.session.commit()
+            db.session.commit()
+
+        if not existent_user and email != "":
+            user.email = email
+            db.session.commit()
+            
+        else:
+            flash("That email already exists.", "error")
 
         return redirect("/my-trips")
+
+    # for User in users:
+    #     if User == user.email:
+    #         flash("That email already exists. Please try a new one.", "error")
+    #     else: 
+    #         if email != "":
+    #             user.email = email
+    #             db.session.commit()
 
     return redirect("/")
 
