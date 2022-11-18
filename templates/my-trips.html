@@ -41,7 +41,7 @@ Otherwise, show trips below -->
 
         {% if trips %}
 
-        {% for trip in trips %}
+        {% for trip in trips|sort(attribute="start_date")%}
         
         <div class="col-12 col-md-6 col-lg-4">
             
