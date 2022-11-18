@@ -53,13 +53,13 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 window.initMap = initMap;
 
-//------------------------ delete trip ------------------------//
+//---------------------- delete trip ----------------------//
 
 let deleteTripBtn = document.querySelectorAll(".trip-btn");
 for (const button of deleteTripBtn) {
   button.addEventListener("click", () => {
     console.log(button);
-    fetch("/delete", {
+    fetch("/delete-trip", {
       method: "POST",
       body: JSON.stringify({ tripToDelete: button.value }),
       headers: {
