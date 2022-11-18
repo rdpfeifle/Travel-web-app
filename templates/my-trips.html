@@ -45,7 +45,7 @@ Otherwise, show trips below -->
         
         <div class="col-12 col-md-6 col-lg-4">
             
-            <div class="card" id="trip-card">
+            <div class="card" id="trip-card-{{ trip.trip_id }}">
                 <a href="/details/{{ trip.trip_id }}">
                 <img src="{{trip.img}}" class="card-img-top"></a>
                 <!-- <a href="/details/{{ trip.trip_id }}" class="card-img-top btn btn-primary">See trip details</a> -->
@@ -69,7 +69,10 @@ Otherwise, show trips below -->
                     
 
                     <a href="/my-trips/edit-trip/{{ trip.trip_id }}" value="Edit a trip" class="btn btn-outline-primary">Edit</a>
-                    <a href="/delete/{{ trip.trip_id }}" value="Delete a trip" class="btn btn-outline-danger" id="deleteBtn">Delete</a>
+                    <!-- <a href="/delete/{{ trip.trip_id }}" value="Delete a trip" class="btn btn-outline-danger" id="deleteBtn">Delete</a> -->
+
+                    <!-- First attempt to add "delete button" with AJAX CALL -->
+                    <button type="button" class="btn btn-outline-danger trip-btn" value="{{trip.trip_id}}">Delete</button>
 
                 </div>
             </div>
@@ -96,11 +99,9 @@ Popular Destinations
 Use cards/carousel with destinations from folder --> 
 
 
-
 <script src="/static/js/maps.js"></script>
 <script async
     src="https://maps.googleapis.com/maps/api/js?key={{YOUR_API_KEY}}&region=US&callback=initMap">
 </script>
-
 
 {% endblock %}

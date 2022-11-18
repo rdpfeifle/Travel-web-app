@@ -53,6 +53,27 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 window.initMap = initMap;
 
+//------------------------ delete trip ------------------------//
+
+let deleteTripBtn = document.querySelectorAll(".trip-btn");
+for (const button of deleteTripBtn) {
+  button.addEventListener("click", () => {
+    console.log(button);
+    fetch("/delete", {
+      method: "POST",
+      body: JSON.stringify({ tripToDelete: button.value }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.text())
+      .then((status) => {
+        // button.value is the trip id
+        document.querySelector(`#trip-card-${button.value}`).remove();
+      });
+  });
+}
+
 ///////////////////////////////////// separate
 // this was here before
 // function initMap() {

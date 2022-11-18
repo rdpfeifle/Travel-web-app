@@ -419,20 +419,36 @@ def save_reservation():
 
 ################### DELETE TRIPS ###################
 
-@app.route("/delete/<int:trip_id>")
-def delete(trip_id):
+@app.route("/delete", methods=["POST"])
+def delete():
     """Delete a trip."""
 
-    trip_to_delete = crud.get_trip_by_id(trip_id)
+    trip_to_delete = request.json.get("tripToDelete")
+
+    trip = crud.get_trip_by_id(trip_to_delete)
 
     try:
-        db.session.delete(trip_to_delete)
+        db.session.delete(trip)
         db.session.commit()
-        flash(f"Trip to {trip_to_delete.destination} was deleted successfully.", "success")
-        return render_template("/my-trips.html")
+        return "Success"
 
     except:
-        return redirect("/my-trips")
+        return "Could not delete trip"
+
+# @app.route("/delete/<int:trip_id>")
+# def delete(trip_id):
+#     """Delete a trip."""
+    
+#     trip_to_delete = crud.get_trip_by_id(trip_id)
+
+#     try:
+#         db.session.delete(trip_to_delete)
+#         db.session.commit()
+#         flash(f"Trip to {trip_to_delete.destination} was deleted successfully.", "success")
+#         return render_template("/my-trips.html")
+
+#     except:
+#         return redirect("/my-trips")
 
 
 ################### EDIT TRIPS ###################
@@ -482,12 +498,14 @@ def add_activity():
     datetime = request.form.get("dateTime")
     address = request.form.get("address")
     phone_number = request.form.get("phone_number")
-    # comments = request.json.get("comments")
     comments = request.form.get("comments")
 
     # datetime = datetime.strptime(datetime, "%Y-%m-%d")
+    print("###########")
     print(activity_type)
+    print("###########")
     print(place_name)
+    print("###########")
     print(phone_number)
 
     activity = crud.create_activity(
