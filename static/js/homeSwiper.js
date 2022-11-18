@@ -19,13 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
       delay: 3000,
     },
 
+    centeredSlides: true,
     // right and left arrows
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
     },
-
-    // effect
-    effect: "slide",
   });
 });
