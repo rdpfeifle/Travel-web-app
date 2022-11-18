@@ -19,7 +19,6 @@ app.secret_key = "hellohello"
 
 api_key = os.environ['YOUR_API_KEY']
 UNSPLASH_SECRET_KEY = os.environ['UNSPLASH_KEY']
-YELP_SECRET_KEY = os.environ['YELP_KEY']
 
 app.jinja_env.undefined = StrictUndefined
 app.app_context().push()
@@ -477,14 +476,16 @@ def edit_trip(trip_id):
 def add_activity():
     """Add a activity."""
 
-    trip_id = request.json.get("trip_id")
-    activity_type = request.json.get("activity_type")
-    place_name = request.json.get("activity_name")
-    datetime = request.json.get("dateTime")
-    address = request.json.get("address")
-    phone_number = request.json.get("phone_number")
-    comments = request.json.get("comments")
+    trip_id = request.form.get("trip_id")
+    activity_type = request.form.get("activity_type")
+    place_name = request.form.get("place_name")
+    datetime = request.form.get("dateTime")
+    address = request.form.get("address")
+    phone_number = request.form.get("phone_number")
+    # comments = request.json.get("comments")
+    comments = request.form.get("comments")
 
+    # datetime = datetime.strptime(datetime, "%Y-%m-%d")
     print(activity_type)
     print(place_name)
     print(phone_number)
@@ -502,7 +503,7 @@ def add_activity():
     db.session.add(activity)
     db.session.commit()
 
-    return redirect("/details")
+    return redirect(f"/details/{trip_id}")
 
 if __name__ == "__main__":
     connect_to_db(app)

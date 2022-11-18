@@ -1,5 +1,4 @@
 """Models for travel web app."""
-
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from passlib.hash import argon2
@@ -68,7 +67,7 @@ class Activity(db.Model):
     trip_id = db.Column(db.Integer, db.ForeignKey("trips.trip_id"), nullable=False) 
     activity_type = db.Column(db.String) 
     place_name = db.Column(db.String)
-    datetime = db.Column(db.DateTime, nullable=False)
+    datetime = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     address = db.Column(db.String)
     phone_number = db.Column(db.String(20))
     comments = db.Column(db.String)
