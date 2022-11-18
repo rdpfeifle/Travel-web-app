@@ -1,9 +1,9 @@
 """Server for travel web app."""
 
-from flask import Flask, render_template, request, flash, session, redirect, jsonify
+from flask import Flask, render_template, request, flash, session, redirect
 from model import connect_to_db, db
 import os
-from passlib.hash import argon2
+import argon2
 from argon2 import PasswordHasher
 ph = PasswordHasher()
 import crud
@@ -23,6 +23,7 @@ UNSPLASH_SECRET_KEY = os.environ['UNSPLASH_KEY']
 app.jinja_env.undefined = StrictUndefined
 app.app_context().push()
 
+##--------------------- HOMEPAGE ---------------------##
 
 @app.route("/")
 def homepage():
@@ -35,17 +36,7 @@ def homepage():
     return render_template("homepage.html", logged_in=logged_in, images=images)
 
 
-##--------------------- 404 ERROR HANDLER - PAGE NOT FOUND ---------------------##
-
-@app.errorhandler(404)
-def page_not_found(e):
-
-    logged_in = session.get("user_id") # it was giving me an error without this
-
-    return render_template("404.html", logged_in=logged_in)
-
-
-##--------------------- USER'S LOGIN PAGE ---------------------##
+##------------------- USER'S LOGIN PAGE -------------------##
 
 @app.route("/login")
 def show_login():
@@ -60,8 +51,6 @@ def process_login():
 
     email = request.form.get("email")
     password = request.form.get("password")
-
-    # hashed_password = ph.hash(password)
     
     user = crud.get_user_by_email(email)
 
@@ -85,7 +74,7 @@ def process_login():
         return redirect("/login")
 
 
-##--------------------- USER'S SIGN UP PAGE ---------------------##
+##--------------------- SIGN UP PAGE ---------------------##
 
 @app.route("/signup")
 def show_signup():
@@ -106,9 +95,7 @@ def register_user():
     existing_user = crud.get_user_by_email(email)
 
     # adding hash password here
-    # hashed_password = argon2.hash(password)
     hashed_password = ph.hash(password)
-    # del password
     
     if existing_user:
         flash("Account already exists. Please log in.", "error")
@@ -121,7 +108,11 @@ def register_user():
             email=email, 
             password=hashed_password
             )
-        
+        print("#########")
+        print(user)
+        print(user.password)
+        print("########")
+
         db.session.add(user)
         db.session.commit()
 
@@ -146,7 +137,8 @@ def logout():
     return redirect("/")
 
 
-##--------------------- USER'S PERSONAL ACCOUNT ---------------------##
+##---------------- USER'S PERSONAL ACCOUNT ----------------##
+
 @app.route("/account")
 def user_account():
     """Show user's personal account."""
@@ -154,7 +146,11 @@ def user_account():
     user_id = session.get("user_id")
     user = crud.get_user_by_id(user_id)
 
-    return render_template("account.html", fname=user.fname, email=user.email)
+    if "user_id" in session:
+        return render_template("account.html", fname=user.fname, email=user.email)
+
+    else:
+        return redirect("/")
 
 
 @app.route("/edit-account", methods=["POST"])
@@ -177,44 +173,22 @@ def edit_user_account():
         if first_name != "":
             user.fname = first_name
 
-        # then commit to the db
+            # then commit to the db
             db.session.commit()
 
         if not existent_user and email != "":
             user.email = email
             db.session.commit()
-            
+                
         else:
             flash("That email already exists.", "error")
 
         return redirect("/my-trips")
-
-    # for User in users:
-    #     if User == user.email:
-    #         flash("That email already exists. Please try a new one.", "error")
-    #     else: 
-    #         if email != "":
-    #             user.email = email
-    #             db.session.commit()
-
+    
     return redirect("/")
 
-##--------------------- USER'S TRIPS ---------------------##
-@app.route("/my-trips")
-def user_trips():
-    """Show user's trips."""
 
-    try:
-        user_id = session.get("user_id") # checking if the user is already in session
-        user = crud.get_user_by_id(user_id)
-        trips = user.trips
-
-        return render_template("my-trips.html", user_id=user_id, trips=trips, fname=user.fname, YOUR_API_KEY=api_key)
-
-    except:
-        return redirect("/login")
-
-################### PLAN A NEW TRIP ###################
+##--------------------- PLAN A TRIP ---------------------##
 
 @app.route("/plan-trip")
 def plan_trip():
@@ -288,7 +262,7 @@ def add_trip():
     return redirect(f"/details/{trip.trip_id}")
 
 
-################### ADD ACTIVITIES TO THE TRIP'S PLAN ###################
+##----------------- DISPLAY TRIP DETAILS -----------------##
 
 @app.route("/details/<int:trip_id>", methods=["GET"])
 def display_trip_details(trip_id):
@@ -308,13 +282,80 @@ def display_trip_details(trip_id):
     return render_template("details.html", trip=trip, reservations=reservations, task_list=task_list, YOUR_API_KEY=api_key)
 
 
-################### CHECKLIST ROUTES ###################
+##--------------------- USER'S TRIPS ---------------------##
+
+@app.route("/my-trips")
+def user_trips():
+    """Show user's trips."""
+
+    try:
+        user_id = session.get("user_id") # checking if the user is already in session
+        user = crud.get_user_by_id(user_id)
+        trips = user.trips
+
+        return render_template("my-trips.html", user_id=user_id, trips=trips, fname=user.fname, YOUR_API_KEY=api_key)
+
+    except:
+        return redirect("/login")
+
+
+@app.route("/delete-trip", methods=["POST"])
+def delete():
+    """Delete a trip."""
+
+    trip_to_delete = request.json.get("tripToDelete")
+
+    trip = crud.get_trip_by_id(trip_to_delete)
+
+    try:
+        db.session.delete(trip)
+        db.session.commit()
+        return "Success"
+
+    except:
+        return "Could not delete trip."
+
+
+@app.route("/my-trips/edit-trip/<int:trip_id>", methods=["GET"])
+def display_edit_trip_page(trip_id):
+    """Display edit trips' page """
+
+    return render_template("edit-trip.html", trip_id=trip_id)
+
+
+@app.route("/my-trips/edit-trip/<int:trip_id>", methods=["POST"])
+def edit_trip(trip_id):
+    """Edit trip info."""
+
+    trip_to_edit = crud.get_trip_by_id(trip_id)
+
+    trip_title = request.form.get("trip_title")
+    description = request.form.get("description")
+
+    if "user_id" in session:
+
+        # if the trip title from the form is NOT empty
+        # assign value given in the form to the trip_title in the database
+        if trip_title != "":
+            trip_to_edit.trip_title = trip_title
+        
+        if description != "":
+            trip_to_edit.description = description
+
+        # then commit to the db
+        db.session.commit()
+
+        return redirect("/my-trips")
+
+    return redirect("/")
+
+
+##------------------- CHECKLIST ROUTES -------------------##
 
 @app.route("/add-task", methods=["POST"])
 def add_task():
     """Add new task."""
 
-    # checklist id is not autoincrementing, same for reservation id
     trip_id = request.form.get("trip_id")
     task_title = request.form.get("task_title")
     completed = request.form.get("completed")
@@ -360,7 +401,7 @@ def delete_task(checklist_id):
 
     return redirect(f"/details/{task.trip_id}")
 
-################### INVITE A FRIEND ###################
+##--------------------- INVITE A FRIEND ---------------------##
 
 @app.route("/invite-friend", methods=["POST"])
 def invite_friend_by_email():
@@ -405,7 +446,7 @@ def invite_friend_by_email():
     return redirect(f"/details/{friend_trip_id}")
 
 
-################### ADD A RESERVATION ###################
+##------------------- RESERVATION ROUTES -------------------##
 
 @app.route("/add-reservation", methods=["POST"])
 def save_reservation():
@@ -439,76 +480,7 @@ def save_reservation():
     return redirect(f"/details/{trip_id}")
 
 
-################### DELETE TRIPS ###################
-
-@app.route("/delete", methods=["POST"])
-def delete():
-    """Delete a trip."""
-
-    trip_to_delete = request.json.get("tripToDelete")
-
-    trip = crud.get_trip_by_id(trip_to_delete)
-
-    try:
-        db.session.delete(trip)
-        db.session.commit()
-        return "Success"
-
-    except:
-        return "Could not delete trip"
-
-# @app.route("/delete/<int:trip_id>")
-# def delete(trip_id):
-#     """Delete a trip."""
-    
-#     trip_to_delete = crud.get_trip_by_id(trip_id)
-
-#     try:
-#         db.session.delete(trip_to_delete)
-#         db.session.commit()
-#         flash(f"Trip to {trip_to_delete.destination} was deleted successfully.", "success")
-#         return render_template("/my-trips.html")
-
-#     except:
-#         return redirect("/my-trips")
-
-
-################### EDIT TRIPS ###################
-
-@app.route("/my-trips/edit-trip/<int:trip_id>", methods=["GET"])
-def display_edit_trip_page(trip_id):
-    """Display edit trips' page """
-
-    return render_template("edit-trip.html", trip_id=trip_id)
-
-
-@app.route("/my-trips/edit-trip/<int:trip_id>", methods=["POST"])
-def edit_trip(trip_id):
-    """Edit trip info."""
-
-    trip_to_edit = crud.get_trip_by_id(trip_id)
-
-    trip_title = request.form.get("trip_title")
-    description = request.form.get("description")
-
-    if "user_id" in session:
-
-        # if the trip title from the form is NOT empty
-        # assign value given in the form to the trip_title in the database
-        if trip_title != "":
-            trip_to_edit.trip_title = trip_title
-        
-        if description != "":
-            trip_to_edit.description = description
-
-        # then commit to the db
-        db.session.commit()
-
-        return redirect("/my-trips")
-
-    return redirect("/")
-
-## ------ ADD ACTIVITIES -------#
+##------------------- ACTIVITIES ROUTES -------------------##
 
 @app.route("/add-activity", methods=["POST"])
 def add_activity():
@@ -521,14 +493,6 @@ def add_activity():
     address = request.form.get("address")
     phone_number = request.form.get("phone_number")
     comments = request.form.get("comments")
-
-    # datetime = datetime.strptime(datetime, "%Y-%m-%d")
-    print("###########")
-    print(activity_type)
-    print("###########")
-    print(place_name)
-    print("###########")
-    print(phone_number)
 
     activity = crud.create_activity(
         trip_id=trip_id,
@@ -544,6 +508,18 @@ def add_activity():
     db.session.commit()
 
     return redirect(f"/details/{trip_id}")
+
+
+##---------- 404 ERROR HANDLER - PAGE NOT FOUND ----------##
+
+@app.errorhandler(404)
+def page_not_found(e):
+
+    logged_in = session.get("user_id") # it was giving me an error without this
+
+    return render_template("404.html", logged_in=logged_in)
+
+
 
 if __name__ == "__main__":
     connect_to_db(app)
