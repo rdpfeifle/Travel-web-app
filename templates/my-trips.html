@@ -69,9 +69,8 @@ Otherwise, show trips below -->
                     
 
                     <a href="/my-trips/edit-trip/{{ trip.trip_id }}" value="Edit a trip" class="btn btn-outline-primary">Edit</a>
-                    <!-- <a href="/delete/{{ trip.trip_id }}" value="Delete a trip" class="btn btn-outline-danger" id="deleteBtn">Delete</a> -->
 
-                    <!-- First attempt to add "delete button" with AJAX CALL -->
+                    <!-- Ajax call to delete button -->
                     <button type="button" class="btn btn-outline-danger trip-btn" value="{{trip.trip_id}}">Delete</button>
 
                 </div>
