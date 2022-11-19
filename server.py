@@ -268,6 +268,7 @@ def display_trip_details(trip_id):
     # logged_in = session.get("user_id")
     trip = crud.get_trip_by_id(trip_id)
     reservations = trip.reservations
+    activities = trip.activities
     
     # add tasks here
     task_list = trip.tasks
@@ -276,7 +277,7 @@ def display_trip_details(trip_id):
         flash("Please, log into your existent account or create one.", "error")
         return redirect("/")
 
-    return render_template("details.html", trip=trip, reservations=reservations, task_list=task_list, YOUR_API_KEY=api_key)
+    return render_template("details.html", trip=trip, task_list=task_list, activities=activities, reservations=reservations, YOUR_API_KEY=api_key)
 
 
 ##--------------------- USER'S TRIPS ---------------------##
@@ -522,6 +523,23 @@ def add_activity():
     db.session.commit()
 
     return redirect(f"/details/{trip_id}")
+
+
+@app.route("/delete-activity", methods=["POST"])
+def delete_activity():
+    """Delete an activity."""
+
+    activity_to_delete = request.json.get("activity_to_delete")
+
+    activity = crud.get_activity_by_id(activity_to_delete)
+
+    try:
+        db.session.delete(activity)
+        db.session.commit()
+        return "Success"
+
+    except:
+        return "Could not delete activity."
 
 
 ##---------- 404 ERROR HANDLER - PAGE NOT FOUND ----------##

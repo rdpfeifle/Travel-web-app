@@ -157,6 +157,12 @@ def create_activity(trip_id, activity_type, place_name, datetime, address, phone
                         )
     return activity
 
+
+def get_activity_by_id(activity_id):
+    """Return activity information by getting the activity id."""
+
+    return Activity.query.get(activity_id)
+
 ########### Image Functions ###########
 
 def create_image(place_name, city_name, description, url):
