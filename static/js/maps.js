@@ -55,8 +55,9 @@ window.initMap = initMap;
 
 //---------------------- delete trip ----------------------//
 
-let deleteTripBtn = document.querySelectorAll(".trip-btn");
-for (const button of deleteTripBtn) {
+// my trips page
+let deleteTripBtns = document.querySelectorAll(".trip-btn");
+for (const button of deleteTripBtns) {
   button.addEventListener("click", () => {
     console.log(button);
     fetch("/delete-trip", {

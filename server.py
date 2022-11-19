@@ -203,11 +203,8 @@ def plan_trip():
 def add_trip():
     """Create and add a trip to the user's account."""
 
-    # traveler = request.form.get("traveler")
     trip_title = request.form.get("trip_title")
     destination = request.form.get("destination")
-    # start_date = request.form.get("start_date")
-    # end_date = request.form.get("end_date")
     dates = request.form.get("dates").split()
     start_date = datetime.strptime(dates[0], "%Y-%m-%d")
     end_date = datetime.strptime(dates[2], "%Y-%m-%d")
@@ -478,6 +475,23 @@ def save_reservation():
     flash("Your reservation was created successfully.", "success")
 
     return redirect(f"/details/{trip_id}")
+
+
+@app.route("/delete-reservation", methods=["POST"])
+def delete_reservation():
+    """Delete a reservation."""
+
+    reservation_to_delete = request.json.get("reservation_to_delete")
+
+    reservation = crud.get_reservation_by_id(reservation_to_delete)
+
+    try:
+        db.session.delete(reservation)
+        db.session.commit()
+        return "Success"
+
+    except:
+        return "Could not delete reservation."
 
 
 ##------------------- ACTIVITIES ROUTES -------------------##

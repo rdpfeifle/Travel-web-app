@@ -78,7 +78,7 @@
             </div>
 
             <!-------------------- Add Reservation - Button trigger modal -------------------->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reservations">
+            <button type="button" class="btn btn-primary reservation-modal" data-bs-toggle="modal" data-bs-target="#reservations">
                 Reservations
             </button>
             
@@ -323,7 +323,34 @@
     </ul>
 {% endfor %}
 
-<!-- <h2 id="time-left"></h2> -->
+
+<!-- Reservations cards start here  -->
+
+<div class="container">
+
+    {% for reservation in reservations %}
+        
+        <div class="col-12 col-md-6 col-lg-4">
+            
+            <div class="card" id="reservation-card-{{ reservation.reservation_id }}">
+    
+                <div class="card-body">
+                    <h3 class="card-title">{{ reservation.location }}</h3>
+                    <p class="card-text">{{reservation.reservation_type}}</p>
+                    <p class="card-text">{{reservation.start_date}} - {{reservation.end_date}}</p>
+
+                    <!-- <a href="/my-trips/edit-trip/{{ trip.trip_id }}" value="Edit a trip" class="btn btn-outline-primary">Edit</a> -->
+
+                    <!-- Ajax call to delete button -->
+                    <button type="button" class="btn btn-outline-danger reservation-btn" value="{{reservation.reservation_id}}">Delete</button>
+
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+</div>
 
 {% endif %}
 
