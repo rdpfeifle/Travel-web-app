@@ -21,7 +21,7 @@
 
 - Homepage displays additional information about the project, including a navbar that automatically scrolls down when a link is clicked
 - Users can click on the button to start planning, but they can create a trip only if they are logged in
-- Users see recommended places to travel to in a beautiful carousel
+- Users can see recommended places to travel to in a beautiful carousel
 - Users can read provided answers to a list of frequently asked questions about the project
 
 ### Sign up/Login
@@ -29,7 +29,7 @@
 - Users can create an account and/or login
 - Passwords are saved to the database already hashed for extra layer of security using Argon2
 
-### More soon
+### More soon...
 
 ## Set Up
 
