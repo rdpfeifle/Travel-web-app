@@ -337,6 +337,16 @@ nav,
   background-color: var(--hover-color);
 }
 
+/* LEFT ARROW ICON  */
+
+#left-arrow-icon {
+  fill: var(--orange);
+}
+
+#left-arrow-icon:hover {
+  fill: var(--hover-color);
+}
+
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 768px) {
