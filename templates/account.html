@@ -11,31 +11,31 @@
 
 {% if "user_id" in session %}
 
-<div class="col d-flex justify-content-center">
+<div class="col d-flex justify-content-center" id="account-info">
 
     <form action="/edit-account" method="POST">
 
         <h1>Your current info is:</h1>
-        <p>Name: {{fname}}</p>
-        <p>Email: {{email}}</p>
+        <p><span class="fw-bold">Name:</span> {{fname}}</p>
+        <p><span class="fw-bold">Email:</span> {{email}}</p>
 
-        <h2>Edit your Account</h2>
+        <h2 class="fw-bold mt-5">Edit your Account</h2>
 
         <input type="hidden" name="user_id">
 
         <div class="row">
-            <label for="name">Name:</label>
-            <input type="text" name="fname" placeholder="John Doe">
+            <label for="name" class="form-label fw-bold">Name:</label>
+            <input type="text" class="form-control" id="email" name="fname" placeholder="John Doe">
         </div>
 
         <div class="row pt-2">
-            <label for="email">Email:</label>
-            <input type="email" name="email" placeholder="john@gmail.com">
+            <label for="email" class="form-label fw-bold">Email:</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="john@gmail.com">
         </div>
 
         <br>
 
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary" id="account-btn">Save changes</button>
 
     </form>
 

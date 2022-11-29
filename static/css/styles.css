@@ -284,6 +284,23 @@ nav,
   padding: 20px 0;
 }
 
+/* ACCOUNT PAGE  */
+#account-info {
+  padding: 70px;
+  font-size: 1.2em;
+}
+
+#account-btn {
+  background-color: var(--orange);
+  border: none;
+  padding: 10px 20px;
+  font-size: inherit;
+}
+
+#account-btn:hover {
+  background-color: var(--hover-color);
+}
+
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 768px) {
@@ -311,6 +328,10 @@ nav,
   #hero-section {
     padding: 20vh 10vw;
     width: 100%;
+  }
+
+  #account-info {
+    padding: 20px;
   }
 
   #trip-cards {
