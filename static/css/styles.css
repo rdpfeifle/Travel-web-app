@@ -7,7 +7,7 @@
   --main-blue: #70c8df;
   --white-color: #fff;
   --black-color: #000;
-  --hover-color: #f6742e;
+  --hover-color: #f56b21;
 
   --swiper-image-ratio: 33.3%; /* ratio 16:9 = 56.25% */
 }
@@ -29,7 +29,7 @@ body {
   font-size: 15px;
   line-height: 1.5;
   margin-top: 30px !important;
-  color: var(--black-color) !important;
+  color: var(--black-color);
 }
 
 h1 {
@@ -60,10 +60,14 @@ p {
 }
 
 /* targeting homepage button */
-.btn.btn-primary {
+#plan-trip-btn {
   background-color: var(--orange);
   border: none;
-  font-size: 1.2em;
+  font-size: 1.4em;
+}
+
+#plan-trip-btn:hover {
+  background: var(--hover-color);
 }
 
 #btn-watch-demo {
@@ -114,7 +118,7 @@ ul {
 .navbar-brand {
   font-family: "Patrick Hand", cursive;
   font-size: 2.5rem;
-  color: var(--orange) !important;
+  color: var(--orange);
 }
 
 .navbar-toggler {
@@ -237,8 +241,6 @@ nav,
 }
 
 .accordion-button:not(.collapsed) {
-  /* color: inherit; */
-  background: #0b5ed7;
   color: white;
 }
 
