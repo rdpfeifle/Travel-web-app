@@ -37,8 +37,12 @@ h1 {
   font-weight: 700;
 }
 
-p {
+p:not(.completed):not(.uncompleted) {
   font-size: 1.2em;
+}
+
+li {
+  font-size: 1.3em;
 }
 
 /* HERO SECTION - HOMEPAGE */
@@ -91,7 +95,7 @@ a {
   font-weight: 500;
 }
 
-a:not(#signup-btn):hover {
+a:not(#signup-btn):not(#delete-task-btn):not(#mark-done):not(#mark-undone):hover {
   color: var(--orange) !important;
 }
 
@@ -217,7 +221,7 @@ ul {
 nav,
 .navbar {
   padding: 20px;
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
 }
 
 #signup-btn {

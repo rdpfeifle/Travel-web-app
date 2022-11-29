@@ -10,6 +10,28 @@
   --light-orange: #fde1d2;
 }
 
+#checklist-container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border: 2px solid rgb(232, 230, 230);
+}
+
+#checklist-form-container {
+  padding-left: 10px;
+}
+
+#add-new-task-input {
+  max-width: 500px;
+  margin-bottom: 10px;
+}
+
+#add-task-submit {
+  background-color: #f56b21;
+  border: none;
+}
+
 #details-btns {
   background-color: var(--orange);
   border: none;
@@ -18,3 +40,59 @@
 #details-btns:hover {
   background-color: var(--hover-color);
 }
+
+.completed {
+  color: #008000;
+}
+
+.uncompleted {
+  color: #ff0000;
+}
+
+#mark-done,
+#mark-undone {
+  padding: 8px 10px;
+  background-color: transparent;
+  color: var(--black-color);
+  border: 1px solid var(--black-color);
+  border-radius: 8px;
+}
+
+#mark-done:hover,
+#mark-undone:hover {
+  background-color: var(--black-color);
+  color: white;
+  border: 1px solid var(--black-color);
+  border-radius: 8px;
+}
+
+#delete-task-btn {
+  padding: 8px 10px;
+  background-color: transparent;
+  color: #ff0000;
+  border: 1px solid #ff0000;
+  border-radius: 8px;
+}
+
+#delete-task-btn:hover {
+  background-color: #ff0000;
+  color: white;
+  border: 1px solid #ff0000;
+  border-radius: 8px;
+}
+
+/* #done-icon {
+  fill: #008000;
+}
+
+#done-icon:hover {
+  fill: #007600;
+}
+
+#undone-icon {
+  fill: #ff0000;
+}
+
+#undone-icon:hover {
+  fill: rgb(215, 0, 0);
+} */

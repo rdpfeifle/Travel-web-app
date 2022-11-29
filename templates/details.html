@@ -279,37 +279,46 @@
 
     <!------------------------------- Checklist goes here ------------------------------->
 
-    <div class="container" id="checklist">
-        <div class="row">
-            <h3>Trip Checklist:</h3>
-            <h4>What do you have on your trip's checklist?</h4>
-
+    <div class="container" id="checklist-container">
+        <div class="row" id="checklist-form-container">
+            <h3 class="fw-bold d-flex justify-content-center">Trip Checklist:</h3>
+            <h4 class="fw-bold">What do you have on your trip's checklist?</h4>
+            <br><br>
             <form action="/add-task" method="POST" id="add-task">
-                <input type="hidden" name="trip_id" value="{{trip.trip_id}}">
-                <input type="text" name="task_title" id="add-new-task-input" placeholder="e.g. pack my bags, get my passport, etc." required />
+                <input type="hidden" class="form-control" name="trip_id" value="{{trip.trip_id}}">
+                <input type="text" class="form-control" name="task_title" id="add-new-task-input" placeholder="e.g. pack my bags, get my passport, etc." required />
 
-                <button id="add-task-submit" type="submit" class="btn btn-primary" id="details-btns">
-                    <i class="bi bi-plus-circle-fill"></i>
+                <button id="add-task-submit" type="submit" class="btn btn-primary rounded">
+                    Add Task
                 </button>
 
             </form>
         </div>
 
+        <br>
+
         <div class="row">
             <div class="task-container w-auto">
+
                 {% for task in task_list %}
-                <div class="task-list">{{ task.task_title }}</div>
+
+                <ul>
+                    <li class="task-list"><span class="fw-bold">•</span> {{ task.task_title }}</li>
 
                 {% if task.completed == True %}
-                    <p>Completed</p>
-                    <a href="/edit-task/{{ task.checklist_id }}">Mark undone</a>
+                    <p class="completed">Completed</p>
+
+                    <a href="/edit-task/{{ task.checklist_id }}" id="mark-done">Mark as undone</a>
+
+
                 {% else %}
-                    <p>Uncompleted</p>
-                    <a href="/edit-task/{{ task.checklist_id }}">Mark as done</a>
+                    <p class="uncompleted">Uncompleted</p> 
+
+                    <a href="/edit-task/{{ task.checklist_id }}" id="mark-undone">Mark as done</a>
                 {% endif %}
-                <!-- <a href="/edit-task/{{ task.checklist_id }}">Edit</a> -->
-                <a href="/delete-task/{{ task.checklist_id }}">Delete</a>
-            </label>
+                <a href="/delete-task/{{ task.checklist_id }}" id="delete-task-btn">Delete</a>
+                </label>
+            </ul>
                 {% endfor %}
             </div>
         </div>
@@ -328,9 +337,11 @@
                 <div class="card" id="activity-card-{{ activity.activity_id }}">
         
                     <div class="card-body">
-                        <h3 class="card-title">{{ activity.place_name }}</h3>
-                        <p class="card-text">{{activity.activity_type}}</p>
+                        <h2 class="card-title fw-bold">Activity Info:</h2>
+                        <h4 class="card-title"><span class="fw-bold">Place:</span> {{ activity.place_name }}</h4>
+                        <p class="card-text"><span class="fw-bold">Category:</span> {{activity.activity_type}}</p>
                         <p class="card-text">{{activity.datetime.strftime("%b %d, %Y")}}</p>
+                        <p class="card-text">{{activity.comments}}</p>
 
                         <!-- <a href="/my-trips/edit-trip/{{ trip.trip_id }}" value="Edit a trip" class="btn btn-outline-primary">Edit</a> -->
 
@@ -356,10 +367,10 @@
                 <div class="card" id="reservation-card-{{ reservation.reservation_id }}">
         
                     <div class="card-body">
-                        <h3 class="card-title">{{ reservation.location }}</h3>
-                        <p class="card-text">{{reservation.reservation_type}}</p>
+                        <h3 class="card-title fw-bold">Reservation info:</h3>
+                        <p class="card-text"><span class="fw-bold">Category:</span> {{reservation.reservation_type}}</p>
                         <p class="card-text">{{reservation.start_date.strftime("%b %d, %Y")}} - {{reservation.end_date.strftime("%b %d, %Y")}}</p>
-
+                        <p class="card-text">{{reservation.notes}}</p>
                         <!-- <a href="/my-trips/edit-trip/{{ trip.trip_id }}" value="Edit a trip" class="btn btn-outline-primary">Edit</a> -->
 
                         <!-- Ajax call to delete button -->
@@ -375,6 +386,7 @@
 
 {% endif %}
 
+<br><br>
 <!-- <section class="map">
     <div id="destination-map"></div>
   </section>
