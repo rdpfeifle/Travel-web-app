@@ -12,56 +12,51 @@
 
 <div id="girl-img">
 <!-- "Create an account" form -->
-<div class="container" id="signup-page">
+    <div class="container" id="signup-page">
 
-    <div><a href="/" class="go-back">Go back to home</a></div>
-    <!-- Row starts here -->
+        <div><a href="/" class="go-back">Go back to home</a></div>
+        <!-- Row starts here -->
 
-    <!-- <div class="row">
-        <div class="col-lg-6 col-md-10 mx-auto"> -->
-            <form action="/signup" method="POST" class="row p-4 p-md-5 border rounded-3 bg-light" id="signup-form">
+                <form action="/signup" method="POST" class="row p-4 p-md-5 border rounded-3 bg-light" id="signup-form">
 
-                <!-- <img class="mb-4" src="/logohere" alt="" width="72" height="57"> -->
+                    <h2 class="fw-bold text-center">Create an Account</h2>
+                    <p class="text-center">Plan your dream trip in one place by creating an account</p>
 
-                <h2 class="fw-bold text-center">Create an Account</h2>
-                <p class="text-center">Plan your dream trip in one place by creating an account</p>
+                    <!-- Email address goes here -->
+                    <div class="form-floating mb-3">
+                        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                        <label for="floatingInput">Email address</label>
+                    </div>
+                    <!-- First name goes here -->
+                    <div class="form-floating mb-3">
+                        <input type="text" name="fname" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                        <label for="floatingInput">Name</label>
+                    </div>
+                    <!-- Last name goes here -->
+                    <div class="form-floating">
+                        <label hidden>Last Name</label>
+                        <input type="hidden" name="lname">
+                    </div>
+                    <!-- Password goes here -->
+                    <div class="form-floating mb-3">
+                        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                        <label for="floatingPassword">Password</label>
+                    </div>
 
-                <!-- Email address goes here -->
-                <div class="form-floating mb-3">
-                    <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
-                    <label for="floatingInput">Email address</label>
-                </div>
-                <!-- First name goes here -->
-                <div class="form-floating mb-3">
-                    <input type="text" name="fname" class="form-control" id="floatingInput" placeholder="name@example.com" required>
-                    <label for="floatingInput">Name</label>
-                </div>
-                <!-- Last name goes here -->
-                <div class="form-floating">
-                    <label hidden>Last Name</label>
-                    <input type="hidden" name="lname">
-                </div>
-                <!-- Password goes here -->
-                <div class="form-floating mb-3">
-                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
-                    <label for="floatingPassword">Password</label>
-                </div>
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" value="show-password" onclick="passwordVisibility()"> Show password
+                        </label>
+                    </div>
 
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" value="show-password" onclick="passwordVisibility()"> Show password
-                    </label>
-                </div>
+                    <button class="w-100 btn btn-lg btn-primary" id="signup-form-btn" type="submit">Sign Up</button>
+                    <div class="toggle-login text-center">Already have an account? <span><a id="signInRedirect" href="/login">Log In</a></span></div>
+                    <hr class="my-4">
+                    <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+                </form>
 
-                <button class="w-100 btn btn-lg btn-primary" id="signup-form-btn" type="submit">Sign Up</button>
-                <div class="toggle-login text-center">Already have an account? <span><a id="signInRedirect" href="/login">Log In</a></span></div>
-                <hr class="my-4">
-                <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
-            </form>
-        <!-- </div>
-    </div> -->
-<!-- Form container ends here -->
-</div> 
+    <!-- Form container ends here -->
+    </div> 
 </div>
 <script src="/static/js/app.js"></script>
 {% endblock %}

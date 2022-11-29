@@ -1,3 +1,5 @@
+/* LOGIN AND SIGN UP PAGES */
+
 :root {
   --orange: #fa8443;
   --light-blue: #e2f6fc;
@@ -40,7 +42,7 @@ body {
   /* background-attachment: fixed; */
 }
 
-#signup-page {
+#login-page {
   width: 500px;
   height: min-content;
   margin-top: 5vh;
@@ -54,12 +56,12 @@ a.go-back {
   color: white;
 }
 
-#signup-form-btn {
+#login-form-btn {
   background-color: var(--orange);
   border: none;
 }
 
-#signup-form-btn:hover {
+#login-form-btn:hover {
   background-color: var(--hover-color);
 }
 
@@ -69,7 +71,7 @@ a#signInRedirect {
 }
 
 @media screen and (max-width: 600px) {
-  #signup-page {
+  #login-page {
     padding: 0 0 0 80px;
   }
 }
