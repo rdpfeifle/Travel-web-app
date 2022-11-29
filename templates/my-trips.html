@@ -40,16 +40,10 @@
             <div class="card" id="trip-card-{{ trip.trip_id }}">
                 <a href="/details/{{ trip.trip_id }}">
                 <img src="{{trip.img}}" class="card-img-top"></a>
-                <!-- <a href="/details/{{ trip.trip_id }}" class="card-img-top btn btn-primary">See trip details</a> -->
                 <div class="card-body">
-                    <h3 class="card-title">{{ trip.trip_title }}</h3>
+                    <h3 class="card-title fw-bold">{{ trip.trip_title }}</h3>
                     <h5 class="card-title" id="destination">{{ trip.destination }}</h5>
                     <p class="card-text">{{ trip.start_date.strftime("%b %d, %Y") }} to {{ trip.end_date.strftime("%b %d, %Y") }}</p>
-
-                    <!-- <form action="/user-account">
-                        <textarea name="description" class="card-text form-control" placeholder="Trip description goes here"></textarea>
-                        <button type="submit">Submit</button>
-                    </form> -->
                     
                     {% if trip.description %}
                     <p class="card-text">{{ trip.description }}</p>

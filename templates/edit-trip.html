@@ -14,23 +14,23 @@
 
 <br>
 
-<div class="container">
+<div class="container" id="edit-trip-pg">
 
     <h1>You are editing your trip:</h1>
 
     <form action="/my-trips/edit-trip/{{ trip_id }}" method="POST">
         
         <div class="row">
-            <input type="text" name="trip_title" placeholder="Type the reason of your trip">
+            <input type="text" class="form-control" name="trip_title" placeholder="Type the reason of your trip">
         </div>
 
         <br>
 
-        <div class="row">
+        <div class="row pb-4">
             <textarea name="description" class="form-control" placeholder="Trip description here"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" id="edit-trip-btn">Save changes</button>
 
     </form>
 

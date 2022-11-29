@@ -285,6 +285,7 @@ nav,
 }
 
 /* ACCOUNT PAGE  */
+
 #account-info {
   padding: 70px;
   font-size: 1.2em;
@@ -302,6 +303,7 @@ nav,
 }
 
 /* 404 ERROR PAGE */
+
 #error-404-page {
   padding: 100px;
 }
@@ -318,6 +320,22 @@ nav,
 #backHome-btn:hover {
   background-color: var(--hover-color);
 }
+
+/* EDIT A TRIP PAGE  */
+
+#edit-trip-pg {
+  padding: 100px;
+}
+
+#edit-trip-btn {
+  background-color: var(--orange);
+  border: none;
+}
+
+#edit-trip-btn:hover {
+  background-color: var(--hover-color);
+}
+
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 768px) {
