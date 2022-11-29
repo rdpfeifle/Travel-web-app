@@ -7,13 +7,15 @@
 <!-- flatpickr - JS datetime picker -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
+<link rel="stylesheet" href="/static/css/plan-trip.css">
+
 {% endblock %}
 
 {% block body %}
 
-<div class="container pt-3">
+<div class="container pt-3" id="plan-trip-container">
     <div class="text-center">
-        <h2>Plan a new trip</h2>
+        <h2 class="fw-bold">Plan a new trip</h2>
     </div>
     <div class="row">
         <div class="pt-4">
@@ -26,23 +28,20 @@
                     </div>
                 </div>
 
-            <!-- Where to? eg. Italy, Thailand, Paris (as a placeholder) > autocomplete
-            If no option selected, show a message in red saying "Choose a destination to start planning"-->
-                <div class="form-row">
+                <div class="form-row pt-2">
                     <label for="searchInput">Where to?</label>
-                    <div class="input-group has-validation autocomplete">
-                        <input type="text" name="destination" class="form-control is-invalid" id="autocompleteSearchInput" placeholder="eg. Italy, Thailand, Paris" required>
+                    <div class="input-group">
+                        <input type="text" name="destination" class="form-control" id="autocompleteSearchInput" placeholder="eg. Italy, Thailand, Paris" required>
                         
-                        <div class="invalid-feedback">Choose a destination to start planning.</div>
                     </div>
                 </div>
 
-                <div class="form-row">
+                <div class="form-row pt-2">
                     <label for="validationTripDates">Dates</label>
-            <!-- Dates (Start date, End date as placeholders with a dropdown calendar) -->
-                    <div class="input-group">
+
+                    <div class="input-group" id="dates-container">
                         <input type="datetime-local" name="dates" class="form-control" placeholder="Select preferred dates" id="firstDay" required>
-                        <i class="icon bi bi-calendar"></i>
+                        <!-- <i class="icon bi bi-calendar"></i> -->
                     </div>
                 </div>
 
@@ -50,14 +49,7 @@
 
                 <br>
 
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Start planning</button>
-
-            <!-- The popup would be:
-            "Sign up to save your trip" heading
-
-            Email, password
-            Or "Sign up with email" -->
-
+                <button class="w-100 btn btn-lg btn-primary" id="new-trip-btn" type="submit">Start planning</button>
 
             </form>
         </div>
@@ -70,7 +62,5 @@
 
 <script src="/static/js/app.js"></script>
 
-<!-- <script async
-    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete">
-</script> -->
+
 {% endblock %}

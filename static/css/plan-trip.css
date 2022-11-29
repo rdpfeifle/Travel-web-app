@@ -1,0 +1,36 @@
+:root {
+  --orange: #fa8443;
+  --light-blue: #e2f6fc;
+  --main-blue: #70c8df;
+  --white-color: #fff;
+  --black-color: #000;
+  --hover-color: #f56b21;
+  --light-orange: #fde1d2;
+}
+
+/* PLAN TRIP PAGE */
+
+.container#plan-trip-container {
+  margin-top: 10vh;
+  padding: 200px;
+  font-size: 1.2em;
+}
+
+#new-trip-btn {
+  background-color: var(--orange);
+  border: none;
+}
+
+#new-trip-btn:hover {
+  background-color: var(--hover-color);
+  border: none;
+}
+
+#dates-container > input {
+  padding-left: 40px;
+  background-image: url("/static/img/calendar.png");
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position-x: 10px;
+  background-position-y: 50%;
+}

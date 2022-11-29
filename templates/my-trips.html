@@ -46,7 +46,7 @@
                 <img src="{{trip.img}}" class="card-img-top"></a>
                 <div class="card-body">
                     <h3 class="card-title fw-bold">{{ trip.trip_title }}</h3>
-                    <h5 class="card-title" id="destination">{{ trip.destination }}</h5>
+                    <h5 class="card-title fw-bold" id="destination">{{ trip.destination }}</h5>
                     <p class="card-text">{{ trip.start_date.strftime("%b %d, %Y") }} to {{ trip.end_date.strftime("%b %d, %Y") }}</p>
                     
                     {% if trip.description %}
