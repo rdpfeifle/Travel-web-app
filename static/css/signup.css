@@ -19,7 +19,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .alert {
@@ -47,6 +47,10 @@ body {
   margin-right: 8vw;
   float: right;
   font-size: 1em;
+}
+
+#signup-container > label {
+  padding-left: 25px;
 }
 
 a.go-back {

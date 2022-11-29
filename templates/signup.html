@@ -23,22 +23,22 @@
                     <p class="text-center">Plan your dream trip in one place by creating an account</p>
 
                     <!-- Email address goes here -->
-                    <div class="form-floating mb-3">
+                    <div class="form-floating mb-3" id="signup-container">
                         <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                         <label for="floatingInput">Email address</label>
                     </div>
                     <!-- First name goes here -->
-                    <div class="form-floating mb-3">
+                    <div class="form-floating mb-3" id="signup-container">
                         <input type="text" name="fname" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                         <label for="floatingInput">Name</label>
                     </div>
                     <!-- Last name goes here -->
-                    <div class="form-floating">
+                    <div class="form-floating" id="signup-container">
                         <label hidden>Last Name</label>
                         <input type="hidden" name="lname">
                     </div>
                     <!-- Password goes here -->
-                    <div class="form-floating mb-3">
+                    <div class="form-floating mb-3" id="signup-container">
                         <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                         <label for="floatingPassword">Password</label>
                     </div>
@@ -50,7 +50,7 @@
                     </div>
 
                     <button class="w-100 btn btn-lg btn-primary" id="signup-form-btn" type="submit">Sign Up</button>
-                    <div class="toggle-login text-center">Already have an account? <span><a id="signInRedirect" href="/login">Log In</a></span></div>
+                    <div class="toggle-login text-center mt-2">Already have an account? <span><a id="signInRedirect" href="/login">Log In</a></span></div>
                     <hr class="my-4">
                     <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
                 </form>
