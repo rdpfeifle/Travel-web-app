@@ -24,18 +24,10 @@
 </div>
 
 <!-- Show map around here  -->
-    <!-- <div class="map"> -->
-        <div id="map">Maps</div>
-    <!-- </div> -->
-
-<!-- "Your trips" div goes here with a button "+ Plan new trip"
-If user's didn't create any trip yet, show the following message:
-"You haven't created anything yet. Plan a new trip." > Plan a new trip as a "a href"
-and it will go to the "/plan-trip" to create a trip
-Otherwise, show trips below -->
+    <div id="map">Maps</div>
 
 <!-- Cards go down here, use jinja template to loop through trips -->
-<div class="container">
+<div class="container" id="trip-cards">
     <h3>Your trips</h3>
     <div class="row g-3">
 
@@ -87,16 +79,9 @@ Otherwise, show trips below -->
             </div>
         </div>
 
-
         {% endif %}
     </div>
 </div>
-
-<!-- Explore goes here
-Popular Destinations
-
-Use cards/carousel with destinations from folder --> 
-
 
 <script src="/static/js/maps.js"></script>
 <script async

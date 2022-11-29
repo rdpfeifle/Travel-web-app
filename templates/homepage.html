@@ -11,23 +11,26 @@
 
 {% block body %}
 
-<div class="container pt-3">
+<div class="container-fluid pt-3">
 
     <!-- First row goes here -->
-    <div class="row pt-5">
+    <div class="row">
+
+      <div id="hero-image">
+        <div class="col-6" id="hero-section">
+          <p>Make your Destination</p>
+          <h1>Don't listen to what they say. Just go.</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ipsa ipsum voluptatum maiores.</p>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+              <button class="btn btn-primary me-md-2" onclick="location.href='/plan-trip'" type="button">Plan a trip</button>
+              <button class="btn btn-outline-primary" id="btn-watch-demo" type="button">Watch Demo</button>
+            </div>
+      </div>
         <div class="col-6">
-            <p>Make your Destination</p>
-            <h1>Don't listen to what they say. Just go.</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ipsa ipsum voluptatum maiores.</p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <button class="btn btn-primary me-md-2" onclick="location.href='/plan-trip'" type="button">Plan a trip</button>
-                <button class="btn btn-outline-primary" id="btn-watch-demo" type="button">Watch Demo</button>
-              </div>
         </div>
-        <div class="col-6">
-            Hero image goes here 
-            <img src="https://img.washingtonpost.com/rf/image_1484w/2010-2019/WashingtonPost/2017/06/07/Production/Sunday/Travel/Graphics/road%20trip0611.jpg?uuid=kRjsDksdEee8G_3b2DWd7g" class="img-fluid" width="200px" height="200px" alt="">
-        </div>
+
+      </div>
+
     <!-- Row ends here -->
     </div> 
 </div>
@@ -103,14 +106,6 @@
     </div>
     
     {% endfor %}
-
-      <!-- <div class="swiper-slide">
-        <img id="swiper-img" src="">
-    </div>
-      <!-- <div class="swiper-slide blue">Slide 2</div> -->
-      <!-- <div class="swiper-slide test">Slide 3</div>
-      ...
-    </div> --> 
 
     <!-- If we need pagination -->
     <div class="swiper-pagination"></div>

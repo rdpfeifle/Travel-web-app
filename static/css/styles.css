@@ -8,7 +8,7 @@
   --white-color: #fff;
   --black-color: #000;
   --hover-color: #f6742e;
-  /* --text-color: #85828c; */
+
   --swiper-image-ratio: 33.3%; /* ratio 16:9 = 56.25% */
 }
 
@@ -40,6 +40,25 @@ p {
   font-size: 1.2em;
 }
 
+/* HERO SECTION - HOMEPAGE */
+#hero-image {
+  background-image: linear-gradient(
+      rgba(40, 40, 50, 0.5),
+      rgba(32, 32, 19, 0.5)
+    ),
+    url("/static/img/hero-image.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  background-attachment: fixed;
+}
+
+#hero-section {
+  color: white;
+  padding: calc(100vh / 3) 5vw;
+}
+
 /* targeting homepage button */
 .btn.btn-primary {
   background-color: var(--orange);
@@ -49,9 +68,9 @@ p {
 
 #btn-watch-demo {
   background-color: transparent;
-  border: 2px solid var(--orange);
+  border: 2px solid var(--white-color);
   font-size: 1.2em;
-  color: var(--orange);
+  color: var(--white-color);
 }
 
 #btn-watch-demo:hover {
@@ -182,12 +201,10 @@ ul {
 }
 
 .navbar-expand-lg .navbar-nav .nav-link:hover {
-  /* border-top: 4px solid red; */
   border-bottom: 3px solid var(--orange);
 }
 
 .navbar-expand-lg .navbar-nav .nav-link.active {
-  /* border-top: 4px solid red; */
   border-bottom: 3px solid var(--orange);
   color: var(--orange);
 }
@@ -220,26 +237,28 @@ nav,
 }
 
 .accordion-button:not(.collapsed) {
-  color: inherit;
+  /* color: inherit; */
   background: #0b5ed7;
   color: white;
 }
 
 .accordion-button:not(.collapsed)::after {
-  filter: brightness(0%) invert(80%);
+  filter: brightness(100%) invert(80%);
 }
 
 .accordion-button:focus {
   box-shadow: inherit;
 }
 
+.accordion-item .accordion-button {
+  background-color: var(--main-blue);
+}
+
 /* SWIPER ON HOMEPAGE */
 
 .container-swiper {
-  /* position: fixed; */
   width: 100%;
   height: 100%;
-  /* display: flex; */
   align-items: center;
 }
 
@@ -249,15 +268,18 @@ nav,
   height: 100%;
 }
 
-/* TRIP DETAILS PAGE */
+/* MY TRIPS PAGE  */
 
-.map,
-#destination-map {
+.map {
   width: 90%;
   height: 70%;
   position: relative;
-  border-radius: 20px;
+  border-radius: 50px;
   margin: 0 auto 0 auto;
+}
+
+#trip-cards {
+  padding: 20px 0;
 }
 
 /* MEDIA QUERIES */
@@ -278,5 +300,18 @@ nav,
 
   #signup-btn {
     margin-top: 10px;
+  }
+
+  #hero-image {
+    background-position: center center;
+  }
+
+  #hero-section {
+    padding: 20vh 10vw;
+    width: 100%;
+  }
+
+  #trip-cards {
+    padding: 20px;
   }
 }
