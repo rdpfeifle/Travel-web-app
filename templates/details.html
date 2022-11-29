@@ -2,12 +2,16 @@
 
 {% block title %}Trip Details | Tripaholics{% endblock %}
 
+{% block head %} 
+<link rel="stylesheet" href="/static/css/details.css">
+{% endblock %}
+
 {% block body %}
 
 
 {% if "user_id" in session %}
 
-<br>
+<br><br>
 
 <a href="/my-trips" class="p-3">
     <svg xmlns="http://www.w3.org/2000/svg" width="1.85em" height="1.85em" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16" id="left-arrow-icon">
@@ -30,14 +34,12 @@
     <div class="row">
         <div class="col-12">
 
-            <!-------------------- Full Plan -------------------->
-            <button type="button" class="btn btn-outline-primary">Full Plan</button>
+            <!-------------------- Checklist -------------------->
+            <a href="#checklist" class="btn btn-primary" id="details-btns">Checklist</a>
 
-
-            <a href="#link" class="btn btn-primary" role="button">Checklist</a>
 
             <!-------------------- Add Activity - Button trigger modal -------------------->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-activity">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-activity" id="details-btns">
                 Activities
             </button>
             
@@ -73,13 +75,13 @@
                                         <div class="col">
                                             <div class="mb-3">
                                                 <select class="form-select" name="activity_type" id="activity-type" required>
-                                                    <option value="select-reservation" selected disabled>Activity Type</option>
-                                                    <option value="Rental Car">Rental Car</option>
-                                                    <option value="Flight">Flight</option>
-                                                    <option value="train">Train</option>
-                                                    <option value="Bus">Bus</option>
-                                                    <option value="Hotel">Hotel</option>
-                                                    <option value="Airbnb">Airbnb</option>
+                                                    <option value="select-reservation" selected disabled>Category</option>
+                                                    <option value="City Tour">Guided Tour</option>
+                                                    <option value="Arts & Culture">Arts & Culture</option>
+                                                    <option value="Food & Drink">Food & Drink</option>
+                                                    <option value="Outdoor Activities">Outdoor Activities</option>
+                                                    <option value="Sports">Sports</option>
+                                                    <option value="National Parks">National Parks</option>
                                                     <option value="Other">Other</option>
                                             </select>
                                             </div>
@@ -136,7 +138,7 @@
 
 
             <!-------------------- Add Reservation - Button trigger modal -------------------->
-            <button type="button" class="btn btn-primary reservation-modal" data-bs-toggle="modal" data-bs-target="#reservations">
+            <button type="button" class="btn btn-primary reservation-modal" data-bs-toggle="modal" data-bs-target="#reservations" id="details-btns">
                 Reservations
             </button>
             
@@ -232,8 +234,8 @@
 
 
                         <!-------------------- Add Trip Mate - Button trigger modal -------------------->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inviteFriends">
-                            Invite tripmates
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inviteFriends" id="details-btns">
+                            Invite friends
                         </button>
               
                         <!-- Modal -->
@@ -247,7 +249,7 @@
                                 </div>
             
                                 <div class="modal-body">
-                                Your friends will be able to see and edit the trip.
+                                Invite your friend to join this trip to {{ trip.destination }}.
                                     
                                 {% if "user_id" in session %}
                                     <form action="/invite-friend" method="post">
@@ -277,7 +279,7 @@
 
     <!------------------------------- Checklist goes here ------------------------------->
 
-    <div class="container">
+    <div class="container" id="checklist">
         <div class="row">
             <h3>Trip Checklist:</h3>
             <h4>What do you have on your trip's checklist?</h4>
@@ -286,7 +288,7 @@
                 <input type="hidden" name="trip_id" value="{{trip.trip_id}}">
                 <input type="text" name="task_title" id="add-new-task-input" placeholder="e.g. pack my bags, get my passport, etc." required />
 
-                <button id="add-task-submit" type="submit" class="btn btn-primary">
+                <button id="add-task-submit" type="submit" class="btn btn-primary" id="details-btns">
                     <i class="bi bi-plus-circle-fill"></i>
                 </button>
 

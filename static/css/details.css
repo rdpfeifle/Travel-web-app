@@ -1,0 +1,20 @@
+/* TRIP DETAILS PAGE */
+
+:root {
+  --orange: #fa8443;
+  --light-blue: #e2f6fc;
+  --main-blue: #70c8df;
+  --white-color: #fff;
+  --black-color: #000;
+  --hover-color: #f56b21;
+  --light-orange: #fde1d2;
+}
+
+#details-btns {
+  background-color: var(--orange);
+  border: none;
+}
+
+#details-btns:hover {
+  background-color: var(--hover-color);
+}
