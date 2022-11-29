@@ -301,6 +301,23 @@ nav,
   background-color: var(--hover-color);
 }
 
+/* 404 ERROR PAGE */
+#error-404-page {
+  padding: 100px;
+}
+
+.error-404-img {
+  width: 100px;
+}
+
+#backHome-btn {
+  background-color: var(--orange);
+  border: none;
+}
+
+#backHome-btn:hover {
+  background-color: var(--hover-color);
+}
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 768px) {

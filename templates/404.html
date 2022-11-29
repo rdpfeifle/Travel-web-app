@@ -7,13 +7,14 @@
 
 {% block body %} 
 
-    <div class="text-center">
+    <div class="text-center" id="error-404-page">
 
-        <h1>Oops!</h1>
-        <h2>404 - PAGE NOT FOUND</h2>
-        <h3>We can't seem to find the page you're looking for.</h3>
+        <img src="/static/img/404-error.png" alt="404-error" class="error-404-img">
+        <h1 class="fst-italic">Oops!</h1>
+        <h2 class="fw-bold">404 - PAGE NOT FOUND</h2>
+        <h3 class="mb-5">We can't seem to find the page you're looking for.</h3>
 
-        <button type="button" onclick="location.href='/'" class="btn btn-primary btn-lg">Back to Home</button>
+        <button type="button" onclick="location.href='/'" class="btn btn-primary btn-lg" id="backHome-btn">Back to Home</button>
 
     </div>
 {% endblock %}
