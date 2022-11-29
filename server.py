@@ -242,7 +242,7 @@ def add_trip():
     # print(img_url)
 
     # get the img url with full size
-    destination_img = img_url.get("full")
+    destination_img = img_url.get("regular")
     # print(destination_img) # testing
 
     logged_in = session.get("user_id")
