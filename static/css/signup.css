@@ -1,0 +1,77 @@
+/* LOGIN AND SIGN UP PAGES */
+
+:root {
+  --orange: #fa8443;
+  --light-blue: #e2f6fc;
+  --main-blue: #70c8df;
+  --darker-blue: #009dc5;
+  --white-color: #fff;
+  --black-color: #000;
+  --hover-color: #f56b21;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.alert {
+  position: fixed;
+  margin-left: 20px;
+}
+
+#girl-img {
+  background-image: linear-gradient(
+      rgba(40, 40, 50, 0.5),
+      rgba(32, 32, 19, 0.5)
+    ),
+    url("/static/img/woman-traveling.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  background-attachment: fixed;
+}
+
+#signup-page {
+  width: 500px;
+  height: min-content;
+  margin-top: 5vh;
+  margin-right: 8vw;
+  float: right;
+  font-size: 1em;
+}
+
+a.go-back {
+  text-decoration: none;
+  color: white;
+}
+
+#signup-form-btn {
+  background-color: var(--orange);
+  border: none;
+}
+
+#signup-form-btn:hover {
+  background-color: var(--hover-color);
+}
+
+a#signInRedirect {
+  text-decoration: none;
+  color: var(--orange);
+}
+
+@media screen and (max-width: 600px) {
+  #signup-page {
+    padding: 0 0 0 80px;
+  }
+}

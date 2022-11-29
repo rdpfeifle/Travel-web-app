@@ -99,7 +99,7 @@ def register_user():
     
     if existing_user:
         flash("Account already exists. Please log in.", "error")
-        return redirect("/signup")
+        return redirect("/login")
       
     else:
         user = crud.create_user(
