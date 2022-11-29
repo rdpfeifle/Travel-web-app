@@ -8,6 +8,7 @@
   --white-color: #fff;
   --black-color: #000;
   --hover-color: #f56b21;
+  --light-orange: #fde1d2;
 
   --swiper-image-ratio: 33.3%; /* ratio 16:9 = 56.25% */
 }
@@ -241,7 +242,7 @@ nav,
 }
 
 .accordion-button:not(.collapsed) {
-  color: white;
+  color: var(--black-color);
 }
 
 .accordion-button:not(.collapsed)::after {
@@ -253,7 +254,7 @@ nav,
 }
 
 .accordion-item .accordion-button {
-  background-color: var(--main-blue);
+  background-color: var(--light-orange);
 }
 
 /* SWIPER ON HOMEPAGE */
