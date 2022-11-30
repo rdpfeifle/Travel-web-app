@@ -38,105 +38,6 @@
             <a href="#checklist" class="btn btn-primary" id="details-btns">Checklist</a>
 
 
-            <!-------------------- Add Activity - Button trigger modal -------------------->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-activity" id="details-btns">
-                Activities
-            </button>
-            
-            <!-- Modal - Activities -->
-            <div class="modal fade" id="add-activity" tabindex="-1" role="dialog" aria-labelledby="activitiesTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content text-center">
-                        <div class="modal-header">
-                        <h5 class="modal-title w-100" id="activitiesMainTitle">Enter reservation details</h5>
-                        <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        </button>
-                        </div>
-
-                        <div class="modal-body">
-
-                                <p>Activities types include restaurants.</p>
-
-                                <form action="/add-activity" method="post">
-
-                                    <input type="hidden" id="trip_id" name="trip_id" value="{{trip.trip_id}}">
-                                    <!-- <input type="hidden" name="destination" value="{{trip.destination}}"> -->
-
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" id="activity-name" placeholder="act-name" name="place_name" required>
-                                                <label for="place-name">Place name</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3">
-                                                <select class="form-select" name="activity_type" id="activity-type" required>
-                                                    <option value="select-reservation" selected disabled>Category</option>
-                                                    <option value="City Tour">Guided Tour</option>
-                                                    <option value="Arts & Culture">Arts & Culture</option>
-                                                    <option value="Food & Drink">Food & Drink</option>
-                                                    <option value="Outdoor Activities">Outdoor Activities</option>
-                                                    <option value="Sports">Sports</option>
-                                                    <option value="National Parks">National Parks</option>
-                                                    <option value="Other">Other</option>
-                                            </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" name="address" class="form-control" id="activity-address" id="floatingInput" placeholder="address" required>
-                                            <label for="floatingInput">Address</label>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- I need to double check if it needs to be a string -->
-                                    <div class="col">
-                                        <div class="form-floating mb-3">
-                                            <input type="number" name="phone_number" class="form-control" id="phone-number" placeholder="phone">
-                                            <label for="phone-number">Phone number</label>
-                                        </div>
-                                    </div>
-                    
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-floating mb-3">
-                                                <input type="datetime-local" name="datetime" class="form-control" min="{{trip.start_date}}" max="{{trip.end_date}}"  id="date-time-activity" placeholder="date-time-activity" required>
-                                                <label for="date-time-activity">Date and Time</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3 form-group">
-                                                <textarea name="comments" class="form-control" id="activity-comments" placeholder="Type your notes about this activity (optional)"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary" id="save-activity">Save</button>
-                                        </div>
-                            
-                                </form>
-
-                        </div>
-                    </div>
-                </div>
-            <!-- Activities ends here -->
-            </div> 
-
-
-
             <!-------------------- Add Reservation - Button trigger modal -------------------->
             <button type="button" class="btn btn-primary reservation-modal" data-bs-toggle="modal" data-bs-target="#reservations" id="details-btns">
                 Reservations
@@ -232,6 +133,102 @@
             <!-- Reservation ends here -->
             </div> 
 
+            <!-------------------- Add Activity - Button trigger modal -------------------->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-activity" id="details-btns">
+                Activities
+            </button>
+            
+            <!-- Modal - Activities -->
+            <div class="modal fade" id="add-activity" tabindex="-1" role="dialog" aria-labelledby="activitiesTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content text-center">
+                        <div class="modal-header">
+                        <h5 class="modal-title w-100" id="activitiesMainTitle">Enter activity details</h5>
+                        <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        </button>
+                        </div>
+
+                        <div class="modal-body">
+
+                                <p>Activities types include restaurants, museums, etc.</p>
+
+                                <form action="/add-activity" method="post">
+
+                                    <input type="hidden" id="trip_id" name="trip_id" value="{{trip.trip_id}}">
+                                    <!-- <input type="hidden" name="destination" value="{{trip.destination}}"> -->
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" id="activity-name" placeholder="act-name" name="place_name" required>
+                                                <label for="place-name">Place name</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <select class="form-select" name="activity_type" id="activity-type" required>
+                                                    <option value="select-reservation" selected disabled>Category</option>
+                                                    <option value="City Tour">Guided Tour</option>
+                                                    <option value="Arts & Culture">Arts & Culture</option>
+                                                    <option value="Food & Drink">Food & Drink</option>
+                                                    <option value="Outdoor Activities">Outdoor Activities</option>
+                                                    <option value="Sports">Sports</option>
+                                                    <option value="National Parks">National Parks</option>
+                                                    <option value="Other">Other</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="address" class="form-control" id="activity-address" id="floatingInput" placeholder="address">
+                                            <label for="floatingInput">Address (Optional)</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- I need to double check if it needs to be a string -->
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="number" name="phone_number" class="form-control" id="phone-number" placeholder="phone">
+                                            <label for="phone-number">Phone number (Optional)</label>
+                                        </div>
+                                    </div>
+                    
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-floating mb-3">
+                                                <input type="datetime-local" name="datetime" class="form-control" min="{{trip.start_date}}" max="{{trip.end_date}}"  id="date-time-activity" placeholder="date-time-activity" required>
+                                                <label for="date-time-activity">Date and Time</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3 form-group">
+                                                <textarea name="comments" class="form-control" id="activity-comments" placeholder="Type your notes about this activity (optional)"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary" id="save-activity">Save</button>
+                                        </div>
+                            
+                                </form>
+
+                        </div>
+                    </div>
+                </div>
+            <!-- Activities ends here -->
+            </div> 
 
                         <!-------------------- Add Trip Mate - Button trigger modal -------------------->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inviteFriends" id="details-btns">
@@ -281,7 +278,7 @@
 
     <div class="container" id="checklist-container">
         <div class="row" id="checklist-form-container">
-            <h3 class="fw-bold d-flex justify-content-center">Trip Checklist:</h3>
+            <h3 class="fw-bold d-flex justify-content-center text-decoration-underline pb-3">Trip Checklist:</h3>
             <h4 class="fw-bold">What do you have on your trip's checklist?</h4>
             <br><br>
             <form action="/add-task" method="POST" id="add-task">
@@ -325,40 +322,9 @@
         
     </div>
 
-
-<!-------------------------------- Activities starts displaying here ------------------------------->
-
-<div class="container">
-    <div class="row g-3">
-        {% for activity in activities %}
-        
-            <div class="col-12 col-md-6 col-lg-4">
-                
-                <div class="card" id="activity-card-{{ activity.activity_id }}">
-        
-                    <div class="card-body">
-                        <h2 class="card-title fw-bold">Activity Info:</h2>
-                        <h4 class="card-title"><span class="fw-bold">Place:</span> {{ activity.place_name }}</h4>
-                        <p class="card-text"><span class="fw-bold">Category:</span> {{activity.activity_type}}</p>
-                        <p class="card-text">{{activity.datetime.strftime("%b %d, %Y")}}</p>
-                        <p class="card-text">{{activity.comments}}</p>
-
-                        <!-- <a href="/my-trips/edit-trip/{{ trip.trip_id }}" value="Edit a trip" class="btn btn-outline-primary">Edit</a> -->
-
-                        <!-- Ajax call to delete button -->
-                        <button type="button" class="btn btn-outline-danger activity-btn" value="{{activity.activity_id}}">Delete</button>
-
-                    </div>
-                </div>
-            </div>
-
-        {% endfor %}
-    </div>
-</div>
-
 <!-------------------------------- Reservation starts displaying here ------------------------------->
 
-<div class="container pt-4">
+<div class="container">
     <div class="row g-3">
         {% for reservation in reservations %}
         
@@ -385,6 +351,37 @@
 </div>
 
 {% endif %}
+
+<!-------------------------------- Activities starts displaying here ------------------------------->
+
+<div class="container pt-4">
+    <div class="row">
+        {% for activity in activities %}
+        
+            <div class="col-12 col-md-6 col-lg-4">
+                
+                <div class="card" id="activity-card-{{ activity.activity_id }}">
+                    <img src="{{activity.place_img}}" class="card-img-top">
+                    <div class="card-body">
+                        <h2 class="card-title fw-bold">Activity Info:</h2>
+                        <h4 class="card-title"><span class="fw-bold">Place:</span> {{ activity.place_name }}</h4>
+                        <p class="card-text"><span class="fw-bold">Category:</span> {{activity.activity_type}}</p>
+                        <p class="card-text">{{activity.datetime.strftime("%b %d, %Y")}}</p>
+                        <p class="card-text">{{activity.comments}}</p>
+
+                        <!-- <a href="/my-trips/edit-trip/{{ trip.trip_id }}" value="Edit a trip" class="btn btn-outline-primary">Edit</a> -->
+
+                        <!-- Ajax call to delete button -->
+                        <button type="button" class="btn btn-outline-danger activity-btn" value="{{activity.activity_id}}">Delete</button>
+
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+</div>
+
 
 <br><br>
 <!-- <section class="map">

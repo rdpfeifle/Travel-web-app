@@ -256,7 +256,8 @@ def add_trip():
         flash("Please, log into to start planning your trip.", "warning")
         return redirect("/")
 
-    return redirect(f"/details/{trip.trip_id}")
+    # return redirect(f"/details/{trip.trip_id}")
+    return redirect("/my-trips")
 
 
 ##----------------- DISPLAY TRIP DETAILS -----------------##
@@ -423,8 +424,8 @@ def invite_friend_by_email():
     # check if friend is already a user
     is_friend_a_user = crud.get_user_by_email(friends_email)
 
-    if not is_friend_a_user:
-        flash("Your friend doesn't have an account.", "error")
+    # if not is_friend_a_user:
+    #     flash("Your friend doesn't have an account.", "error")
 
     message = Mail(
     from_email='raquelpfeifle@gmail.com',
@@ -509,6 +510,31 @@ def add_activity():
     phone_number = request.form.get("phone_number")
     comments = request.form.get("comments")
 
+    # unsplash API call here
+    url = "https://api.unsplash.com/search/photos"
+
+    payload = {
+        "query": place_name,
+        "client_id": UNSPLASH_SECRET_KEY,
+        "orientation": "landscape",
+    }
+
+    # save response from my API request
+    response = requests.get(url, params=payload)
+
+    # turns JSON into a Python dict
+    data = response.json()
+
+    # get data from data dict and get key called "results"
+    get_key_results = data.get("results")
+
+    img_url = get_key_results[0].get("urls")
+    print(img_url)
+
+    # get the img url with full size
+    place_image = img_url.get("regular")
+    print(place_image) # testing
+
     activity = crud.create_activity(
         trip_id=trip_id,
         activity_type=activity_type,
@@ -516,7 +542,8 @@ def add_activity():
         datetime=datetime,
         address=address,
         phone_number=phone_number,
-        comments=comments
+        comments=comments,
+        place_img=place_image
     )
 
     db.session.add(activity)

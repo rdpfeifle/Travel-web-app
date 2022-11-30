@@ -24,10 +24,10 @@ def fake_users():
 
     nick = crud.create_user(fname="Nick", lname="Whitlock", email="nick@gmail.com", password=ph.hash("123456"))
     amanda = crud.create_user(fname="Amanda", lname="Katz", email="amanda@gmail.com", password=ph.hash("1234")) 
-    raquel = crud.create_user(fname="Raquel", lname="Pfeifle", email="raquel@gmail.com", password=ph.hash("1234"))
+    # raquel = crud.create_user(fname="Raquel", lname="Pfeifle", email="raquel@gmail.com", password=ph.hash("1234"))
 
     # model.db.session.add(nick)
-    model.db.session.add_all([nick, amanda, raquel])
+    model.db.session.add_all([nick, amanda])
     model.db.session.commit()
 
 

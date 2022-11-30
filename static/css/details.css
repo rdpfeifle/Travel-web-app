@@ -28,7 +28,12 @@
 }
 
 #add-task-submit {
-  background-color: #f56b21;
+  background-color: var(--orange);
+  border: none;
+}
+
+#add-task-submit:hover {
+  background-color: var(--hover-color);
   border: none;
 }
 

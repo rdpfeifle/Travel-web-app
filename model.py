@@ -71,6 +71,7 @@ class Activity(db.Model):
     address = db.Column(db.String)
     phone_number = db.Column(db.String(20))
     comments = db.Column(db.String)
+    place_img = db.Column(db.String)
 
     # added relationship
     trip = db.relationship("Trip", back_populates="activities")

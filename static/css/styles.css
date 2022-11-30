@@ -95,7 +95,7 @@ a {
   font-weight: 500;
 }
 
-a:not(#signup-btn):not(#delete-task-btn):not(#mark-done):not(#mark-undone):hover {
+a:not(#signup-btn):not(#delete-task-btn):not(#mark-done):not(#mark-undone):not(#editTrip-btn):not(#new-trip-ne):hover {
   color: var(--orange) !important;
 }
 
@@ -306,6 +306,16 @@ nav,
   border-color: var(--black-color);
   background-color: var(--black-color);
   color: var(--white-color);
+}
+
+#new-trip-ne {
+  background-color: var(--orange);
+  border: none;
+}
+
+#new-trip-ne:hover {
+  background-color: var(--hover-color);
+  border: none;
 }
 
 /* ACCOUNT PAGE  */

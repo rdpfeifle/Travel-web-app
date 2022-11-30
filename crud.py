@@ -144,7 +144,7 @@ def create_task(trip_id, task_title, completed):
     return task
 
 ########### Activities Functions ###########
-def create_activity(trip_id, activity_type, place_name, datetime, address, phone_number, comments):
+def create_activity(trip_id, activity_type, place_name, datetime, address, phone_number, comments, place_img):
     """Create and return an activity."""
 
     activity = Activity(trip_id=trip_id,
@@ -154,6 +154,7 @@ def create_activity(trip_id, activity_type, place_name, datetime, address, phone
                         address=address,
                         phone_number=phone_number,
                         comments=comments,
+                        place_img=place_img,
                         )
     return activity
 
