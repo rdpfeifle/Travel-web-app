@@ -422,7 +422,7 @@ def invite_friend_by_email():
     start_date = start_date.strftime("%b %d, %Y")
 
     # check if friend is already a user
-    is_friend_a_user = crud.get_user_by_email(friends_email)
+    # is_friend_a_user = crud.get_user_by_email(friends_email)
 
     # if not is_friend_a_user:
     #     flash("Your friend doesn't have an account.", "error")
@@ -430,7 +430,7 @@ def invite_friend_by_email():
     message = Mail(
     from_email='raquelpfeifle@gmail.com',
     to_emails=friends_email,
-    subject=f'Your friend {user.fname} invited you to travel with them.',
+    subject=f'Your friend invited you to travel with them.',
     html_content=f'Hey there! Your friend is inviting you to travel together. They are traveling to {trip.destination} on {start_date}. Please, sign up or login into your existent account to start planning.')
 
     # subject=f'{user.fname} invited you to travel with them.',

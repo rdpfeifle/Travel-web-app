@@ -174,24 +174,30 @@
     </div>
 </div>
 
-<!-- Footer: © 2022 Developer Raquel Pfeifle · Privacy · Terms
-Back to top on the right side of footer that goes to the top of the page -->
-
 {% block footer %}
-<div class="container">
-    <footer class="d-flex flew-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <div class="col-md-4 d-flex align-items-center">
-            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none 1h-1">
-                <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-            </a>
-            <span class="mb-3 mb-md-0 text-muted">&copy; 2022 Tripaholics. All rights reserved. Raquel Pfeifle.</span>
-        </div>
+<div class="container pt-3">
+    <footer class="py-3 my-4 border-top" id="footer">
+      
+        <div class="col-md-4">
 
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
-        </ul>
+          <ul class="social-links d-flex justify-content-center">
+
+            <li>
+              <a href="https://www.linkedin.com/in/raqueldpfeifle/">
+                <i class="bi bi-linkedin social-link"></i></a>
+              <a href="https://github.com/rdpfeifle">
+                <i class="bi bi-github social-link"></i>
+              </a>
+            </li>
+
+          </ul>
+
+            <p class="mb-3 mb-md-0 text-muted">&copy; 2022 Tripaholics. All rights reserved. Developed and designed by <a href="#">Raquel Pfeifle</a>.</p>
+
+        </div>
     </footer>
-</div>{% endblock %}
+</div>
+{% endblock %}
 
 
 <script src="/static/js/homeSwiper.js"></script>
