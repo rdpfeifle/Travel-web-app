@@ -34,3 +34,15 @@
   background-position-x: 10px;
   background-position-y: 50%;
 }
+
+@media screen and (max-width: 790px) {
+  .container#plan-trip-container {
+    padding: 0 20px 0 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container#plan-trip-container {
+    padding: 0 20px 0 20px;
+  }
+}

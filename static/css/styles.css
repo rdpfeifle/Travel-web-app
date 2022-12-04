@@ -263,19 +263,39 @@ nav,
   background-color: var(--light-orange);
 }
 
-/* SWIPER ON HOMEPAGE */
-
-.container-swiper {
+.swiper-container {
   width: 100%;
-  height: 100%;
-  align-items: center;
+  padding-bottom: 30px;
 }
 
-.swiper {
+.suggestion-card {
   position: relative;
-  width: 100%;
-  height: 100%;
+  max-width: 800px;
 }
+
+.suggestion-card img {
+  width: 100%;
+}
+
+.suggestion-card figcaption {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  font-size: 18px;
+  color: white;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#swiper-button {
+  color: var(--orange);
+  padding: 0 20px 0 20px;
+}
+
+/* HOMEPAGE FOOTER  */
 
 #footer {
   display: flex;

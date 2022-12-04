@@ -23,7 +23,7 @@
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ipsa ipsum voluptatum maiores.</p>
           <div class="d-grid gap-2 d-md-flex justify-content-md-start">
               <button class="btn btn-primary me-md-2" onclick="location.href='/plan-trip'" type="button" id="plan-trip-btn">Plan a trip</button>
-              <button class="btn btn-outline-primary" id="btn-watch-demo" type="button">Watch Demo</button>
+              <button class="btn btn-outline-primary" onclick="location.href='https://youtu.be/c5srainYwKA'" id="btn-watch-demo" type="button">Watch Demo</button>
           </div>
         </div>
 
@@ -88,42 +88,32 @@
     </div>
   </div>
 
-
-<!-- Swiper starts here -->
-<div class="container-swiper container">
-  <h2 class="pb-2 fw-bold">Popular Destinations</h2>
-    <!-- Slider main container -->
-  <div class="swiper">
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-      <!-- Slides -->
-
-      {% for image in images %}
-      <div class="swiper-slide">
-        {{ image.place_name }}
-        <img id="swiper-img" class="img-fluid rounded mx-auto d-block" src="{{ image.url }}">
-        <!-- I should probably add the location -->
-    </div>
-    
-    {% endfor %}
-
-    <!-- If we need pagination -->
-    <div class="swiper-pagination"></div>
-
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-
-    <!-- If we need scrollbar -->
-    <div class="swiper-scrollbar"></div>
+  <!-- Swiper starts here -->
+  <div class="container">
+    <h2 id="explore" class="pb-5 fw-bold">Popular Destinations</h2>
   </div>
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    {% for image in images %}
+    <div class="swiper-slide">
+      <figure class="suggestion-card">
+        <img src="{{ image.url }}" class="img-fluid" id="swiper-img" alt="{{image.description}}">
+        <figcaption>{{ image.place_name}} in {{ image.city_name }}</figcaption>
+      </figure>
+
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="swiper-pagination"></div>
+	<div class="swiper-button-prev" id="swiper-button"></div>
+	<div class="swiper-button-next" id="swiper-button"></div>
 </div>
-<!-- Swiper ends here -->
 
 <br>
 
 <!-- FAQ -->
-<div class="container">
+<div class="container mt-5">
     <h2 id="faq" class="pb-2 fw-bold">FAQ</h2>
     <div class="accordion accordion-flush" id="FAQ-accordion">
 
@@ -176,7 +166,7 @@
 
 {% block footer %}
 <div class="container pt-3">
-    <footer class="py-3 my-4 border-top" id="footer">
+    <footer class="py-3 my-4" id="footer">
       
         <div class="col-md-4">
 
@@ -192,7 +182,7 @@
 
           </ul>
 
-            <p class="mb-3 mb-md-0 text-muted">&copy; 2022 Tripaholics. All rights reserved. Developed and designed by <a href="#">Raquel Pfeifle</a>.</p>
+            <p class="mb-3 mb-md-0 text-muted">&copy; 2022 Tripaholics. All rights reserved. Developed and designed by <span><a href="https://www.linkedin.com/in/raqueldpfeifle/">Raquel Pfeifle</a>.</span></p>
 
         </div>
     </footer>

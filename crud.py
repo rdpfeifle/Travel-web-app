@@ -87,14 +87,6 @@ def update_trip(trip_id, new_destination, new_start_date, new_end_date):
     trip.start_date = new_start_date
     trip.end_date = new_end_date
 
-########### Activity Functions ###########
-
-def create_new_activity():
-    """Create a new activity."""
-
-    pass
-
-
 ########### Reservation Functions ###########
 def create_reservation(trip_id, reservation_type, confirmation_info, destination, start_date, end_date, notes):
     """Create and return new reservation."""
@@ -144,6 +136,7 @@ def create_task(trip_id, task_title, completed):
     return task
 
 ########### Activities Functions ###########
+
 def create_activity(trip_id, activity_type, place_name, datetime, address, phone_number, comments, place_img):
     """Create and return an activity."""
 
@@ -163,6 +156,7 @@ def get_activity_by_id(activity_id):
     """Return activity information by getting the activity id."""
 
     return Activity.query.get(activity_id)
+
 
 ########### Image Functions ###########
 

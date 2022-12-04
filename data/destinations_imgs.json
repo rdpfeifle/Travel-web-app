@@ -2,25 +2,31 @@
   {
     "city_name": "New York City, US",
     "place_name": "Times Square",
-    "description": "Times Square is New York's most famous landmark and is the liveliest area in the city, located at the intersection of Broadway and 7th Avenue. In Times Square you will find bars, restaurants, theatres, museums and a great atmosphere.",
-    "url": "https://images.unsplash.com/photo-1521989841745-2fded4328e13?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=930&q=80"
+    "description": "Times Square in New York City",
+    "url": "/static/img/times-square.jpg"
   },
   {
     "city_name": "Al Haram, Egypt",
     "place_name": "The Great Pyramid of Giza",
-    "description": "The Great Pyramid of Giza is the largest Egyptian pyramid and the tomb of Fourth Dynasty pharaoh Khufu.",
-    "url": "https://images.unsplash.com/photo-1662669096762-d06aed861c4b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=930&q=80"
+    "description": "The Great Pyramid of Giza, Egypt",
+    "url": "/static/img/pyramid-of-giza.jpg"
   },
   {
     "city_name": "Rome, Italy",
     "place_name": "Colosseum",
-    "description": "The Colosseum is an oval amphitheatre in the centre of the city of Rome, Italy, just east of the Roman Forum. It is the largest ancient amphitheatre ever built, and is still the largest standing amphitheatre in the world today, despite its age.",
-    "url": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=930&q=80"
+    "description": "The Colosseum amphitheatre in the city of Rome, Italy",
+    "url": "/static/img/colosseum-rome.jpg"
   },
   {
-    "city_name": "New York City",
-    "place_name": "",
-    "description": "",
-    "url": ""
+    "city_name": "Santorini, Greece",
+    "place_name": "The Towns of Santorini",
+    "description": "The Towns of Santorini, Greece",
+    "url": "/static/img/santorini-greece.jpg"
+  },
+  {
+    "city_name": "Paris, France",
+    "place_name": "Eiffel Tower",
+    "description": "Eiffel Tower in Paris, France",
+    "url": "/static/img/eiffel-tower-paris.jpg"
   }
 ]
