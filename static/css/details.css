@@ -15,7 +15,8 @@
   padding-bottom: 30px;
   margin-top: 30px;
   margin-bottom: 30px;
-  border: 2px solid rgb(232, 230, 230);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border: none;
 }
 
 #checklist-form-container {
@@ -86,18 +87,9 @@
   border-radius: 8px;
 }
 
-/* #done-icon {
-  fill: #008000;
+.checklist-box,
+.reservation-card,
+.activity-card {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border: none;
 }
-
-#done-icon:hover {
-  fill: #007600;
-}
-
-#undone-icon {
-  fill: #ff0000;
-}
-
-#undone-icon:hover {
-  fill: rgb(215, 0, 0);
-} */

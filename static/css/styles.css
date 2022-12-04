@@ -340,6 +340,11 @@ nav,
   padding: 20px 0;
 }
 
+.trip-card-box {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border: none;
+}
+
 #editTrip-btn {
   border-color: var(--black-color);
   color: var(--black-color);

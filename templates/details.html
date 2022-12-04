@@ -330,7 +330,7 @@
         
             <div class="col-12 col-md-6 col-lg-4">
                 
-                <div class="card" id="reservation-card-{{ reservation.reservation_id }}">
+                <div class="card reservation-card" id="reservation-card-{{ reservation.reservation_id }}">
         
                     <div class="card-body">
                         <h3 class="card-title fw-bold">Reservation info:</h3>
@@ -360,7 +360,7 @@
         
             <div class="col-12 col-md-6 col-lg-4">
                 
-                <div class="card" id="activity-card-{{ activity.activity_id }}">
+                <div class="card activity-card" id="activity-card-{{ activity.activity_id }}">
                     <img src="{{activity.place_img}}" class="card-img-top">
                     <div class="card-body">
                         <h2 class="card-title fw-bold">Activity Info:</h2>
@@ -368,8 +368,6 @@
                         <p class="card-text"><span class="fw-bold">Category:</span> {{activity.activity_type}}</p>
                         <p class="card-text">{{activity.datetime.strftime("%b %d, %Y")}}</p>
                         <p class="card-text">{{activity.comments}}</p>
-
-                        <!-- <a href="/my-trips/edit-trip/{{ trip.trip_id }}" value="Edit a trip" class="btn btn-outline-primary">Edit</a> -->
 
                         <!-- Ajax call to delete button -->
                         <button type="button" class="btn btn-outline-danger activity-btn" value="{{activity.activity_id}}">Delete</button>
