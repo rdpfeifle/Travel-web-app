@@ -250,6 +250,13 @@ nav,
 .accordion-item {
   /* border: 1px solid rgba(35, 65, 100, 0.15); */
   border: none;
+  /* margin-bottom: 10px; */
+  font-size: 15px;
+}
+
+.accordion-button {
+  font-weight: 600;
+  font-size: 20px;
 }
 
 .accordion-button:not(.collapsed) {
@@ -262,6 +269,7 @@ nav,
 
 .accordion-button:focus {
   box-shadow: inherit;
+  font-weight: bold;
 }
 
 .accordion-item .accordion-button {
@@ -272,6 +280,7 @@ nav,
 .swiper-container {
   width: 100%;
   padding-bottom: 30px;
+  cursor: pointer;
 }
 
 .suggestion-card {
@@ -299,6 +308,10 @@ nav,
 #swiper-button {
   color: var(--orange);
   padding: 0 20px 0 20px;
+}
+
+#swiper-button:hover {
+  color: var(--hover-color);
 }
 
 /* HOMEPAGE FOOTER  */
