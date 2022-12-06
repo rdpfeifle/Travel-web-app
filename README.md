@@ -26,12 +26,15 @@
 - Users can click on the button to start planning, but they can create a trip only if they are logged in
 - Users can see recommended places to travel to in a beautiful carousel
 - Users can read provided answers to a list of frequently asked questions about the project
+
   ![Tripaholics - Homepage](/static/screenshots/homepage.gif)
 
 ### Sign up/Login
 
 - Users can create an account and/or login
 - Passwords are saved to the database already hashed for extra layer of security using Argon2
+
+  ![Tripaholics - Sign Up](/static/screenshots/signup-page.png)
 
 ### My Trips Page
 
@@ -61,6 +64,12 @@
 ### Trip Details Page - Invite a friend
 
 - Users can invite a friend to join their trip by entering their email address. For this particular feature, I used SendGrid Mail API to send a personalized email invitation to the preferred email account.
+
+### 404 Error Page
+
+- Included 404 error handler page just in case the page doesn't exist.
+
+![Tripaholics - 404 Error Handler](/static/screenshots/404-error.png)
 
 ## Set Up
 
