@@ -44,6 +44,12 @@
 
   ![Tripaholics - My Trips](/static/screenshots/my-trips.gif)
 
+### Edit Trip Page
+
+- Users can modify or add the reason of the trip, as well as a description, and save the changes to the db.
+
+  ![Tripaholics - Edit Trip](/static/screenshots/edit-trip.png)
+
 ### Account Page
 
 - Users can edit their account information by clicking "Account" on the navbar. They can change their name or email, and save the changes to the database.
