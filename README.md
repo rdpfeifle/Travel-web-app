@@ -1,5 +1,9 @@
 # Tripaholics
 
+Tripaholics is a travel web app that allows users to create and/or login into an existing account. Additionally, it allows users to create, edit and delete trips. To create a trip, they need to be logged in, and once they are logged in, they can select the destination, range of dates for travel, and the reason for traveling (which is optional).
+
+Users can also see their future trips in a list of trips that are sorted by start date. They also have a separate page for the trip details, where they can add/delete reservations, a to-do list, activities that they would like to do during their trip, and/or invite friends to join their trip (and they receive an invitation to their preferred email). The project also allows users to edit their account's name and email, and save those changes to the database.
+
 ## Table of Contents
 
 - [Technologies](#technologies-used)
