@@ -2,11 +2,11 @@
 
 ## Table of Contents
 
-- 🤖 [Technologies](#technologies-used)
-- ⭐ [Features](#features)
-- 🚀 [Future Improvements](#future-improvements)
-- 📖 [Set Up](#set-up)
-- 👩🏻 [About Me](#about-me)
+- [Technologies](#technologies-used)
+- [Features](#features)
+- [Future Improvements](#future-improvements)
+- [Set Up](#set-up)
+- [About Me](#about-me)
 
 ## Technologies Used
 
@@ -29,7 +29,34 @@
 - Users can create an account and/or login
 - Passwords are saved to the database already hashed for extra layer of security using Argon2
 
-### More soon...
+### My Trips Page
+
+- Trips created are displayed as cards. If users click on the card, they are redirected to the Trip Details Page, where they can add a task to their to-do list, as well as reservations, activities, and send an invitation to their friends so they can join the trip.
+- Users can choose to edit or delete a particular trip if they want to. I used AJAX for the delete button to delete the trip without reloading the page.
+- If users click to edit a trip, they are redirected to the "Edit Trip" page where they can modify or add the reason of the trip, as well as a description.
+
+### Account Page
+
+- Users can edit their account information by clicking "Account" on the navbar. They can change their name or email, and save the changes to the database.
+
+### Trip Details Page - Checklist
+
+- Users can create and add a to-do list to the trip
+- Users also have the option to mark a task as done or delete it
+
+### Trip Details Page - Reservations
+
+- Users can add reservations to the trip, including hotels, Airbnbs, Flight, Train, etc.
+- Reservations are displayed as cards, and they can be deleted when you are done with them
+
+### Trip Details Page - Activities
+
+- Users can add activities to the trip. The categories are: Guided Tour, Arts & Culture, Outdoor Activities, etc.
+- Activities are displayed as cards (which can also be deleted just like the reservations)
+
+### Trip Details Page - Invite a friend
+
+- Users can invite a friend to join their trip by entering their email address. For this particular feature, I used SendGrid Mail API to send a personalized email invitation to the preferred email account.
 
 ## Set Up
 
