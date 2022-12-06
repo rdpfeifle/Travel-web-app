@@ -42,6 +42,8 @@
 - Users can choose to edit or delete a particular trip if they want to. I used AJAX for the delete button to delete the trip without reloading the page.
 - If users click to edit a trip, they are redirected to the "Edit Trip" page where they can modify or add the reason of the trip, as well as a description.
 
+  ![Tripaholics - My Trips](/static/screenshots/my-trips.gif)
+
 ### Account Page
 
 - Users can edit their account information by clicking "Account" on the navbar. They can change their name or email, and save the changes to the database.
