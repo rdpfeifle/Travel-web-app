@@ -48,6 +48,8 @@
 
 - Users can edit their account information by clicking "Account" on the navbar. They can change their name or email, and save the changes to the database.
 
+  ![Tripaholics - My Account](/static/screenshots/myaccount-page.png)
+
 ### Trip Details Page - Checklist
 
 - Users can create and add a to-do list to the trip
