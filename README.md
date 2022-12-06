@@ -77,6 +77,8 @@
 
 - Users can invite a friend to join their trip by entering their email address. For this particular feature, I used SendGrid Mail API to send a personalized email invitation to the preferred email account.
 
+  ![Tripaholics - Trip Details](/static/screenshots/invite-friend.png)
+
 ### 404 Error Page
 
 - Included 404 error handler page just in case the page doesn't exist.
