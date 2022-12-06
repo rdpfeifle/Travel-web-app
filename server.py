@@ -180,7 +180,7 @@ def edit_user_account():
             user.email = email
             db.session.commit()
                 
-        else:
+        if existent_user:
             flash("That email already exists.", "error")
 
         return redirect("/my-trips")
