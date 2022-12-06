@@ -26,6 +26,7 @@
 - Users can click on the button to start planning, but they can create a trip only if they are logged in
 - Users can see recommended places to travel to in a beautiful carousel
 - Users can read provided answers to a list of frequently asked questions about the project
+  ![Tripaholics - Homepage](/static/screenshots/homepage.gif)
 
 ### Sign up/Login
 
