@@ -241,6 +241,13 @@ nav,
   color: var(--white-color);
 }
 
+@media screen and (max-width: 480px) {
+  #signup-btn {
+    padding: 5px 10px;
+    width: 10%;
+  }
+}
+
 /* HOMEPAGE STYLE  */
 
 #FAQ-accordion {
