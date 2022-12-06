@@ -71,6 +71,8 @@
 - Users can add activities to the trip. The categories are: Guided Tour, Arts & Culture, Outdoor Activities, etc.
 - Activities are displayed as cards (which can also be deleted just like the reservations)
 
+  ![Tripaholics - Trip Details](/static/screenshots/trip-details.gif)
+
 ### Trip Details Page - Invite a friend
 
 - Users can invite a friend to join their trip by entering their email address. For this particular feature, I used SendGrid Mail API to send a personalized email invitation to the preferred email account.
