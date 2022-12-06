@@ -17,8 +17,8 @@
 
 ## Features
 
-✨[Watch demo video](https://youtu.be/c5srainYwKA)
-💻 [Check deployed website](http://54.149.223.126/)
+- ✨[Watch demo video](https://youtu.be/c5srainYwKA)
+- 💻 [Check deployed website](http://54.149.223.126/)
 
 ### Homepage
 
