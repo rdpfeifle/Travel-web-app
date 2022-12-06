@@ -17,6 +17,9 @@
 
 ## Features
 
+✨[Watch demo video](https://youtu.be/c5srainYwKA)
+💻 [Check deployed website](http://54.149.223.126/)
+
 ### Homepage
 
 - Homepage displays additional information about the project, including a navbar that automatically scrolls down when a link is clicked
