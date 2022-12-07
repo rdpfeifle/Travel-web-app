@@ -22,7 +22,7 @@ Users can also see their future trips in a list of trips that are sorted by star
 ## Features
 
 - ✨[Watch demo video](https://youtu.be/c5srainYwKA)
-- 💻 [Check deployed website](http://54.149.223.126/)
+- 💻 [Check deployed website](http://www.tripaholics.info/)
 
 ### Homepage
 
