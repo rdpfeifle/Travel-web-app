@@ -14,17 +14,12 @@ class User(db.Model):
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    # username = db.Column(db.String, nullable=False, unique=True)
     fname = db.Column(db.String, nullable=False)
     lname = db.Column(db.String) # previously nullable=False
     email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
 
     trips = db.relationship("Trip", back_populates="user")
-    # images = db.relationship("Image", back_populates="user")
-
-    # trips = db.relationship("Trip", backref="user") 
-    # images = db.relationship("Image", backref="user") 
 
     def __repr__(self):
         return f"<User user_id={self.user_id} fname={self.fname} email={self.email}>"
@@ -50,9 +45,6 @@ class Trip(db.Model):
     activities = db.relationship("Activity", back_populates="trip")
     reservations = db.relationship("Reservation", back_populates="trip")
     tasks = db.relationship("Checklist", back_populates="trip")
-
-    # activities = db.relationship("Activity", backref="trip") 
-    # reservations = db.relationship("Reservation", backref="trip")
 
     def __repr__(self):
         return f"<Trip trip_id={self.trip_id} destination={self.destination}>"
@@ -122,14 +114,10 @@ class Image(db.Model):
     __tablename__ = "images"
 
     img_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    # user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
     place_name = db.Column(db.String)
     city_name = db.Column(db.String)
     description = db.Column(db.String)
     url = db.Column(db.String)
-    
-    # added relationship
-    # user = db.relationship("User", back_populates="images")
 
     def __repr__(self):
         return f"<Image img_id={self.img_id} city_name{self.city_name} place_name={self.place_name}>"
