@@ -11,30 +11,28 @@
 
 {% block body %}
 
-<div class="container-fluid pt-3">
-
-    <!-- First row goes here -->
-    <div class="row">
-
+<div class="container-fluid pt-3" id="hero-container">
+  <!-- First row goes here -->
+  <div class="row">
+    <div class="col-12">
       <div id="hero-image">
-        <div class="col-6" id="hero-section">
-          <p>CHOOSE YOUR DESTINATION</p>
-          <h1>Don't listen to what they say. Just go.</h1>
-          <p>With Tripaholics, we make planning your trip easy. Start planning now.</p>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <div class="row">
+          <div class="col-md-6" id="hero-section">
+            <p>CHOOSE YOUR DESTINATION</p>
+            <h1>Don't listen to what they say. Just go.</h1>
+            <p>With Tripaholics, we make planning your trip easy. Start planning now.</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
               <button class="btn btn-primary me-md-2" onclick="location.href='/plan-trip'" type="button" id="plan-trip-btn">Plan a trip</button>
               <button class="btn btn-outline-primary" onclick="location.href='https://youtu.be/c5srainYwKA'" id="btn-watch-demo" type="button">Watch Demo</button>
+            </div>
           </div>
+          <div class="col-md-6"></div>
         </div>
-
-        <div class="col-6"></div>
-
       </div>
-
-    <!-- Row ends here -->
-    </div> 
+    </div>
+  </div>
+  <!-- Row ends here -->
 </div>
-
 <!--------------- FEATURES GO HERE --------------->
 <div class="container px-3 py-5" id="features">
     <h2 class="pb-2 fw-bold d-flex justify-content-center">Features</h2>
