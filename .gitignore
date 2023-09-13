@@ -1,4 +1,5 @@
 env
-*.sh
 __pycache__
+*.sh
 sendgrid.env
+trips.sql
